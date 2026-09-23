@@ -305,17 +305,29 @@ class TestCliLlmModeConfiguration:
 
 
 class TestLlmOverwriteProtection:
-    """Section 4: a real LLM result file must never be silently overwritten.
-    All using fake credentials and a stub that fails before any network
-    call could occur (missing OPENAI_API_KEY is enough to prove the
-    exists-check runs BEFORE agent construction -- see below)."""
+    """Section 4 (Phase 6 correction): a real LLM result is now written to a
+    unique, run-ID-qualified path under results/experiments/ (see
+    docs/ARTIFACT_POLICY.md), computed and checked for a collision BEFORE
+    run_evaluation() is ever called -- so this class proves that check fires
+    with zero network calls made, using ARL_RUN_ID (a test-only override,
+    mirroring ARL_RESULTS_DIR/ARL_DOTENV_PATH) to make the otherwise-random
+    UUID4 run ID -- and therefore the exact destination path -- predictable
+    enough for a black-box subprocess test to pre-create a collision.
+    """
 
-    def test_refuses_to_overwrite_existing_llm_result_without_force(self, tmp_path):
-        existing = tmp_path / "llm-baseline.json"
-        existing.write_text('{"sentinel": "pre-existing real result, must survive"}')
+    AGENT_CONFIG_ID = "llm-baseline-v1"  # LLMAgent.agent_config_id / PROMPT_VERSION
+
+    def _experiment_path(self, tmp_path: Path, run_id: str, dataset_version: str = "synthetic-v1") -> Path:
+        return tmp_path / "experiments" / f"{dataset_version}__{self.AGENT_CONFIG_ID}__{run_id}.json"
+
+    def test_refuses_to_overwrite_existing_experiment_artifact_without_any_network_call(self, tmp_path):
+        run_id = "fixed-test-run-id-for-collision-test"
+        existing = self._experiment_path(tmp_path, run_id)
+        existing.parent.mkdir(parents=True)
+        existing.write_text('{"sentinel": "pre-existing real experiment result, must survive"}')
         env = _clean_env(
             tmp_path, MODEL_PROVIDER="openai", MODEL_NAME="gpt-5.4-mini-2026-03-17",
-            OPENAI_API_KEY="sk-fake-for-this-test",
+            OPENAI_API_KEY="sk-fake-for-this-test", ARL_RUN_ID=run_id, ARL_GIT_COMMIT_SHA="fake-sha-for-this-test",
         )
         result = subprocess.run(
             [sys.executable, str(SCRIPT_PATH), "--agent", "llm"],
@@ -323,20 +335,37 @@ class TestLlmOverwriteProtection:
         )
         assert result.returncode == 1
         assert "already exists" in result.stderr
-        # Untouched -- the CLI must refuse before doing anything else.
-        assert existing.read_text() == '{"sentinel": "pre-existing real result, must survive"}'
+        # Untouched -- the CLI must refuse before doing anything else,
+        # including before any real network call to a provider.
+        assert existing.read_text() == '{"sentinel": "pre-existing real experiment result, must survive"}'
+
+    def test_force_overwrite_does_not_bypass_experiment_immutability(self, tmp_path):
+        """--force-overwrite no longer has any effect on a real LLM
+        artifact -- see docs/ARTIFACT_POLICY.md Category A. This is the one
+        behavior change from the flag's old semantics, verified directly."""
+        run_id = "fixed-test-run-id-for-force-overwrite-test"
+        existing = self._experiment_path(tmp_path, run_id)
+        existing.parent.mkdir(parents=True)
+        existing.write_text('{"sentinel": "must survive even with --force-overwrite"}')
+        env = _clean_env(
+            tmp_path, MODEL_PROVIDER="openai", MODEL_NAME="gpt-5.4-mini-2026-03-17",
+            OPENAI_API_KEY="sk-fake-for-this-test", ARL_RUN_ID=run_id, ARL_GIT_COMMIT_SHA="fake-sha-for-this-test",
+        )
+        result = subprocess.run(
+            [sys.executable, str(SCRIPT_PATH), "--agent", "llm", "--force-overwrite"],
+            cwd=REPO_ROOT, capture_output=True, text=True, timeout=30, env=env,
+        )
+        assert result.returncode == 1
+        assert "already exists" in result.stderr
+        assert existing.read_text() == '{"sentinel": "must survive even with --force-overwrite"}'
 
     def test_overwrite_check_and_config_validation_both_run_before_any_api_call(self, tmp_path):
-        """Both safety mechanisms -- config validation and overwrite
-        protection -- run in scripts/run_eval.py's main() BEFORE
-        run_evaluation() is ever called, so neither ordering between them
-        can result in a wasted real API call. With incomplete config
-        (missing OPENAI_API_KEY), config validation is reached first and
-        reports its own specific error rather than being confused or
-        masked by the overwrite check -- proving the two checks coexist
-        correctly rather than one accidentally shadowing the other.
-        """
-        existing = tmp_path / "llm-baseline.json"
+        """Config validation (missing OPENAI_API_KEY) is reached first and
+        reports its own specific error -- it happens before the new
+        experiment-collision check even runs, since that check needs a
+        constructed agent's agent_config_id. Both still run entirely before
+        run_evaluation(), so neither ordering wastes a real API call."""
+        existing = tmp_path / "llm-baseline.json"  # legacy path; no longer written to at all
         existing.write_text("{}")
         env = _clean_env(tmp_path, MODEL_PROVIDER="openai", MODEL_NAME="gpt-5.4-mini-2026-03-17")
         result = subprocess.run(
@@ -345,22 +374,7 @@ class TestLlmOverwriteProtection:
         )
         assert result.returncode == 1
         assert "OPENAI_API_KEY" in result.stderr
-        # Whichever check fires first, the pre-existing file must survive.
         assert existing.read_text() == "{}"
-
-    def test_force_overwrite_flag_allows_it(self, tmp_path):
-        existing = tmp_path / "llm-baseline.json"
-        existing.write_text('{"sentinel": "should be overwritten"}')
-        env = _clean_env(tmp_path, MODEL_PROVIDER="openai", MODEL_NAME="gpt-5.4-mini-2026-03-17")
-        # No OPENAI_API_KEY -- will still fail, but AFTER the overwrite
-        # check passes (proving --force-overwrite bypasses that check
-        # specifically, not just config validation in general).
-        result = subprocess.run(
-            [sys.executable, str(SCRIPT_PATH), "--agent", "llm", "--force-overwrite"],
-            cwd=REPO_ROOT, capture_output=True, text=True, timeout=30, env=env,
-        )
-        assert "already exists" not in result.stderr
-        assert "OPENAI_API_KEY" in result.stderr  # got past the overwrite check to the next real error
 
     def test_deterministic_mode_always_overwrites_freely(self, tmp_path):
         """Deterministic output is reproducible on demand -- no protection,

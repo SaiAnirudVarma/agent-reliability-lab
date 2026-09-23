@@ -6,7 +6,7 @@ Independent reliability and evaluation harness for a synthetic enterprise audit 
 
 ## Dataset
 
-`datasets/` contains a small, entirely **synthetic** control-testing dataset, organized into named versions via `datasets/versions.json`: `controls.json` (11 control definitions), `evidence.json` (72 evidence records), and `eval_cases.json` (30 evaluation cases, `AC-001`–`AC-030`). `synthetic-v1` is the original 10-case benchmark (`AC-001`–`AC-010`); `synthetic-v2` is the full 30-case set, adding 20 additional, harder cases (`AC-011`–`AC-030`) on top of the unmodified `synthetic-v1` cases. No real company data, employee data, or proprietary control language is used anywhere in this repository.
+`datasets/` contains a small, entirely **synthetic** control-testing dataset, organized into named versions via `datasets/versions.json`: `controls.json` (12 control definitions), `evidence.json` (72 evidence records), and `eval_cases.json` (30 evaluation cases, `AC-001`–`AC-030`). `synthetic-v1` is the original 10-case benchmark (`AC-001`–`AC-010`); `synthetic-v2` is the full 30-case set, adding 20 additional, harder cases (`AC-011`–`AC-030`) on top of the unmodified `synthetic-v1` cases. No real company data, employee data, or proprietary control language is used anywhere in this repository.
 
 Each case pairs a neutral scenario description with a fixed pool of evidence (`EvaluationCase.evidence_pool`) — including, in most cases, at least one deliberate distractor (a wrong-period document, a wrong-employee record, or an unrelated document) so that a correct answer requires actually inspecting the evidence rather than receiving one pre-curated document.
 

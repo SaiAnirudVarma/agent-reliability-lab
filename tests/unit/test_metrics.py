@@ -355,6 +355,18 @@ class TestPercentile:
         assert percentile(values, 0.95) == 4171.9
         assert percentile(values, 0.95) == max(values)
 
+    def test_p50_of_the_real_v1_llm_baseline_latency_array(self):
+        """Explicit, printed verification (Phase 6 correction, item G) of
+        this exact array's P50 under the nearest-rank implementation. For
+        n=10, rank = ceil(0.5 * 10) = 5 -> sorted[4] (5th-smallest) =
+        2357.2 -- NOT 2597.9 (the 6th-smallest). A prior report asserted
+        2597.9 without having actually run this computation; this was
+        checked directly against this implementation and found not to
+        match, and was reported rather than "corrected" by changing the
+        percentile algorithm to fit the wrong expected value."""
+        values = [1749.0, 2223.7, 2270.4, 2318.1, 2357.2, 2597.9, 2602.5, 2646.2, 3177.2, 4171.9]
+        assert percentile(values, 0.5) == 2357.2
+
     def test_p100_is_always_the_max(self):
         values = [5, 1, 9, 3, 7]
         assert percentile(values, 1.0) == max(values) == 9

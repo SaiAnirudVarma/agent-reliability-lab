@@ -234,7 +234,7 @@
         "EV-1203"
       ],
       "should_abstain": false,
-      "rationale": "The rotation cycle for svc-ledger-db began 2025-05-20, before Policy v2.0 took effect (2025-07-01), so v2.0's own transition clause (EV-1202) permits this one in-progress cycle to complete under the v1.0 180-day cadence. The cycle completed in 87 days, well within that allowance. v1.0 (EV-1201) is superseded and not itself the governing document, but v2.0 explicitly preserves its cadence for this already-in-progress cycle."
+      "rationale": "The rotation cycle for svc-ledger-db began 2025-05-20, before Policy v2.0 took effect (2025-07-01). Applying v1.0 alone (EV-1201), legacy systems designated before 2023 were held to a 60-day rotation cadence -- the observed 87-day cycle would exceed that cadence, so v1.0 alone does not justify this cycle. Policy v2.0's own transition clause (EV-1202), however, explicitly grants any key-rotation cycle already in progress under the superseded policy a flat 180-day window to complete, regardless of v1.0's own category-specific cadence. EV-1203 confirms the cycle completed in 87 days, well within that 180-day transition allowance, so the cycle is compliant under v2.0's explicit transition clause -- not under v1.0's own (shorter) cadence."
     },
     "failure_mode_tag": "stale_policy_transition_clause"
   },
@@ -278,7 +278,7 @@
   },
   {
     "case_id": "AC-015",
-    "control_id": "CTRL-DB-PRIV-CERT",
+    "control_id": "CTRL-DB-PRIV-CERT-ALT-SOURCE",
     "scenario_description": "Determine whether privileged database role assignments were certified as required for Q1 2026, given that the primary extraction tool returned an error.",
     "evidence_pool": [
       "EV-1501",
@@ -288,10 +288,11 @@
     "expected_outcome": {
       "expected_finding": "PASS",
       "required_evidence_ids": [
+        "EV-1501",
         "EV-1502"
       ],
       "should_abstain": false,
-      "rationale": "The primary governance tool (EV-1501) failed to produce an extract, but EV-1502, an independently-sourced and reviewer-signed IAM export covering the same period and scope, is by itself sufficient to confirm all privileged database roles were reviewed and confirmed appropriate. A partial tool failure does not require abstention when a sufficient alternate source exists."
+      "rationale": "The primary governance tool (EV-1501) failed to produce a Q1 2026 extract, which is the precondition CTRL-DB-PRIV-CERT-ALT-SOURCE requires before an alternate source may be used. EV-1502, an independently-sourced, reviewer-signed IAM export covering the same period and the same scope of privileged database roles, satisfies the control's explicit alternate-source provision. Together, EV-1501 (establishing the primary tool's unavailability) and EV-1502 (the qualifying substitute) are sufficient to confirm all privileged database roles were reviewed and confirmed appropriate; a partial tool failure does not require abstention when the control's own alternate-source allowance is satisfied."
     },
     "failure_mode_tag": "partial_tool_failure_sufficient_alternate"
   },

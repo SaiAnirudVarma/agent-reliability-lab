@@ -75,5 +75,12 @@
     "description": "Requires timely notification of required stakeholders following a confirmed security incident.",
     "requirement_text": "Following discovery of a confirmed security incident, required stakeholders must be notified within 4 hours of discovery.",
     "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-DB-PRIV-CERT-ALT-SOURCE",
+    "name": "Quarterly Database Privileged Role Certification (Alternate-Source Provision)",
+    "description": "Requires certification that privileged database roles assigned to individual accounts remain appropriate, with an explicit allowance for a sufficient alternate source when the primary governance tool is unavailable.",
+    "requirement_text": "Each quarter, the database administration team must certify that privileged database roles (e.g., DBA, sysadmin) assigned to individual accounts remain appropriate, based on an extract from the database access governance tool. If the database access governance tool is unavailable for the period, an equivalent extract of privileged database role assignments, covering the same scope of accounts and roles, may substitute for it, provided the substitute extract is (a) sourced independently of the unavailable tool and (b) signed off by a reviewer attesting to its accuracy and completeness. No substitute source narrows, waives, or otherwise reduces the certification requirement itself.",
+    "sla_hours": null
   }
 ]

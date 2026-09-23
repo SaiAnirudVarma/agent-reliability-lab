@@ -30,6 +30,8 @@ def run_evaluation(
     provider: ModelProvider | None = None,
     model_name: str | None = None,
     llm_config: LLMConfig | None = None,
+    run_id: str | None = None,
+    git_commit_sha: str | None = None,
 ) -> RunReport:
     """Run ``agent`` against every case in ``dataset`` and return a RunReport.
 
@@ -37,13 +39,22 @@ def run_evaluation(
     dataset's JSON file was written in (the loader does not sort or
     reorder), so results/traces are always in stable, reproducible order.
 
-    ``provider``/``model_name``/``llm_config`` are declared by the caller
-    (e.g. the CLI, reading explicit configuration) for the whole run and
-    threaded into every trace plus the report header -- never inferred from
-    ``agent`` itself.
+    ``provider``/``model_name``/``llm_config``/``git_commit_sha`` are
+    declared by the caller (e.g. the CLI, reading explicit configuration or
+    capturing git state once) for the whole run and threaded into the report
+    -- never inferred from ``agent`` itself, and never re-derived per case.
+
+    ``run_id`` defaults to a fresh UUID4 when not supplied, preserving this
+    function's original self-contained behavior for direct callers (e.g.
+    tests, or deterministic-mode use). A caller that needs to know the run
+    ID *before* the run completes -- e.g. to precompute a run-ID-qualified
+    output path and check for a collision before spending a real API call --
+    supplies one explicitly, and the returned ``RunReport.run_id`` is
+    guaranteed to be exactly that value (see ``scripts/run_eval.py``).
     """
 
-    run_id = str(uuid4())
+    if run_id is None:
+        run_id = str(uuid4())
     results = []
     traces = []
 
@@ -71,6 +82,7 @@ def run_evaluation(
         llm_config=llm_config,
         dataset_version=dataset.version,
         dataset_fingerprint=dataset.fingerprint,
+        git_commit_sha=git_commit_sha,
         results=results,
         traces=traces,
         metrics=metrics,

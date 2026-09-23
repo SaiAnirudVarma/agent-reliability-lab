@@ -253,3 +253,106 @@ class TestLoaderErrorHandling:
         _write_dataset(tmp_path, [_base_control()], [_base_evidence()], [_base_case()])
         dataset = load_dataset(tmp_path)
         assert dataset.cases_by_id["AC-999"].control_id == "CTRL-TEST"
+
+
+# ---------------------------------------------------------------------------
+# Fingerprint hardening (Phase 6 correction, item F)
+# ---------------------------------------------------------------------------
+
+
+def _write_multi_version_dataset(
+    tmp_path: Path, controls: list, evidence: list, cases: list, versions: dict
+) -> Path:
+    """Like _write_dataset, but with a caller-supplied versions.json mapping
+    (multiple named versions over the same shared files), for tests that
+    need to prove one version's fingerprint is unaffected by another
+    version's resources."""
+
+    (tmp_path / "controls.json").write_text(json.dumps(controls))
+    (tmp_path / "evidence.json").write_text(json.dumps(evidence))
+    (tmp_path / "eval_cases.json").write_text(json.dumps(cases))
+    (tmp_path / "versions.json").write_text(json.dumps(versions))
+    return tmp_path
+
+
+class TestFingerprintHardening:
+    def test_identical_content_yields_identical_fingerprint(self, tmp_path):
+        _write_dataset(tmp_path, [_base_control()], [_base_evidence()], [_base_case()])
+        first = load_dataset(tmp_path)
+        second = load_dataset(tmp_path)
+        assert first.fingerprint == second.fingerprint
+
+    def test_identical_content_yields_identical_fingerprint_on_synthetic_v2(self):
+        """Same invariant as the v1 test in TestSyntheticV1Preserved, proven
+        directly for synthetic-v2 too."""
+        first = load_dataset(REAL_DATASET_DIR, version="synthetic-v2")
+        second = load_dataset(REAL_DATASET_DIR, version="synthetic-v2")
+        assert first.fingerprint == second.fingerprint
+
+    def test_changing_benchmark_relevant_content_changes_fingerprint(self, tmp_path):
+        evidence = _base_evidence()
+        _write_dataset(tmp_path, [_base_control()], [evidence], [_base_case()])
+        before = load_dataset(tmp_path).fingerprint
+
+        changed_evidence = _base_evidence()
+        changed_evidence["content"] = "Some DIFFERENT evidence content."
+        _write_dataset(tmp_path, [_base_control()], [changed_evidence], [_base_case()])
+        after = load_dataset(tmp_path).fingerprint
+
+        assert before != after
+
+    def test_changing_a_case_rationale_changes_fingerprint(self, tmp_path):
+        """Ground truth (ExpectedOutcome) is part of what a dataset version
+        reproducibly means, not just the evidence/control text -- a
+        rationale edit must move the fingerprint too."""
+        _write_dataset(tmp_path, [_base_control()], [_base_evidence()], [_base_case()])
+        before = load_dataset(tmp_path).fingerprint
+
+        case = _base_case()
+        case["expected_outcome"]["rationale"] = "A different rationale entirely."
+        _write_dataset(tmp_path, [_base_control()], [_base_evidence()], [case])
+        after = load_dataset(tmp_path).fingerprint
+
+        assert before != after
+
+    def test_v1_fingerprint_stable_when_v2_only_resources_change(self, tmp_path):
+        """The exact invariant that makes dataset versioning safe: adding or
+        editing a control/evidence/case that ONLY a later version
+        references must never move an earlier version's fingerprint."""
+        control = _base_control()
+        evidence = _base_evidence()
+        case = _base_case()
+        versions_only_v1 = {"synthetic-v1": {"case_ids": ["AC-999"]}}
+        _write_multi_version_dataset(tmp_path, [control], [evidence], [case], versions_only_v1)
+        v1_before = load_dataset(tmp_path, version="synthetic-v1").fingerprint
+
+        v2_only_control = _base_control()
+        v2_only_control["control_id"] = "CTRL-TEST-V2-ONLY"
+        v2_only_evidence = _base_evidence("EV-TEST-V2-ONLY")
+        v2_only_case = _base_case()
+        v2_only_case["case_id"] = "AC-998"
+        v2_only_case["control_id"] = "CTRL-TEST-V2-ONLY"
+        v2_only_case["evidence_pool"] = ["EV-TEST-V2-ONLY"]
+        v2_only_case["expected_outcome"]["required_evidence_ids"] = ["EV-TEST-V2-ONLY"]
+
+        versions_both = {
+            "synthetic-v1": {"case_ids": ["AC-999"]},
+            "synthetic-v2": {"case_ids": ["AC-999", "AC-998"]},
+        }
+        _write_multi_version_dataset(
+            tmp_path,
+            [control, v2_only_control],
+            [evidence, v2_only_evidence],
+            [case, v2_only_case],
+            versions_both,
+        )
+        v1_after = load_dataset(tmp_path, version="synthetic-v1").fingerprint
+        v2_fingerprint = load_dataset(tmp_path, version="synthetic-v2").fingerprint
+
+        assert v1_before == v1_after
+        assert v2_fingerprint != v1_after
+
+    def test_v1_and_v2_fingerprints_differ_on_real_dataset(self):
+        v1 = load_dataset(REAL_DATASET_DIR, version="synthetic-v1")
+        v2 = load_dataset(REAL_DATASET_DIR, version="synthetic-v2")
+        assert v1.fingerprint != v2.fingerprint

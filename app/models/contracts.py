@@ -388,6 +388,18 @@ class RunReport(BaseModel):
     ``app.datasets.loader`` for exactly what enters it), so two runs can be
     confirmed to have used byte-identical dataset content even if the
     dataset directory has since changed.
+
+    ``git_commit_sha`` is ``Optional`` for the same reason and by the same
+    convention: ``None`` means "captured before this field existed" (every
+    artifact produced before this Phase 6 correction pass, including the
+    frozen synthetic-v1 LLM baseline, which predates this project even
+    having any git commits at all), never "provenance unknown." Captured
+    exactly once per run (see ``app.observability.git_provenance``), never
+    once per case. There is no separate ``evaluator_version`` field: the
+    evaluator module's exact behavior for a given run IS whatever
+    ``app/evaluation/evaluator.py`` and ``app/evaluation/metrics.py``
+    contained at ``git_commit_sha`` -- that commit already identifies it
+    without a second, independently-driftable version string.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -399,6 +411,7 @@ class RunReport(BaseModel):
     llm_config: Optional[LLMConfig] = None
     dataset_version: Optional[str] = None
     dataset_fingerprint: Optional[str] = None
+    git_commit_sha: Optional[str] = None
     results: list[EvaluationResult]
     traces: list[ExecutionTrace]
     metrics: MetricSummary

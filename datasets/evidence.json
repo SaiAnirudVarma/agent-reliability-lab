@@ -330,12 +330,12 @@
     "document_id": "key_rotation_policy_v1",
     "title": "Key Rotation Policy v1.0 (Superseded)",
     "period": "2025-Q2",
-    "content": "Key Rotation Policy, Version 1.0. Effective 2022-01-01 through 2025-06-30 (superseded). Legacy systems designated before 2023 may rotate encryption keys every 180 days.",
+    "content": "Key Rotation Policy, Version 1.0. Effective 2022-01-01 through 2025-06-30 (superseded). Legacy systems designated before 2023 may rotate encryption keys every 60 days, reflecting the shorter certified key-lifetime supported by these systems' older hardware security modules.",
     "structured_fields": {
       "policy_version": "1.0",
       "effective_start": "2022-01-01",
       "effective_end": "2025-06-30",
-      "legacy_rotation_days": 180
+      "legacy_rotation_days": 60
     }
   },
   {
