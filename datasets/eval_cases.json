@@ -1,0 +1,601 @@
+[
+  {
+    "case_id": "AC-001",
+    "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+    "scenario_description": "Determine whether the Q1 2025 privileged access review for this control was completed in accordance with the control's timeliness requirement.",
+    "evidence_pool": [
+      "EV-101",
+      "EV-9002"
+    ],
+    "period": "2025-Q1",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-101"
+      ],
+      "should_abstain": false,
+      "rationale": "Attestation EV-101 shows the Q1 2025 review was completed 2025-04-10, within the 360-hour (15-day) deadline from the 2025-03-31 quarter end, with all 42 accounts confirmed appropriate."
+    },
+    "failure_mode_tag": "baseline_positive"
+  },
+  {
+    "case_id": "AC-002",
+    "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+    "scenario_description": "Determine whether the Q2 2025 privileged access review for this control was completed in accordance with the control's timeliness requirement.",
+    "evidence_pool": [
+      "EV-201",
+      "EV-9001"
+    ],
+    "period": "2025-Q2",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-201"
+      ],
+      "should_abstain": false,
+      "rationale": "Attestation EV-201 shows the Q2 2025 review was completed 2025-07-29, exceeding the 360-hour (15-day) deadline from the 2025-06-30 quarter end by roughly two weeks, constituting a timeliness exception regardless of the review's substantive outcome."
+    },
+    "failure_mode_tag": "exception_detection"
+  },
+  {
+    "case_id": "AC-003",
+    "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+    "scenario_description": "Determine whether the Q3 2025 privileged access review for this control has been completed and evidenced in accordance with the control's requirements.",
+    "evidence_pool": [
+      "EV-301",
+      "EV-201"
+    ],
+    "period": "2025-Q3",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-301"
+      ],
+      "should_abstain": true,
+      "rationale": "No attestation exists for the Q3 2025 review; EV-301 confirms only that the review was scheduled to begin after the quarter closed, with no completion evidence available. The Q2 2025 attestation (EV-201) is from a prior period and cannot substitute. The correct behavior is to abstain rather than assume completion or non-completion."
+    },
+    "failure_mode_tag": "abstention_missing_evidence"
+  },
+  {
+    "case_id": "AC-004",
+    "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+    "scenario_description": "Determine whether privileged and standard system access for employee E-10457 was revoked within the required timeframe following termination.",
+    "evidence_pool": [
+      "EV-401",
+      "EV-402",
+      "EV-403"
+    ],
+    "period": "2025-Q2",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-401",
+        "EV-402"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-401 and EV-402 show access for employee E-10457 was removed roughly 40.5 hours after the termination timestamp, exceeding the 24-hour SLA in CTRL-TERM-ACCESS-REMOVAL."
+    },
+    "failure_mode_tag": "sla_timestamp_violation"
+  },
+  {
+    "case_id": "AC-005",
+    "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+    "scenario_description": "Determine whether privileged and standard system access for employee E-10832 was revoked within the required timeframe following termination.",
+    "evidence_pool": [
+      "EV-501",
+      "EV-502",
+      "EV-403"
+    ],
+    "period": "2025-Q2",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-501",
+        "EV-502"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-501 and EV-502 show access for employee E-10832 was removed roughly 18 hours after the termination timestamp, within the 24-hour SLA."
+    },
+    "failure_mode_tag": "sla_timestamp_compliance"
+  },
+  {
+    "case_id": "AC-006",
+    "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+    "scenario_description": "Determine whether the Q4 2025 privileged access review for this control was completed and confirmed in accordance with the control's requirements.",
+    "evidence_pool": [
+      "EV-601",
+      "EV-602"
+    ],
+    "period": "2025-Q4",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-601"
+      ],
+      "should_abstain": true,
+      "rationale": "EV-601 is a draft attestation missing the completion date and reviewer sign-off fields required to determine whether the Q4 2025 review was completed on time. The correct behavior is to abstain rather than assume timeliness."
+    },
+    "failure_mode_tag": "abstention_incomplete_evidence"
+  },
+  {
+    "case_id": "AC-007",
+    "control_id": "CTRL-PRIV-MFA",
+    "scenario_description": "Determine whether multi-factor authentication was enabled on privileged account svc-payroll-03 in accordance with the MFA enforcement policy in effect on its provisioning date.",
+    "evidence_pool": [
+      "EV-701",
+      "EV-702",
+      "EV-703"
+    ],
+    "period": "2025-Q2",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-702",
+        "EV-703"
+      ],
+      "should_abstain": false,
+      "rationale": "MFA Enforcement Policy v2.0 (EV-702), effective 2025-02-01, was the governing policy on the account's 2025-05-12 provisioning date and permits no grace period. Policy v1.0 (EV-701) was superseded as of 2025-01-31 and does not apply. EV-703 shows MFA was not enabled at provisioning, constituting a violation of the governing policy."
+    },
+    "failure_mode_tag": "context_conflict_policy"
+  },
+  {
+    "case_id": "AC-008",
+    "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+    "scenario_description": "Determine whether the Q4 2024 privileged access review for this control was completed and all in-scope accounts were confirmed appropriate.",
+    "evidence_pool": [
+      "EV-801",
+      "EV-802",
+      "EV-803"
+    ],
+    "period": "2024-Q4",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-801",
+        "EV-802"
+      ],
+      "should_abstain": false,
+      "rationale": "Neither EV-801 (timing and reviewer, no disposition) nor EV-802 (disposition, no certified timing) is independently sufficient. Together they establish that reviewer T. Osei completed the review of all 39 in-scope accounts on 2025-01-08, within the 360-hour deadline from the 2024-12-31 quarter end, with all 39 confirmed appropriate."
+    },
+    "failure_mode_tag": "evidence_synthesis"
+  },
+  {
+    "case_id": "AC-009",
+    "control_id": "CTRL-FIREWALL-RECERT",
+    "scenario_description": "Determine whether all inbound external-access firewall rules were recertified as required for Q2 2025, and whether any exceptions exist.",
+    "evidence_pool": [
+      "EV-901",
+      "EV-902"
+    ],
+    "period": "2025-Q2",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-902"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-901 is a Q1 2025 recertification and does not satisfy the Q2 2025 review period. EV-902, the valid in-period record, shows rule FW-2291 could not be recertified due to a lack of current business-owner approval, constituting an exception."
+    },
+    "failure_mode_tag": "retrieval_wrong_period"
+  },
+  {
+    "case_id": "AC-010",
+    "control_id": "CTRL-DB-PRIV-CERT",
+    "scenario_description": "Determine whether privileged database role assignments were certified as required for Q2 2025.",
+    "evidence_pool": [
+      "EV-1001",
+      "EV-1002",
+      "EV-1003"
+    ],
+    "period": "2025-Q2",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-1002"
+      ],
+      "should_abstain": true,
+      "rationale": "EV-1002 shows the Database Access Governance Tool returned repeated errors and produced no Q2 2025 extract, with no alternate source available. EV-1003 is a Q1 2025 extract and cannot substitute for the required Q2 2025 data. The correct behavior is to abstain rather than rely on an out-of-period substitute."
+    },
+    "failure_mode_tag": "tool_failure_abstention"
+  },
+  {
+    "case_id": "AC-011",
+    "control_id": "CTRL-VENDOR-RISK-ASSESSMENT",
+    "scenario_description": "Determine whether vendor Acme Logistics satisfied the third-party vendor risk assessment control for Q1 2026.",
+    "evidence_pool": [
+      "EV-1101",
+      "EV-1102"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-1102"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-1102, the formal Q1 2026 risk assessment report, is the authoritative record and rates the vendor High Risk with incomplete required remediation. EV-1101 is a dashboard summary that its own annotation says may lag behind the latest assessment and must not override the primary report."
+    },
+    "failure_mode_tag": "conflicting_evidence_authority"
+  },
+  {
+    "case_id": "AC-012",
+    "control_id": "CTRL-ENCRYPTION-KEY-ROTATION",
+    "scenario_description": "Determine whether the encryption key rotation for svc-ledger-db's cycle beginning 2025-05-20 satisfied the key-rotation control.",
+    "evidence_pool": [
+      "EV-1201",
+      "EV-1202",
+      "EV-1203"
+    ],
+    "period": "2025-Q3",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-1202",
+        "EV-1203"
+      ],
+      "should_abstain": false,
+      "rationale": "The rotation cycle for svc-ledger-db began 2025-05-20, before Policy v2.0 took effect (2025-07-01), so v2.0's own transition clause (EV-1202) permits this one in-progress cycle to complete under the v1.0 180-day cadence. The cycle completed in 87 days, well within that allowance. v1.0 (EV-1201) is superseded and not itself the governing document, but v2.0 explicitly preserves its cadence for this already-in-progress cycle."
+    },
+    "failure_mode_tag": "stale_policy_transition_clause"
+  },
+  {
+    "case_id": "AC-013",
+    "control_id": "CTRL-CHANGE-MGMT-APPROVAL",
+    "scenario_description": "Determine whether change ticket CHG-88213 satisfied the change management pre-deployment approval control for Q2 2026.",
+    "evidence_pool": [
+      "EV-1301",
+      "EV-1302"
+    ],
+    "period": "2026-Q2",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-1302"
+      ],
+      "should_abstain": true,
+      "rationale": "EV-1301 is a Q1 2026 summary and does not speak to Q2 2026, the period under review, and must not be substituted. EV-1302, the only Q2 2026 change record provided, shows an approver was recorded but the approval timestamp is missing, so it cannot be confirmed the approval was obtained before deployment as the control requires."
+    },
+    "failure_mode_tag": "wrong_period_plus_incomplete_current"
+  },
+  {
+    "case_id": "AC-014",
+    "control_id": "CTRL-VULN-REMEDIATION-SLA",
+    "scenario_description": "Determine whether CVE-2026-0091 was remediated within the required 15-day SLA for critical vulnerabilities.",
+    "evidence_pool": [
+      "EV-1401",
+      "EV-1402"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-1401"
+      ],
+      "should_abstain": true,
+      "rationale": "EV-1401 confirms the vulnerability was marked Resolved and gives a discovery date, but the resolution date was never recorded. Without both dates, the 15-day SLA cannot be computed, so timeliness cannot be confirmed or refuted."
+    },
+    "failure_mode_tag": "incomplete_evidence_looks_positive"
+  },
+  {
+    "case_id": "AC-015",
+    "control_id": "CTRL-DB-PRIV-CERT",
+    "scenario_description": "Determine whether privileged database role assignments were certified as required for Q1 2026, given that the primary extraction tool returned an error.",
+    "evidence_pool": [
+      "EV-1501",
+      "EV-1502"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-1502"
+      ],
+      "should_abstain": false,
+      "rationale": "The primary governance tool (EV-1501) failed to produce an extract, but EV-1502, an independently-sourced and reviewer-signed IAM export covering the same period and scope, is by itself sufficient to confirm all privileged database roles were reviewed and confirmed appropriate. A partial tool failure does not require abstention when a sufficient alternate source exists."
+    },
+    "failure_mode_tag": "partial_tool_failure_sufficient_alternate"
+  },
+  {
+    "case_id": "AC-016",
+    "control_id": "CTRL-VENDOR-RISK-ASSESSMENT",
+    "scenario_description": "Determine whether vendor Rangeline Analytics' Q2 2026 risk assessment satisfies the vendor risk assessment control.",
+    "evidence_pool": [
+      "EV-1601",
+      "EV-1602",
+      "EV-1603"
+    ],
+    "period": "2026-Q2",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-1602",
+        "EV-1603"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-1602 establishes the Low Risk rating but its own worksheet page doesn't print a completion date. EV-1603, the tracking-system export, confirms the same assessment ID (VRA-2244, same vendor) was completed 2026-04-22, within Q2 2026. Together they establish a timely, dated, Low Risk assessment; neither alone does."
+    },
+    "failure_mode_tag": "multi_document_synthesis_success"
+  },
+  {
+    "case_id": "AC-017",
+    "control_id": "CTRL-FIREWALL-RECERT",
+    "scenario_description": "Determine whether all inbound external-access firewall rules were recertified as required for Q1 2026.",
+    "evidence_pool": [
+      "EV-1701",
+      "EV-1702"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-1702"
+      ],
+      "should_abstain": false,
+      "rationale": "The executive summary (EV-1701) states zero exceptions, but the underlying rule-by-rule worksheet (EV-1702) \u2014 the primary record \u2014 shows rule FW-3107 was explicitly NOT recertified. The primary worksheet governs over the higher-level summary, which is evidently inaccurate or stale."
+    },
+    "failure_mode_tag": "misleading_summary_vs_primary_evidence"
+  },
+  {
+    "case_id": "AC-018",
+    "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+    "scenario_description": "Determine whether privileged and standard system access for employee E-20112 was revoked within the required timeframe following termination.",
+    "evidence_pool": [
+      "EV-1801",
+      "EV-1802"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-1801",
+        "EV-1802"
+      ],
+      "should_abstain": false,
+      "rationale": "Access was removed 23 hours 59 minutes after termination \u2014 one minute under the 24-hour SLA \u2014 satisfying the control."
+    },
+    "failure_mode_tag": "sla_threshold_boundary_compliant"
+  },
+  {
+    "case_id": "AC-019",
+    "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+    "scenario_description": "Determine whether privileged and standard system access for employee E-20255 was revoked within the required timeframe following termination.",
+    "evidence_pool": [
+      "EV-1901",
+      "EV-1902"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-1901",
+        "EV-1902"
+      ],
+      "should_abstain": false,
+      "rationale": "Access was removed 24 hours 1 minute after termination \u2014 one minute over the 24-hour SLA \u2014 constituting a violation despite the minimal margin."
+    },
+    "failure_mode_tag": "sla_threshold_boundary_violation"
+  },
+  {
+    "case_id": "AC-020",
+    "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+    "scenario_description": "Determine whether privileged and standard system access for employee E-30044 was revoked within the required timeframe following termination.",
+    "evidence_pool": [
+      "EV-2001",
+      "EV-2002",
+      "EV-2003",
+      "EV-2004"
+    ],
+    "period": "2026-Q2",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-2001",
+        "EV-2002"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-2001 and EV-2002 show access for the employee under review, E-30044, was removed 8 hours after termination, within the 24-hour SLA. EV-2003/EV-2004 concern a different employee, E-30051, and their later removal is not relevant to this case."
+    },
+    "failure_mode_tag": "entity_binding_subject_compliant"
+  },
+  {
+    "case_id": "AC-021",
+    "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+    "scenario_description": "Determine whether privileged and standard system access for employee E-40077 was revoked within the required timeframe following termination.",
+    "evidence_pool": [
+      "EV-2101",
+      "EV-2102",
+      "EV-2103",
+      "EV-2104"
+    ],
+    "period": "2026-Q2",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-2101",
+        "EV-2102"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-2101 and EV-2102 show access for the employee under review, E-40077, was removed 72 hours after termination, exceeding the 24-hour SLA. EV-2103/EV-2104 concern a different, compliant employee, E-40080, and must not be substituted."
+    },
+    "failure_mode_tag": "entity_binding_subject_violation"
+  },
+  {
+    "case_id": "AC-022",
+    "control_id": "CTRL-DATA-RETENTION",
+    "scenario_description": "Determine whether customer records past their retention period were deleted within the required window for Q1 2026.",
+    "evidence_pool": [
+      "EV-2201"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-2201"
+      ],
+      "should_abstain": true,
+      "rationale": "EV-2201 confirms a deletion job ran and 'some' records were removed, but it never identifies which retention category or policy threshold was applied, nor confirms that all eligible expired records for the period were included. Without knowing the scope, timely and complete deletion cannot be confirmed."
+    },
+    "failure_mode_tag": "abstention_trap_ambiguous_scope"
+  },
+  {
+    "case_id": "AC-023",
+    "control_id": "CTRL-INCIDENT-RESPONSE-NOTIFICATION",
+    "scenario_description": "Determine whether required stakeholders were notified within the required timeframe following discovery of incident INC-5521.",
+    "evidence_pool": [
+      "EV-2301"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-2301"
+      ],
+      "should_abstain": false,
+      "rationale": "Although recorded as an informal email thread rather than a formal ticket, EV-2301 unambiguously establishes both the discovery timestamp (14:03) and the notification timestamp (16:45) \u2014 2 hours 42 minutes apart, within the 4-hour SLA \u2014 and explicitly confirms the required stakeholder list was notified. The informal format does not make the underlying facts any less clear or complete."
+    },
+    "failure_mode_tag": "sufficient_despite_informal_evidence"
+  },
+  {
+    "case_id": "AC-024",
+    "control_id": "CTRL-VULN-REMEDIATION-SLA",
+    "scenario_description": "Determine whether critical-severity vulnerabilities discovered in Q2 2026 were remediated within the required SLA.",
+    "evidence_pool": [
+      "EV-2401",
+      "EV-2402",
+      "EV-2403"
+    ],
+    "period": "2026-Q2",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-2401"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-2401 shows the one Critical-severity vulnerability, CVE-2026-1102, took 24 days to resolve, exceeding the 15-day critical SLA \u2014 a genuine exception. EV-2402 and EV-2403 concern Low- and Medium-severity vulnerabilities governed by different, longer SLAs not evaluated by this control, and are not themselves violations despite their longer resolution times."
+    },
+    "failure_mode_tag": "exception_severity_distractor_real_breach"
+  },
+  {
+    "case_id": "AC-025",
+    "control_id": "CTRL-DB-PRIV-CERT",
+    "scenario_description": "Determine whether the Q2 2026 privileged database role review was completed as required, given a mid-cycle reviewer handoff.",
+    "evidence_pool": [
+      "EV-2501"
+    ],
+    "period": "2026-Q2",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-2501"
+      ],
+      "should_abstain": true,
+      "rationale": "The reviewer handoff and role rename are cosmetic details that do not themselves indicate noncompliance, but the notes explicitly state completion was never re-confirmed by the new reviewer after the handoff \u2014 meaning there is no confirmation the review was actually completed for the period. This is not a confirmed violation, but it is also not confirmed compliance."
+    },
+    "failure_mode_tag": "noise_masks_genuine_gap"
+  },
+  {
+    "case_id": "AC-026",
+    "control_id": "CTRL-CHANGE-MGMT-APPROVAL",
+    "scenario_description": "Determine whether change CHG-77120 received the required approval before deployment.",
+    "evidence_pool": [
+      "EV-2601",
+      "EV-2602",
+      "EV-2603"
+    ],
+    "period": "2026-Q1",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-2601",
+        "EV-2602",
+        "EV-2603"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-2601 establishes that only CAB approval satisfies the control. EV-2602 shows only an informal team-lead chat approval was obtained for CHG-77120, and EV-2603, the CAB's own approval log for the period, confirms CHG-77120 was never CAB-approved. The change therefore lacked the required authoritative approval."
+    },
+    "failure_mode_tag": "authority_resolution_unapproved_change"
+  },
+  {
+    "case_id": "AC-027",
+    "control_id": "CTRL-DATA-RETENTION",
+    "scenario_description": "Determine whether financial transaction record batch FTB-2019-Q2 was deleted within the required window after its retention period expired.",
+    "evidence_pool": [
+      "EV-2701",
+      "EV-2702",
+      "EV-2703"
+    ],
+    "period": "2026-Q2",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-2701",
+        "EV-2702",
+        "EV-2703"
+      ],
+      "should_abstain": true,
+      "rationale": "EV-2701 and EV-2702 together establish that batch FTB-2019-Q2's retention period ended 2026-04-30, with a 30-day deletion window (deadline 2026-05-30). EV-2703 shows the batch was queued for deletion by 2026-05-10, within the window, but never confirms the deletion actually executed \u2014 only that it was queued. Without an execution timestamp, timely completion cannot be confirmed."
+    },
+    "failure_mode_tag": "multi_document_synthesis_gap"
+  },
+  {
+    "case_id": "AC-028",
+    "control_id": "CTRL-VENDOR-RISK-ASSESSMENT",
+    "scenario_description": "Determine whether vendor Solstice Cloud Services satisfied the vendor risk assessment control for Q2 2026.",
+    "evidence_pool": [
+      "EV-2801",
+      "EV-2802",
+      "EV-2803"
+    ],
+    "period": "2026-Q2",
+    "expected_outcome": {
+      "expected_finding": "EXCEPTION",
+      "required_evidence_ids": [
+        "EV-2803"
+      ],
+      "should_abstain": false,
+      "rationale": "EV-2801 is a Q4 2025 report and does not speak to the current period. EV-2802 is an informal email claim, contradicted by EV-2803, the formal Q2 2026 assessment report \u2014 the authoritative primary record \u2014 which shows the vendor was upgraded to Medium Risk with an unexecuted required remediation. The primary current-period report governs over both the stale report and the informal email."
+    },
+    "failure_mode_tag": "conflicting_and_wrong_period_compound"
+  },
+  {
+    "case_id": "AC-029",
+    "control_id": "CTRL-VULN-REMEDIATION-SLA",
+    "scenario_description": "Determine whether critical-severity vulnerabilities discovered in Q3 2026 were remediated within the required SLA, given a vulnerability-scanning tool failure.",
+    "evidence_pool": [
+      "EV-2901",
+      "EV-2902"
+    ],
+    "period": "2026-Q3",
+    "expected_outcome": {
+      "expected_finding": "INSUFFICIENT_EVIDENCE",
+      "required_evidence_ids": [
+        "EV-2901"
+      ],
+      "should_abstain": true,
+      "rationale": "The vulnerability-scanning tool failed to produce Q3 2026 data, and no alternate source exists for this period. EV-2902 is a Q2 2026 record and does not speak to Q3 2026. Unlike a case where an independent secondary source can substitute, here there is nothing to evaluate remediation timeliness against for the period under review, so abstention is the correct response."
+    },
+    "failure_mode_tag": "partial_tool_failure_no_alternate"
+  },
+  {
+    "case_id": "AC-030",
+    "control_id": "CTRL-PRIV-MFA",
+    "scenario_description": "Determine whether multi-factor authentication was enabled on privileged account svc-batch-09 in accordance with the MFA enforcement policy in effect on its provisioning date.",
+    "evidence_pool": [
+      "EV-3001",
+      "EV-3002",
+      "EV-3003",
+      "EV-3004"
+    ],
+    "period": "2025-Q4",
+    "expected_outcome": {
+      "expected_finding": "PASS",
+      "required_evidence_ids": [
+        "EV-3002",
+        "EV-3004"
+      ],
+      "should_abstain": false,
+      "rationale": "The account was provisioned 2025-11-20, which falls within Policy v2.0's effective window (2024-07-01 through 2025-12-31), not v1.0 (superseded before this date) or v3.0 (not yet effective until 2026-01-01). v2.0 permits a 7-day grace period for break-glass accounts, and MFA was enabled 5 days after provisioning, within that allowance."
+    },
+    "failure_mode_tag": "multi_version_policy_effective_dating"
+  }
+]

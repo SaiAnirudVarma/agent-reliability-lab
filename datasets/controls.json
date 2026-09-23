@@ -1,0 +1,79 @@
+[
+  {
+    "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+    "name": "Quarterly Privileged Access Review",
+    "description": "Requires periodic manager review and certification of employees holding privileged system access.",
+    "requirement_text": "For each fiscal quarter, the designated control owner must review the full list of privileged access holders and certify, in writing, that access remains appropriate. The review must be completed and evidenced within 360 hours (15 calendar days) of the quarter's end date.",
+    "sla_hours": 360
+  },
+  {
+    "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+    "name": "Termination Access Removal",
+    "description": "Requires prompt removal of system access following employee termination.",
+    "requirement_text": "Upon an employee's termination becoming effective, all privileged and standard system access for that employee must be revoked within 24 hours of the termination timestamp.",
+    "sla_hours": 24
+  },
+  {
+    "control_id": "CTRL-PRIV-MFA",
+    "name": "Privileged Account MFA Enforcement",
+    "description": "Requires multi-factor authentication on privileged accounts consistent with the MFA policy in effect at provisioning time.",
+    "requirement_text": "Multi-factor authentication must be enabled on a privileged account according to the MFA enforcement policy version in effect on that account's provisioning date.",
+    "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-FIREWALL-RECERT",
+    "name": "Quarterly Firewall Rule Recertification",
+    "description": "Requires quarterly recertification that firewall rules permitting external access remain necessary and approved.",
+    "requirement_text": "For each fiscal quarter, the network security owner must recertify all firewall rules permitting inbound external access, evidenced by a signed recertification record dated within that quarter.",
+    "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-DB-PRIV-CERT",
+    "name": "Quarterly Database Privileged Role Certification",
+    "description": "Requires certification that privileged database roles assigned to individual accounts remain appropriate.",
+    "requirement_text": "Each quarter, the database administration team must certify that privileged database roles (e.g., DBA, sysadmin) assigned to individual accounts remain appropriate, based on an extract from the database access governance tool.",
+    "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-VENDOR-RISK-ASSESSMENT",
+    "name": "Third-Party Vendor Risk Assessment",
+    "description": "Requires periodic risk assessment of third-party vendors with access to production data.",
+    "requirement_text": "Each third-party vendor with access to production data must undergo a documented risk assessment at least once per fiscal quarter. If a vendor is rated High Risk (or upgraded to a higher risk tier), any required remediation action must be completed, or the vendor's continued access constitutes an exception.",
+    "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-ENCRYPTION-KEY-ROTATION",
+    "name": "Encryption Key Rotation",
+    "description": "Requires periodic rotation of encryption keys for production systems.",
+    "requirement_text": "Encryption keys for production systems must be rotated according to the key-rotation policy version in effect on the date each rotation cycle began.",
+    "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-CHANGE-MGMT-APPROVAL",
+    "name": "Production Change Management Approval",
+    "description": "Requires documented pre-deployment approval for production changes.",
+    "requirement_text": "Every production change must have documented pre-deployment approval, recorded in the change management system by an approver with the authority defined in the Change Management Policy, before the change is deployed.",
+    "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-VULN-REMEDIATION-SLA",
+    "name": "Critical Vulnerability Remediation SLA",
+    "description": "Requires timely remediation of critical-severity vulnerabilities.",
+    "requirement_text": "Critical-severity vulnerabilities must be remediated within 15 days of discovery. Lower-severity vulnerabilities are governed by separate, longer SLAs not evaluated by this control. Remediation SLA compliance requires both a discovery date and a remediation completion date.",
+    "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-DATA-RETENTION",
+    "name": "Customer Data Retention and Deletion",
+    "description": "Requires timely deletion of customer records after their retention period expires.",
+    "requirement_text": "Customer records that have passed their applicable retention period must be deleted within 30 days of retention expiry. Deletion evidence must identify the retention policy category applied, confirm the deletion covered all eligible records for the period, and confirm the deletion actually executed.",
+    "sla_hours": null
+  },
+  {
+    "control_id": "CTRL-INCIDENT-RESPONSE-NOTIFICATION",
+    "name": "Security Incident Stakeholder Notification",
+    "description": "Requires timely notification of required stakeholders following a confirmed security incident.",
+    "requirement_text": "Following discovery of a confirmed security incident, required stakeholders must be notified within 4 hours of discovery.",
+    "sla_hours": null
+  }
+]

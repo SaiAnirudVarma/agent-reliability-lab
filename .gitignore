@@ -1,0 +1,30 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.egg-info/
+.pytest_cache/
+
+# OS / editor temporary files
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# --- results/ policy ---
+# Only REGENERABLE, deterministic outputs are ignored here -- they change on
+# every dev run and carry no information a rerun can't reproduce.
+#
+# Real LLM experiment artifacts (e.g. results/llm-baseline.json, anything
+# under results/experiments/) are deliberately NOT matched by any rule below
+# and so ARE tracked once `git add`ed. Do not add a blanket `results/*.json`
+# rule here again -- that is exactly what allowed the 2026-09-23
+# llm-baseline.json loss to become unrecoverable; see
+# docs/incidents/2026-09-23-llm-baseline-artifact-deletion.md and
+# docs/ARTIFACT_POLICY.md.
+results/baseline.json
+results/deterministic-*.json
+!results/.gitkeep

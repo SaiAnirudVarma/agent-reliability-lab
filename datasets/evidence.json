@@ -1,0 +1,936 @@
+[
+  {
+    "evidence_id": "EV-101",
+    "document_id": "priv_access_review_attestation_2025q1",
+    "title": "Q1 2025 Privileged Access Review Attestation",
+    "period": "2025-Q1",
+    "content": "Access Governance attests that the Q1 2025 privileged access review was completed on 2025-04-10 by control owner J. Alvarez. All 42 privileged accounts listed in the accompanying extract were reviewed and confirmed appropriate.",
+    "structured_fields": {
+      "trigger_event": "quarter_end",
+      "trigger_timestamp": "2025-03-31T23:59:59Z",
+      "completion_timestamp": "2025-04-10T15:00:00Z",
+      "reviewer": "J. Alvarez",
+      "accounts_reviewed": 42,
+      "all_confirmed_appropriate": true
+    }
+  },
+  {
+    "evidence_id": "EV-9002",
+    "document_id": "new_hire_provisioning_log_2025q1",
+    "title": "Q1 2025 New Hire Provisioning Log",
+    "period": "2025-Q1",
+    "content": "New hire provisioning log for the Q1 2025 onboarding cohort. Lists standard, non-privileged account creations for 14 new employees; does not include any privileged access review activity.",
+    "structured_fields": {
+      "accounts_created": 14,
+      "privileged": false
+    }
+  },
+  {
+    "evidence_id": "EV-201",
+    "document_id": "priv_access_review_attestation_2025q2",
+    "title": "Q2 2025 Privileged Access Review Attestation",
+    "period": "2025-Q2",
+    "content": "Access Governance attests that the Q2 2025 privileged access review was completed on 2025-07-29 by control owner M. Chen, following delays obtaining sign-off from department heads. All 47 privileged accounts were reviewed and confirmed appropriate.",
+    "structured_fields": {
+      "trigger_event": "quarter_end",
+      "trigger_timestamp": "2025-06-30T23:59:59Z",
+      "completion_timestamp": "2025-07-29T09:00:00Z",
+      "reviewer": "M. Chen",
+      "accounts_reviewed": 47,
+      "all_confirmed_appropriate": true
+    }
+  },
+  {
+    "evidence_id": "EV-9001",
+    "document_id": "vendor_access_request_form_v3",
+    "title": "Vendor Access Request Form (Template)",
+    "period": "2025-Q2",
+    "content": "Standard vendor access request form template, revision 3, last revised 2025-04-02. Used to request temporary contractor system access; not itself evidence of any specific access review.",
+    "structured_fields": {
+      "document_type": "form_template",
+      "revision": 3
+    }
+  },
+  {
+    "evidence_id": "EV-301",
+    "document_id": "access_governance_review_calendar_2025",
+    "title": "Access Governance Review Calendar - 2025",
+    "period": "2025-Q3",
+    "content": "The Access Governance team's internal calendar lists the Q3 2025 privileged access review as scheduled to begin the week of 2025-10-06. No attestation for the Q3 2025 review cycle has been recorded as of this entry.",
+    "structured_fields": {
+      "event": "scheduled_review",
+      "period": "2025-Q3",
+      "scheduled_start": "2025-10-06",
+      "attestation_available": false
+    }
+  },
+  {
+    "evidence_id": "EV-401",
+    "document_id": "hr_termination_notice_10457",
+    "title": "HR Termination Notice - E-10457",
+    "period": "2025-Q2",
+    "content": "HR System of Record confirms employee E-10457 (D. Whitfield)'s employment was terminated effective 2025-06-11T17:00:00Z.",
+    "structured_fields": {
+      "trigger_event": "termination_effective",
+      "trigger_timestamp": "2025-06-11T17:00:00Z",
+      "employee_id": "E-10457"
+    }
+  },
+  {
+    "evidence_id": "EV-402",
+    "document_id": "iam_deprovisioning_ticket_10457",
+    "title": "IAM Deprovisioning Ticket - E-10457",
+    "period": "2025-Q2",
+    "content": "IAM deprovisioning ticket #DP-88231 for employee E-10457 shows all system access (including privileged database role) was revoked on 2025-06-13T09:30:00Z; ticket closed the same day.",
+    "structured_fields": {
+      "trigger_event": "access_removed",
+      "completion_timestamp": "2025-06-13T09:30:00Z",
+      "employee_id": "E-10457",
+      "access_fully_removed": true
+    }
+  },
+  {
+    "evidence_id": "EV-403",
+    "document_id": "hr_termination_notice_10091",
+    "title": "HR Termination Notice - E-10091",
+    "period": "2025-Q2",
+    "content": "HR System of Record confirms employee E-10091 (K. Delgado)'s employment was terminated effective 2025-04-30T12:00:00Z.",
+    "structured_fields": {
+      "trigger_event": "termination_effective",
+      "trigger_timestamp": "2025-04-30T12:00:00Z",
+      "employee_id": "E-10091"
+    }
+  },
+  {
+    "evidence_id": "EV-501",
+    "document_id": "hr_termination_notice_10832",
+    "title": "HR Termination Notice - E-10832",
+    "period": "2025-Q2",
+    "content": "HR System of Record confirms employee E-10832 (R. Nakamura)'s employment was terminated effective 2025-06-20T14:00:00Z.",
+    "structured_fields": {
+      "trigger_event": "termination_effective",
+      "trigger_timestamp": "2025-06-20T14:00:00Z",
+      "employee_id": "E-10832"
+    }
+  },
+  {
+    "evidence_id": "EV-502",
+    "document_id": "iam_deprovisioning_ticket_10832",
+    "title": "IAM Deprovisioning Ticket - E-10832",
+    "period": "2025-Q2",
+    "content": "IAM deprovisioning ticket #DP-88304 for employee E-10832 shows all system access was revoked on 2025-06-21T08:00:00Z; ticket closed the same day.",
+    "structured_fields": {
+      "trigger_event": "access_removed",
+      "completion_timestamp": "2025-06-21T08:00:00Z",
+      "employee_id": "E-10832",
+      "access_fully_removed": true
+    }
+  },
+  {
+    "evidence_id": "EV-601",
+    "document_id": "priv_access_review_attestation_2025q4_draft",
+    "title": "Q4 2025 Privileged Access Review Attestation (Draft)",
+    "period": "2025-Q4",
+    "content": "Draft attestation for the Q4 2025 privileged access review. Reviewer field is pending sign-off and the completion date has not yet been recorded. The draft indicates review activity is underway but does not confirm completion.",
+    "structured_fields": {
+      "trigger_event": "quarter_end",
+      "trigger_timestamp": "2025-12-31T23:59:59Z",
+      "completion_timestamp": null,
+      "reviewer": null,
+      "accounts_reviewed": null
+    }
+  },
+  {
+    "evidence_id": "EV-602",
+    "document_id": "org_chart_update_2025q4",
+    "title": "Q4 2025 Org Chart Update",
+    "period": "2025-Q4",
+    "content": "Quarterly org chart update reflecting two team transfers within the infrastructure group; unrelated to privileged access review activity.",
+    "structured_fields": {
+      "document_type": "org_chart_update"
+    }
+  },
+  {
+    "evidence_id": "EV-701",
+    "document_id": "mfa_enforcement_policy_v1",
+    "title": "MFA Enforcement Policy v1.0 (Superseded)",
+    "period": "2025-Q1",
+    "content": "MFA Enforcement Policy, Version 1.0. Effective 2023-01-01 through 2025-01-31 (superseded). Break-glass privileged accounts may be provisioned without MFA and must have MFA enabled within 30 days of provisioning.",
+    "structured_fields": {
+      "policy_version": "1.0",
+      "effective_start": "2023-01-01",
+      "effective_end": "2025-01-31",
+      "grace_period_days": 30,
+      "applies_to": "break_glass_privileged"
+    }
+  },
+  {
+    "evidence_id": "EV-702",
+    "document_id": "mfa_enforcement_policy_v2",
+    "title": "MFA Enforcement Policy v2.0 (Current)",
+    "period": "2025-Q2",
+    "content": "MFA Enforcement Policy, Version 2.0. Effective 2025-02-01, no expiration on file. All privileged accounts, including break-glass accounts, must have MFA enabled at the time of provisioning. No grace period is permitted.",
+    "structured_fields": {
+      "policy_version": "2.0",
+      "effective_start": "2025-02-01",
+      "effective_end": null,
+      "grace_period_days": 0,
+      "applies_to": "all_privileged_including_break_glass"
+    }
+  },
+  {
+    "evidence_id": "EV-703",
+    "document_id": "iam_provisioning_record_svc_payroll_03",
+    "title": "IAM Provisioning Record - svc-payroll-03",
+    "period": "2025-Q2",
+    "content": "Break-glass privileged account svc-payroll-03 was provisioned on 2025-05-12T00:00:00Z without MFA enabled. MFA was subsequently enabled on 2025-06-05T00:00:00Z.",
+    "structured_fields": {
+      "account_id": "svc-payroll-03",
+      "provisioned_date": "2025-05-12",
+      "mfa_enabled_at_provisioning": false,
+      "mfa_enabled_date": "2025-06-05",
+      "account_type": "break_glass_privileged"
+    }
+  },
+  {
+    "evidence_id": "EV-801",
+    "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+    "title": "Q4 2024 Privileged Access Review Kickoff Confirmation",
+    "period": "2024-Q4",
+    "content": "Access Governance confirms the Q4 2024 privileged access review was completed on 2025-01-08 by control owner T. Osei. A total of 39 privileged accounts were in scope for this cycle; see the accompanying system extract for account-level disposition.",
+    "structured_fields": {
+      "trigger_event": "quarter_end",
+      "trigger_timestamp": "2024-12-31T23:59:59Z",
+      "completion_timestamp": "2025-01-08T00:00:00Z",
+      "reviewer": "T. Osei",
+      "accounts_in_scope": 39
+    }
+  },
+  {
+    "evidence_id": "EV-802",
+    "document_id": "priv_access_extract_disposition_2024q4",
+    "title": "Q4 2024 Privileged Access Extract - Disposition Report",
+    "period": "2024-Q4",
+    "content": "System extract of the Q4 2024 privileged access review shows 39 accounts assessed, with a disposition recorded for each: 39 of 39 marked 'appropriate - retain', 0 flagged for removal.",
+    "structured_fields": {
+      "period": "2024-Q4",
+      "accounts_assessed": 39,
+      "accounts_appropriate": 39,
+      "accounts_flagged": 0,
+      "reviewer_signoff_recorded": false
+    }
+  },
+  {
+    "evidence_id": "EV-803",
+    "document_id": "facilities_badge_access_log_2024q4",
+    "title": "Q4 2024 Facilities Badge Access Log",
+    "period": "2024-Q4",
+    "content": "Facilities badge swipe log for Q4 2024 covering building entry records; unrelated to system access review activity.",
+    "structured_fields": {
+      "document_type": "facilities_log"
+    }
+  },
+  {
+    "evidence_id": "EV-901",
+    "document_id": "firewall_rule_recert_record_2025q1",
+    "title": "Q1 2025 Firewall Rule Recertification Record",
+    "period": "2025-Q1",
+    "content": "Q1 2025 firewall rule recertification: all 18 inbound external-access rules reviewed and recertified by Network Security on 2025-02-10. No exceptions noted.",
+    "structured_fields": {
+      "period": "2025-Q1",
+      "recert_date": "2025-02-10",
+      "rules_reviewed": 18,
+      "exceptions_found": 0
+    }
+  },
+  {
+    "evidence_id": "EV-902",
+    "document_id": "firewall_rule_recert_record_2025q2",
+    "title": "Q2 2025 Firewall Rule Recertification Record",
+    "period": "2025-Q2",
+    "content": "Q2 2025 firewall rule recertification: 19 inbound external-access rules reviewed by Network Security on 2025-05-18. Rule FW-2291 (permitting inbound RDP from vendor IP range 203.0.113.0/24) could not be recertified because the originally-approving business owner no longer works at the company; the rule remains active without current business justification.",
+    "structured_fields": {
+      "period": "2025-Q2",
+      "recert_date": "2025-05-18",
+      "rules_reviewed": 19,
+      "exceptions_found": 1,
+      "exception_rule_id": "FW-2291",
+      "exception_reason": "no current business owner approval"
+    }
+  },
+  {
+    "evidence_id": "EV-1001",
+    "document_id": "db_privileged_role_export_request_2025q2",
+    "title": "DB Governance Tool Extract Request - Q2 2025",
+    "period": "2025-Q2",
+    "content": "Audit team submitted a request to the Database Access Governance Tool on 2025-07-02 for the Q2 2025 privileged database role extract.",
+    "structured_fields": {
+      "request_date": "2025-07-02",
+      "tool_name": "DBAccessGovernanceTool",
+      "period": "2025-Q2"
+    }
+  },
+  {
+    "evidence_id": "EV-1002",
+    "document_id": "db_governance_tool_error_log_2025q2",
+    "title": "Database Access Governance Tool Error Log - Q2 2025",
+    "period": "2025-Q2",
+    "content": "The Database Access Governance Tool returned an internal server error (HTTP 503) when queried for the Q2 2025 privileged role extract on 2025-07-02 and again on 2025-07-05. No extract was produced, and no alternate source system contains equivalent privileged role assignment data for this period.",
+    "structured_fields": {
+      "tool_name": "DBAccessGovernanceTool",
+      "query_period": "2025-Q2",
+      "status": "error",
+      "http_status": 503,
+      "extract_available": false,
+      "alternate_source_available": false
+    }
+  },
+  {
+    "evidence_id": "EV-1003",
+    "document_id": "db_privileged_role_export_2025q1",
+    "title": "Q1 2025 Privileged Database Role Extract",
+    "period": "2025-Q1",
+    "content": "Q1 2025 privileged database role extract: 12 accounts hold DBA or sysadmin roles; all reviewed and confirmed appropriate on 2025-04-09.",
+    "structured_fields": {
+      "period": "2025-Q1",
+      "accounts_reviewed": 12,
+      "all_confirmed_appropriate": true
+    }
+  },
+  {
+    "evidence_id": "EV-1101",
+    "document_id": "vendor_risk_dashboard_snapshot_2026q1",
+    "title": "Vendor Risk Dashboard Snapshot",
+    "period": "2025-Q4",
+    "content": "Internal vendor-risk dashboard snapshot for Q1 2026 shows Vendor Acme Logistics status as 'Compliant'. Note: dashboard is refreshed manually by the vendor-management team and may lag behind the latest assessment report.",
+    "structured_fields": {
+      "source_type": "dashboard_summary",
+      "vendor": "Acme Logistics",
+      "displayed_status": "Compliant",
+      "last_manual_refresh": "2025-11-02"
+    }
+  },
+  {
+    "evidence_id": "EV-1102",
+    "document_id": "vendor_risk_assessment_report_2026q1",
+    "title": "Q1 2026 Vendor Risk Assessment Report - Acme Logistics",
+    "period": "2026-Q1",
+    "content": "Q1 2026 formal risk assessment report for vendor Acme Logistics, completed 2026-02-10 by the Third-Party Risk team. Vendor rated High Risk due to an unresolved data-encryption gap. Required remediation: vendor must implement encryption-at-rest before continued access is permitted. Remediation status: Not completed as of report date.",
+    "structured_fields": {
+      "source_type": "formal_assessment_report",
+      "vendor": "Acme Logistics",
+      "risk_rating": "High",
+      "remediation_required": true,
+      "remediation_completed": false,
+      "assessment_date": "2026-02-10"
+    }
+  },
+  {
+    "evidence_id": "EV-1201",
+    "document_id": "key_rotation_policy_v1",
+    "title": "Key Rotation Policy v1.0 (Superseded)",
+    "period": "2025-Q2",
+    "content": "Key Rotation Policy, Version 1.0. Effective 2022-01-01 through 2025-06-30 (superseded). Legacy systems designated before 2023 may rotate encryption keys every 180 days.",
+    "structured_fields": {
+      "policy_version": "1.0",
+      "effective_start": "2022-01-01",
+      "effective_end": "2025-06-30",
+      "legacy_rotation_days": 180
+    }
+  },
+  {
+    "evidence_id": "EV-1202",
+    "document_id": "key_rotation_policy_v2",
+    "title": "Key Rotation Policy v2.0 (Current)",
+    "period": "2025-Q3",
+    "content": "Key Rotation Policy, Version 2.0. Effective 2025-07-01, no expiration on file. All production systems, including previously-designated legacy systems, must rotate encryption keys every 90 days. Transition clause: a legacy system whose rotation cycle was already in progress under Policy v1.0 when this version took effect may complete that one in-progress cycle at the v1.0 180-day cadence; every rotation cycle beginning after 2025-07-01 must follow the 90-day cadence.",
+    "structured_fields": {
+      "policy_version": "2.0",
+      "effective_start": "2025-07-01",
+      "effective_end": null,
+      "standard_rotation_days": 90,
+      "transition_clause_in_progress_cycle_days": 180
+    }
+  },
+  {
+    "evidence_id": "EV-1203",
+    "document_id": "key_rotation_record_svc_ledger_db",
+    "title": "Key Rotation Record - svc-ledger-db",
+    "period": "2025-Q3",
+    "content": "Production system svc-ledger-db (designated legacy in 2022) began its current key-rotation cycle on 2025-05-20, under the then-effective 180-day cadence. The key was rotated (cycle completed) on 2025-08-15, 87 days after the cycle began.",
+    "structured_fields": {
+      "system_id": "svc-ledger-db",
+      "legacy_designated_year": 2022,
+      "cycle_start_date": "2025-05-20",
+      "rotation_completed_date": "2025-08-15",
+      "days_elapsed": 87
+    }
+  },
+  {
+    "evidence_id": "EV-1301",
+    "document_id": "change_mgmt_summary_2026q1",
+    "title": "Q1 2026 Change Management Summary",
+    "period": "2026-Q1",
+    "content": "Q1 2026 change management summary: 42 production changes recorded, all with documented pre-deployment approval. Zero exceptions.",
+    "structured_fields": {
+      "period": "2026-Q1",
+      "changes_recorded": 42,
+      "all_approved": true
+    }
+  },
+  {
+    "evidence_id": "EV-1302",
+    "document_id": "change_ticket_CHG-88213_2026q2",
+    "title": "Change Ticket CHG-88213",
+    "period": "2026-Q2",
+    "content": "Change ticket CHG-88213, production deployment for payment-gateway-service, deployed 2026-05-12. Approval recorded by: J. Alvarez. Approval timestamp: [not recorded]. Deployment status: Completed.",
+    "structured_fields": {
+      "period": "2026-Q2",
+      "change_id": "CHG-88213",
+      "deployment_date": "2026-05-12",
+      "approver": "J. Alvarez",
+      "approval_timestamp": null
+    }
+  },
+  {
+    "evidence_id": "EV-1401",
+    "document_id": "vuln_ticket_CVE-2026-0091",
+    "title": "Vulnerability Ticket - CVE-2026-0091",
+    "period": "2026-Q1",
+    "content": "Vulnerability tracking ticket for CVE-2026-0091, severity: Critical. Status: Resolved. Discovery date: 2026-01-14. Resolution date: [not recorded \u2014 field left blank during ticket closure].",
+    "structured_fields": {
+      "cve_id": "CVE-2026-0091",
+      "severity": "Critical",
+      "status": "Resolved",
+      "discovery_date": "2026-01-14",
+      "resolution_date": null
+    }
+  },
+  {
+    "evidence_id": "EV-1402",
+    "document_id": "vuln_ticket_CVE-2026-0077",
+    "title": "Vulnerability Ticket - CVE-2026-0077",
+    "period": "2026-Q1",
+    "content": "Vulnerability ticket for CVE-2026-0077, severity: Medium. Discovery date: 2026-01-05. Resolution date: 2026-01-10 (5 days).",
+    "structured_fields": {
+      "cve_id": "CVE-2026-0077",
+      "severity": "Medium",
+      "discovery_date": "2026-01-05",
+      "resolution_date": "2026-01-10",
+      "days_to_resolve": 5
+    }
+  },
+  {
+    "evidence_id": "EV-1501",
+    "document_id": "db_governance_tool_error_2026q1",
+    "title": "Database Access Governance Tool Error Log - Q1 2026",
+    "period": "2026-Q1",
+    "content": "The Database Access Governance Tool returned an internal error (HTTP 503) when queried for the Q1 2026 privileged role extract. No extract was produced by this tool for this period.",
+    "structured_fields": {
+      "tool_name": "DBAccessGovernanceTool",
+      "query_period": "2026-Q1",
+      "status": "error",
+      "extract_available": false
+    }
+  },
+  {
+    "evidence_id": "EV-1502",
+    "document_id": "iam_privileged_group_export_2026q1",
+    "title": "IAM Privileged Group Export - Q1 2026",
+    "period": "2026-Q1",
+    "content": "IAM system direct export of privileged database groups for Q1 2026, pulled independently of the Database Access Governance Tool and signed off by DBA lead M. Osei on 2026-01-25. 15 accounts hold DBA or sysadmin roles; all 15 reviewed and confirmed appropriate.",
+    "structured_fields": {
+      "source": "IAM_direct_export",
+      "period": "2026-Q1",
+      "reviewer": "M. Osei",
+      "review_date": "2026-01-25",
+      "accounts_reviewed": 15,
+      "all_confirmed_appropriate": true
+    }
+  },
+  {
+    "evidence_id": "EV-1601",
+    "document_id": "vendor_assessment_kickoff_email_2026q2",
+    "title": "Vendor Assessment Kickoff Email - Rangeline Analytics",
+    "period": "2026-Q2",
+    "content": "Email confirming the Q2 2026 risk assessment for vendor Rangeline Analytics was initiated 2026-04-03 by assessor K. Nwosu, assessment ID VRA-2244.",
+    "structured_fields": {
+      "vendor": "Rangeline Analytics",
+      "assessment_id": "VRA-2244",
+      "assessor": "K. Nwosu",
+      "initiated_date": "2026-04-03"
+    }
+  },
+  {
+    "evidence_id": "EV-1602",
+    "document_id": "vendor_risk_scoring_worksheet_VRA-2244",
+    "title": "Risk Scoring Worksheet VRA-2244",
+    "period": "2026-Q2",
+    "content": "Risk scoring worksheet, assessment ID VRA-2244, vendor Rangeline Analytics. Final score: Low Risk. Signed off by K. Nwosu. [Completion date not printed on this worksheet page.]",
+    "structured_fields": {
+      "assessment_id": "VRA-2244",
+      "vendor": "Rangeline Analytics",
+      "risk_rating": "Low",
+      "signed_by": "K. Nwosu",
+      "completion_date": null
+    }
+  },
+  {
+    "evidence_id": "EV-1603",
+    "document_id": "vendor_assessment_tracking_export_2026q2",
+    "title": "Vendor Assessment Tracking Export - Q2 2026",
+    "period": "2026-Q2",
+    "content": "Vendor risk assessment tracking system export for Q2 2026: assessment ID VRA-2244 (Rangeline Analytics) marked Completed on 2026-04-22, within the quarterly assessment window.",
+    "structured_fields": {
+      "assessment_id": "VRA-2244",
+      "vendor": "Rangeline Analytics",
+      "status": "Completed",
+      "completion_date": "2026-04-22"
+    }
+  },
+  {
+    "evidence_id": "EV-1701",
+    "document_id": "firewall_recert_exec_summary_2026q1",
+    "title": "Firewall Recertification Executive Summary - Q1 2026",
+    "period": "2026-Q1",
+    "content": "Executive summary: Q1 2026 firewall rule recertification complete. All rules recertified. Zero exceptions.",
+    "structured_fields": {
+      "period": "2026-Q1",
+      "summary_status": "all_recertified",
+      "exceptions_noted": 0
+    }
+  },
+  {
+    "evidence_id": "EV-1702",
+    "document_id": "firewall_recert_worksheet_2026q1",
+    "title": "Firewall Recertification Worksheet - Q1 2026",
+    "period": "2026-Q1",
+    "content": "Q1 2026 firewall rule-by-rule recertification worksheet: 22 inbound external-access rules reviewed. Rule FW-3107 (permitting inbound access from a decommissioned partner network) marked 'NOT recertified \u2014 pending review, no current business owner.' All other 21 rules recertified.",
+    "structured_fields": {
+      "period": "2026-Q1",
+      "rules_reviewed": 22,
+      "rule_exceptions": [
+        "FW-3107"
+      ],
+      "exception_reason": "no current business owner"
+    }
+  },
+  {
+    "evidence_id": "EV-1801",
+    "document_id": "hr_termination_notice_20112",
+    "title": "HR Termination Notice - E-20112",
+    "period": "2026-Q1",
+    "content": "HR System of Record confirms employee E-20112 (T. Fairweather)'s employment was terminated effective 2026-02-10T09:00:00Z.",
+    "structured_fields": {
+      "trigger_timestamp": "2026-02-10T09:00:00Z",
+      "employee_id": "E-20112"
+    }
+  },
+  {
+    "evidence_id": "EV-1802",
+    "document_id": "iam_deprovisioning_ticket_20112",
+    "title": "IAM Deprovisioning Ticket - E-20112",
+    "period": "2026-Q1",
+    "content": "IAM deprovisioning ticket #DP-91004 for employee E-20112 shows all system access revoked on 2026-02-11T08:59:00Z.",
+    "structured_fields": {
+      "completion_timestamp": "2026-02-11T08:59:00Z",
+      "employee_id": "E-20112",
+      "access_fully_removed": true
+    }
+  },
+  {
+    "evidence_id": "EV-1901",
+    "document_id": "hr_termination_notice_20255",
+    "title": "HR Termination Notice - E-20255",
+    "period": "2026-Q1",
+    "content": "HR System of Record confirms employee E-20255 (P. Osei-Bonsu)'s employment was terminated effective 2026-02-18T14:00:00Z.",
+    "structured_fields": {
+      "trigger_timestamp": "2026-02-18T14:00:00Z",
+      "employee_id": "E-20255"
+    }
+  },
+  {
+    "evidence_id": "EV-1902",
+    "document_id": "iam_deprovisioning_ticket_20255",
+    "title": "IAM Deprovisioning Ticket - E-20255",
+    "period": "2026-Q1",
+    "content": "IAM deprovisioning ticket #DP-91180 for employee E-20255 shows all system access revoked on 2026-02-19T14:01:00Z.",
+    "structured_fields": {
+      "completion_timestamp": "2026-02-19T14:01:00Z",
+      "employee_id": "E-20255",
+      "access_fully_removed": true
+    }
+  },
+  {
+    "evidence_id": "EV-2001",
+    "document_id": "hr_termination_notice_30044",
+    "title": "HR Termination Notice - E-30044",
+    "period": "2026-Q2",
+    "content": "HR System of Record confirms employee E-30044 (R. Delacroix)'s employment was terminated effective 2026-04-06T10:00:00Z.",
+    "structured_fields": {
+      "trigger_timestamp": "2026-04-06T10:00:00Z",
+      "employee_id": "E-30044"
+    }
+  },
+  {
+    "evidence_id": "EV-2002",
+    "document_id": "iam_deprovisioning_ticket_30044",
+    "title": "IAM Deprovisioning Ticket - E-30044",
+    "period": "2026-Q2",
+    "content": "IAM deprovisioning ticket #DP-92210 for employee E-30044 shows all system access revoked on 2026-04-06T18:00:00Z (8 hours after termination).",
+    "structured_fields": {
+      "completion_timestamp": "2026-04-06T18:00:00Z",
+      "employee_id": "E-30044",
+      "access_fully_removed": true
+    }
+  },
+  {
+    "evidence_id": "EV-2003",
+    "document_id": "hr_termination_notice_30051",
+    "title": "HR Termination Notice - E-30051",
+    "period": "2026-Q2",
+    "content": "HR System of Record confirms employee E-30051 (H. Vance)'s employment was terminated effective 2026-04-08T09:00:00Z.",
+    "structured_fields": {
+      "trigger_timestamp": "2026-04-08T09:00:00Z",
+      "employee_id": "E-30051"
+    }
+  },
+  {
+    "evidence_id": "EV-2004",
+    "document_id": "iam_deprovisioning_ticket_30051",
+    "title": "IAM Deprovisioning Ticket - E-30051",
+    "period": "2026-Q2",
+    "content": "IAM deprovisioning ticket #DP-92240 for employee E-30051 shows all system access revoked on 2026-04-10T12:00:00Z (51 hours after termination \u2014 exceeds SLA).",
+    "structured_fields": {
+      "completion_timestamp": "2026-04-10T12:00:00Z",
+      "employee_id": "E-30051",
+      "access_fully_removed": true
+    }
+  },
+  {
+    "evidence_id": "EV-2101",
+    "document_id": "hr_termination_notice_40077",
+    "title": "HR Termination Notice - E-40077",
+    "period": "2026-Q2",
+    "content": "HR System of Record confirms employee E-40077 (S. Okonkwo)'s employment was terminated effective 2026-05-11T08:00:00Z.",
+    "structured_fields": {
+      "trigger_timestamp": "2026-05-11T08:00:00Z",
+      "employee_id": "E-40077"
+    }
+  },
+  {
+    "evidence_id": "EV-2102",
+    "document_id": "iam_deprovisioning_ticket_40077",
+    "title": "IAM Deprovisioning Ticket - E-40077",
+    "period": "2026-Q2",
+    "content": "IAM deprovisioning ticket #DP-93012 for employee E-40077 shows all system access revoked on 2026-05-14T08:00:00Z (72 hours after termination).",
+    "structured_fields": {
+      "completion_timestamp": "2026-05-14T08:00:00Z",
+      "employee_id": "E-40077",
+      "access_fully_removed": true
+    }
+  },
+  {
+    "evidence_id": "EV-2103",
+    "document_id": "hr_termination_notice_40080",
+    "title": "HR Termination Notice - E-40080",
+    "period": "2026-Q2",
+    "content": "HR System of Record confirms employee E-40080 (L. Marchetti)'s employment was terminated effective 2026-05-12T08:00:00Z.",
+    "structured_fields": {
+      "trigger_timestamp": "2026-05-12T08:00:00Z",
+      "employee_id": "E-40080"
+    }
+  },
+  {
+    "evidence_id": "EV-2104",
+    "document_id": "iam_deprovisioning_ticket_40080",
+    "title": "IAM Deprovisioning Ticket - E-40080",
+    "period": "2026-Q2",
+    "content": "IAM deprovisioning ticket #DP-93020 for employee E-40080 shows all system access revoked on 2026-05-12T14:00:00Z (6 hours after termination).",
+    "structured_fields": {
+      "completion_timestamp": "2026-05-12T14:00:00Z",
+      "employee_id": "E-40080",
+      "access_fully_removed": true
+    }
+  },
+  {
+    "evidence_id": "EV-2201",
+    "document_id": "data_deletion_log_2026q1",
+    "title": "Data Deletion Log - Q1 2026",
+    "period": "2026-Q1",
+    "content": "Routine data deletion cycle completed for Q1 2026. Deletion job ran successfully; some customer records were removed from the primary database.",
+    "structured_fields": {
+      "period": "2026-Q1",
+      "job_status": "completed",
+      "records_deleted_category": null,
+      "eligible_population_confirmed": false
+    }
+  },
+  {
+    "evidence_id": "EV-2301",
+    "document_id": "incident_email_thread_INC-5521",
+    "title": "Incident Email Thread - INC-5521",
+    "period": "2026-Q1",
+    "content": "Email thread, subject 'INC-5521 - unauthorized login attempts detected'. First message (discovery), timestamped 2026-01-20 14:03, from on-call engineer: 'Confirmed incident, opening INC-5521.' Third message in the same thread, timestamped 2026-01-20 16:45, from incident commander to the required stakeholder distribution list: 'Notifying all required stakeholders per policy \u2014 see attached incident summary.'",
+    "structured_fields": {
+      "incident_id": "INC-5521",
+      "discovery_timestamp": "2026-01-20T14:03:00Z",
+      "notification_timestamp": "2026-01-20T16:45:00Z",
+      "notified_required_stakeholders": true
+    }
+  },
+  {
+    "evidence_id": "EV-2401",
+    "document_id": "vuln_ticket_CVE-2026-1102",
+    "title": "Vulnerability Ticket - CVE-2026-1102",
+    "period": "2026-Q2",
+    "content": "CVE-2026-1102, severity: Critical. Discovery date: 2026-04-01. Resolution date: 2026-04-25 (24 days).",
+    "structured_fields": {
+      "cve_id": "CVE-2026-1102",
+      "severity": "Critical",
+      "discovery_date": "2026-04-01",
+      "resolution_date": "2026-04-25",
+      "days_to_resolve": 24
+    }
+  },
+  {
+    "evidence_id": "EV-2402",
+    "document_id": "vuln_ticket_CVE-2026-1103",
+    "title": "Vulnerability Ticket - CVE-2026-1103",
+    "period": "2026-Q2",
+    "content": "CVE-2026-1103, severity: Low. Discovery date: 2026-04-02. Resolution date: 2026-05-20 (48 days). Low-severity vulnerabilities are governed by a separate 60-day SLA, not the critical-severity 15-day SLA.",
+    "structured_fields": {
+      "cve_id": "CVE-2026-1103",
+      "severity": "Low",
+      "discovery_date": "2026-04-02",
+      "resolution_date": "2026-05-20",
+      "days_to_resolve": 48
+    }
+  },
+  {
+    "evidence_id": "EV-2403",
+    "document_id": "vuln_ticket_CVE-2026-1104",
+    "title": "Vulnerability Ticket - CVE-2026-1104",
+    "period": "2026-Q2",
+    "content": "CVE-2026-1104, severity: Medium, resolved within its applicable SLA.",
+    "structured_fields": {
+      "cve_id": "CVE-2026-1104",
+      "severity": "Medium",
+      "discovery_date": "2026-04-03",
+      "resolution_date": "2026-04-20",
+      "days_to_resolve": 17
+    }
+  },
+  {
+    "evidence_id": "EV-2501",
+    "document_id": "db_priv_review_notes_2026q2",
+    "title": "Privileged DB Role Review Notes - Q2 2026",
+    "period": "2026-Q2",
+    "content": "Q2 2026 privileged database role review notes: review was reassigned mid-cycle from reviewer A. Kessler to reviewer D. Nnamdi on 2026-05-15 due to a scheduling conflict. One role, 'svc-reporting-ro', was renamed to 'svc-reporting-readonly' during the cycle for clarity (no privilege change). Review completion was not re-confirmed by the new reviewer after the handoff.",
+    "structured_fields": {
+      "period": "2026-Q2",
+      "reviewer_changed": true,
+      "original_reviewer": "A. Kessler",
+      "new_reviewer": "D. Nnamdi",
+      "handoff_date": "2026-05-15",
+      "role_renamed": "svc-reporting-ro to svc-reporting-readonly",
+      "completion_reconfirmed": false
+    }
+  },
+  {
+    "evidence_id": "EV-2601",
+    "document_id": "change_mgmt_policy_authority",
+    "title": "Change Management Policy - Approval Authority",
+    "period": "2026-Q1",
+    "content": "Change Management Policy: Only the Change Advisory Board (CAB) is authorized to approve production changes. Approval by an individual team lead or manager, absent CAB sign-off, does not satisfy this control.",
+    "structured_fields": {
+      "authorized_approver": "Change Advisory Board (CAB)"
+    }
+  },
+  {
+    "evidence_id": "EV-2602",
+    "document_id": "team_lead_chat_approval_CHG-77120",
+    "title": "Team Lead Chat Approval - CHG-77120",
+    "period": "2026-Q1",
+    "content": "Chat message from team lead B. Suarez, 2026-02-02: 'Approved, go ahead and deploy CHG-77120.'",
+    "structured_fields": {
+      "change_id": "CHG-77120",
+      "approver": "B. Suarez",
+      "approver_role": "team_lead",
+      "approval_channel": "chat"
+    }
+  },
+  {
+    "evidence_id": "EV-2603",
+    "document_id": "cab_approval_log_2026q1",
+    "title": "CAB Approval Log - Q1 2026",
+    "period": "2026-Q1",
+    "content": "CAB approval log for Q1 2026 lists approved change IDs: CHG-77098, CHG-77105, CHG-77132. CHG-77120 does not appear in this log.",
+    "structured_fields": {
+      "period": "2026-Q1",
+      "cab_approved_change_ids": [
+        "CHG-77098",
+        "CHG-77105",
+        "CHG-77132"
+      ]
+    }
+  },
+  {
+    "evidence_id": "EV-2701",
+    "document_id": "retention_policy_category_financial",
+    "title": "Data Retention Policy - Financial Records Category",
+    "period": "2026-Q2",
+    "content": "Data Retention Policy: Financial transaction records must be deleted no later than 30 days after the end of their 7-year retention period.",
+    "structured_fields": {
+      "category": "financial_transaction_records",
+      "retention_years": 7,
+      "deletion_window_days": 30
+    }
+  },
+  {
+    "evidence_id": "EV-2702",
+    "document_id": "retention_expiry_export_2026q2",
+    "title": "Retention Expiry Export - Q2 2026",
+    "period": "2026-Q2",
+    "content": "System export: financial transaction record batch FTB-2019-Q2 reached the end of its 7-year retention period on 2026-04-30.",
+    "structured_fields": {
+      "batch_id": "FTB-2019-Q2",
+      "retention_period_end": "2026-04-30"
+    }
+  },
+  {
+    "evidence_id": "EV-2703",
+    "document_id": "deletion_confirmation_log_partial",
+    "title": "Deletion Confirmation Log Excerpt",
+    "period": "2026-Q2",
+    "content": "Deletion confirmation log excerpt: batch FTB-2019-Q2 appears in the deletion queue as of 2026-05-10. [Actual deletion-execution timestamp not present in this excerpt.]",
+    "structured_fields": {
+      "batch_id": "FTB-2019-Q2",
+      "queued_date": "2026-05-10",
+      "deletion_executed_timestamp": null
+    }
+  },
+  {
+    "evidence_id": "EV-2801",
+    "document_id": "vendor_assessment_report_2025q4",
+    "title": "Q4 2025 Vendor Risk Assessment Report - Solstice Cloud Services",
+    "period": "2025-Q4",
+    "content": "Q4 2025 risk assessment report for vendor Solstice Cloud Services: rated Low Risk, no remediation required.",
+    "structured_fields": {
+      "vendor": "Solstice Cloud Services",
+      "period": "2025-Q4",
+      "risk_rating": "Low",
+      "remediation_required": false
+    }
+  },
+  {
+    "evidence_id": "EV-2802",
+    "document_id": "vendor_status_email_2026q2",
+    "title": "Vendor Status Email - Solstice Cloud Services",
+    "period": "2026-Q2",
+    "content": "Email from vendor management, 2026-05-01: 'Reassessment for Solstice Cloud Services is complete, still looks good, Low Risk as before.'",
+    "structured_fields": {
+      "vendor": "Solstice Cloud Services",
+      "period": "2026-Q2",
+      "claimed_status": "Low Risk",
+      "source_type": "informal_email"
+    }
+  },
+  {
+    "evidence_id": "EV-2803",
+    "document_id": "vendor_assessment_report_2026q2",
+    "title": "Q2 2026 Vendor Risk Assessment Report - Solstice Cloud Services",
+    "period": "2026-Q2",
+    "content": "Q2 2026 formal risk assessment report for vendor Solstice Cloud Services, completed 2026-05-03. Vendor upgraded to Medium Risk following a new sub-processor disclosure. Required action: execute updated data-processing addendum before continued access. Status: Not yet executed.",
+    "structured_fields": {
+      "vendor": "Solstice Cloud Services",
+      "period": "2026-Q2",
+      "risk_rating": "Medium",
+      "remediation_required": true,
+      "remediation_completed": false,
+      "assessment_date": "2026-05-03"
+    }
+  },
+  {
+    "evidence_id": "EV-2901",
+    "document_id": "vuln_scan_tool_error_2026q3",
+    "title": "Vulnerability Scanning Platform Error Log - Q3 2026",
+    "period": "2026-Q3",
+    "content": "The vulnerability-scanning platform failed to generate its Q3 2026 report (job error: data export timeout). No vulnerability discovery or remediation data is available for this period from this tool, and no alternate source system tracks vulnerability remediation timelines.",
+    "structured_fields": {
+      "tool_name": "VulnScanPlatform",
+      "period": "2026-Q3",
+      "status": "error",
+      "data_available": false,
+      "alternate_source_available": false
+    }
+  },
+  {
+    "evidence_id": "EV-2902",
+    "document_id": "vuln_ticket_CVE-2026-1104-q2",
+    "title": "Vulnerability Ticket - CVE-2026-1104 (Q2 2026)",
+    "period": "2026-Q2",
+    "content": "CVE-2026-1104, severity: Critical. Discovery date: 2026-04-03. Resolution date: 2026-04-12 (9 days, within SLA). Q2 2026 record.",
+    "structured_fields": {
+      "cve_id": "CVE-2026-1104",
+      "severity": "Critical",
+      "discovery_date": "2026-04-03",
+      "resolution_date": "2026-04-12",
+      "days_to_resolve": 9,
+      "period": "2026-Q2"
+    }
+  },
+  {
+    "evidence_id": "EV-3001",
+    "document_id": "mfa_policy_v1_2026",
+    "title": "MFA Enforcement Policy v1.0 (Superseded)",
+    "period": "2024-Q2",
+    "content": "MFA Enforcement Policy, Version 1.0. Effective 2023-01-01 through 2024-06-30 (superseded). Break-glass privileged accounts may be provisioned without MFA and must have MFA enabled within 30 days.",
+    "structured_fields": {
+      "policy_version": "1.0",
+      "effective_start": "2023-01-01",
+      "effective_end": "2024-06-30",
+      "grace_period_days": 30
+    }
+  },
+  {
+    "evidence_id": "EV-3002",
+    "document_id": "mfa_policy_v2_2026",
+    "title": "MFA Enforcement Policy v2.0 (Superseded)",
+    "period": "2025-Q4",
+    "content": "MFA Enforcement Policy, Version 2.0. Effective 2024-07-01 through 2025-12-31 (superseded). Break-glass privileged accounts must have MFA enabled within 7 days of provisioning.",
+    "structured_fields": {
+      "policy_version": "2.0",
+      "effective_start": "2024-07-01",
+      "effective_end": "2025-12-31",
+      "grace_period_days": 7
+    }
+  },
+  {
+    "evidence_id": "EV-3003",
+    "document_id": "mfa_policy_v3_2026",
+    "title": "MFA Enforcement Policy v3.0 (Current)",
+    "period": "2026-Q1",
+    "content": "MFA Enforcement Policy, Version 3.0. Effective 2026-01-01, no expiration on file. All privileged accounts, including break-glass accounts, must have MFA enabled at the time of provisioning. No grace period is permitted.",
+    "structured_fields": {
+      "policy_version": "3.0",
+      "effective_start": "2026-01-01",
+      "effective_end": null,
+      "grace_period_days": 0
+    }
+  },
+  {
+    "evidence_id": "EV-3004",
+    "document_id": "iam_provisioning_record_svc_batch_09",
+    "title": "IAM Provisioning Record - svc-batch-09",
+    "period": "2025-Q4",
+    "content": "Break-glass privileged account svc-batch-09 was provisioned on 2025-11-20T00:00:00Z without MFA enabled. MFA was subsequently enabled on 2025-11-25T00:00:00Z (5 days later).",
+    "structured_fields": {
+      "account_id": "svc-batch-09",
+      "provisioned_date": "2025-11-20",
+      "mfa_enabled_at_provisioning": false,
+      "mfa_enabled_date": "2025-11-25",
+      "days_to_mfa": 5
+    }
+  }
+]
