@@ -1,0 +1,2545 @@
+{
+  "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+  "agent_mode": "llm",
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini-2026-03-17",
+  "llm_config": {
+    "prompt_version": "llm-baseline-v1",
+    "temperature": 0.0,
+    "max_output_tokens": 800
+  },
+  "dataset_version": "synthetic-v2",
+  "dataset_fingerprint": "35e54a143b90b9d8bf30db7e1cbdb27346eddba0e0c71dd8070e69f22fe63a72",
+  "git_commit_sha": "2ace808cdb9c72f435126f4480b420e27d0b42e0",
+  "results": [
+    {
+      "case_id": "AC-001",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-101"
+        ],
+        "should_abstain": false,
+        "rationale": "Attestation EV-101 shows the Q1 2025 review was completed 2025-04-10, within the 360-hour (15-day) deadline from the 2025-03-31 quarter end, with all 42 accounts confirmed appropriate."
+      },
+      "actual": {
+        "case_id": "AC-001",
+        "finding": "PASS",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q1 2025 privileged access review was completed and certified in writing by the control owner. The attestation shows completion on 2025-04-10, which is within 15 calendar days of the quarter end on 2025-03-31, and it states all 42 privileged accounts were reviewed and confirmed appropriate.",
+        "evidence": [
+          {
+            "document_id": "priv_access_review_attestation_2025q1",
+            "reference": "Attestation states the Q1 2025 privileged access review was completed on 2025-04-10 by J. Alvarez and all 42 privileged accounts were reviewed and confirmed appropriate; structured fields show completion_timestamp=2025-04-10T15:00:00Z and trigger_timestamp=2025-03-31T23:59:59Z."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-002",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-201"
+        ],
+        "should_abstain": false,
+        "rationale": "Attestation EV-201 shows the Q2 2025 review was completed 2025-07-29, exceeding the 360-hour (15-day) deadline from the 2025-06-30 quarter end by roughly two weeks, constituting a timeliness exception regardless of the review's substantive outcome."
+      },
+      "actual": {
+        "case_id": "AC-002",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "The Q2 2025 privileged access review was completed on 2025-07-29, which is more than 15 calendar days after the quarter ended on 2025-06-30. The control requires the review to be completed and evidenced within 360 hours of quarter end, so the timeliness requirement was not met.",
+        "evidence": [
+          {
+            "document_id": "priv_access_review_attestation_2025q2",
+            "reference": "States the review was completed on 2025-07-29 with completion_timestamp 2025-07-29T09:00:00Z and quarter end trigger_timestamp 2025-06-30T23:59:59Z."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-003",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-301"
+        ],
+        "should_abstain": true,
+        "rationale": "No attestation exists for the Q3 2025 review; EV-301 confirms only that the review was scheduled to begin after the quarter closed, with no completion evidence available. The Q2 2025 attestation (EV-201) is from a prior period and cannot substitute. The correct behavior is to abstain rather than assume completion or non-completion."
+      },
+      "actual": {
+        "case_id": "AC-003",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.93,
+        "reasoning_summary": "The only Q3 2025 evidence shows the review was scheduled to begin on 2025-10-06 and that no attestation had been recorded yet. There is no evidence that the Q3 review was completed and certified within 15 calendar days of quarter-end, so the control cannot be confirmed as satisfied.",
+        "evidence": [
+          {
+            "document_id": "access_governance_review_calendar_2025",
+            "reference": "Q3 2025 privileged access review scheduled to begin week of 2025-10-06; attestation_available=False"
+          }
+        ],
+        "missing_information": [
+          "A completed written certification for the full Q3 2025 privileged access review",
+          "Evidence that the review was completed within 360 hours (15 calendar days) of 2025-09-30 quarter-end"
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-004",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-401",
+          "EV-402"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-401 and EV-402 show access for employee E-10457 was removed roughly 40.5 hours after the termination timestamp, exceeding the 24-hour SLA in CTRL-TERM-ACCESS-REMOVAL."
+      },
+      "actual": {
+        "case_id": "AC-004",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-10457 was terminated effective 2025-06-11T17:00:00Z, and all system access was revoked on 2025-06-13T09:30:00Z. That is more than 24 hours after the termination timestamp, so the control was not met.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_10457",
+            "reference": "Termination effective 2025-06-11T17:00:00Z for employee E-10457."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_10457",
+            "reference": "All system access, including privileged database role, revoked on 2025-06-13T09:30:00Z."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-005",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-501",
+          "EV-502"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-501 and EV-502 show access for employee E-10832 was removed roughly 18 hours after the termination timestamp, within the 24-hour SLA."
+      },
+      "actual": {
+        "case_id": "AC-005",
+        "finding": "PASS",
+        "confidence": 0.98,
+        "reasoning_summary": "Employee E-10832’s termination was effective at 2025-06-20T14:00:00Z, and the IAM ticket shows all system access was revoked at 2025-06-21T08:00:00Z. That is within 24 hours of the termination timestamp, so the control was satisfied.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_10832",
+            "reference": "Termination effective timestamp for E-10832: 2025-06-20T14:00:00Z."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_10832",
+            "reference": "All system access revoked on 2025-06-21T08:00:00Z; access_fully_removed=True."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-006",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-601"
+        ],
+        "should_abstain": true,
+        "rationale": "EV-601 is a draft attestation missing the completion date and reviewer sign-off fields required to determine whether the Q4 2025 review was completed on time. The correct behavior is to abstain rather than assume timeliness."
+      },
+      "actual": {
+        "case_id": "AC-006",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.96,
+        "reasoning_summary": "The only privileged access review evidence is a draft attestation for Q4 2025, and it does not show reviewer sign-off, completion, or the list of accounts reviewed. The other document is unrelated to the control. There is not enough evidence to confirm the review was completed and certified within 15 days of quarter-end.",
+        "evidence": [
+          {
+            "document_id": "priv_access_review_attestation_2025q4_draft",
+            "reference": "Draft attestation shows completion_timestamp=None, reviewer=None, and accounts_reviewed=None."
+          }
+        ],
+        "missing_information": [
+          "Final signed attestation or other evidence showing the privileged access review was completed and certified in writing.",
+          "Evidence that the full list of privileged access holders was reviewed.",
+          "Evidence that completion occurred within 360 hours (15 calendar days) after 2025-12-31."
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-007",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-702",
+          "EV-703"
+        ],
+        "should_abstain": false,
+        "rationale": "MFA Enforcement Policy v2.0 (EV-702), effective 2025-02-01, was the governing policy on the account's 2025-05-12 provisioning date and permits no grace period. Policy v1.0 (EV-701) was superseded as of 2025-01-31 and does not apply. EV-703 shows MFA was not enabled at provisioning, constituting a violation of the governing policy."
+      },
+      "actual": {
+        "case_id": "AC-007",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "The account svc-payroll-03 was provisioned on 2025-05-12 without MFA enabled. The MFA policy in effect at that time required all privileged accounts, including break-glass accounts, to have MFA enabled at provisioning with no grace period. This does not meet the control requirement.",
+        "evidence": [
+          {
+            "document_id": "mfa_enforcement_policy_v2",
+            "reference": "Policy effective 2025-02-01 requires MFA at provisioning for all privileged accounts, including break-glass accounts, with no grace period."
+          },
+          {
+            "document_id": "iam_provisioning_record_svc_payroll_03",
+            "reference": "Record shows svc-payroll-03 was provisioned on 2025-05-12 without MFA enabled, and MFA was enabled later on 2025-06-05."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-008",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-801",
+          "EV-802"
+        ],
+        "should_abstain": false,
+        "rationale": "Neither EV-801 (timing and reviewer, no disposition) nor EV-802 (disposition, no certified timing) is independently sufficient. Together they establish that reviewer T. Osei completed the review of all 39 in-scope accounts on 2025-01-08, within the 360-hour deadline from the 2024-12-31 quarter end, with all 39 confirmed appropriate."
+      },
+      "actual": {
+        "case_id": "AC-008",
+        "finding": "PASS",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q4 2024 privileged access review was completed on 2025-01-08, which is within 15 calendar days of quarter end on 2024-12-31. The disposition report shows all 39 in-scope privileged accounts were assessed and marked appropriate, satisfying the review and certification requirement for the period.",
+        "evidence": [
+          {
+            "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+            "reference": "Completion timestamp 2025-01-08 and 39 accounts in scope for the Q4 2024 review."
+          },
+          {
+            "document_id": "priv_access_extract_disposition_2024q4",
+            "reference": "39 of 39 accounts assessed; all marked 'appropriate - retain'."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-009",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-902"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-901 is a Q1 2025 recertification and does not satisfy the Q2 2025 review period. EV-902, the valid in-period record, shows rule FW-2291 could not be recertified due to a lack of current business-owner approval, constituting an exception."
+      },
+      "actual": {
+        "case_id": "AC-009",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q2 2025 recertification record shows the required quarterly review was performed within the quarter, but it also documents one inbound external-access firewall rule that could not be recertified and remains active without current business justification. That means not all required rules were successfully recertified as required for the quarter.",
+        "evidence": [
+          {
+            "document_id": "firewall_rule_recert_record_2025q2",
+            "reference": "Q2 2025 firewall rule recertification: 19 inbound external-access rules reviewed by Network Security on 2025-05-18... Rule FW-2291... could not be recertified... remains active without current business justification."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-010",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-1002"
+        ],
+        "should_abstain": true,
+        "rationale": "EV-1002 shows the Database Access Governance Tool returned repeated errors and produced no Q2 2025 extract, with no alternate source available. EV-1003 is a Q1 2025 extract and cannot substitute for the required Q2 2025 data. The correct behavior is to abstain rather than rely on an out-of-period substitute."
+      },
+      "actual": {
+        "case_id": "AC-010",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.97,
+        "reasoning_summary": "The Q2 2025 privileged role extract was requested, but the governance tool returned errors and no extract was produced. Without the Q2 extract or a certification record based on it, there is not enough evidence to confirm the quarterly certification was completed.",
+        "evidence": [
+          {
+            "document_id": "db_privileged_role_export_request_2025q2",
+            "reference": "Shows the Q2 2025 extract was requested on 2025-07-02."
+          },
+          {
+            "document_id": "db_governance_tool_error_log_2025q2",
+            "reference": "Shows the tool returned HTTP 503 for the Q2 2025 extract and no extract or alternate source was available."
+          }
+        ],
+        "missing_information": [
+          "A certification record from the database administration team for Q2 2025.",
+          "The actual Q2 2025 privileged database role extract showing the accounts and roles reviewed."
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-011",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-1102"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-1102, the formal Q1 2026 risk assessment report, is the authoritative record and rates the vendor High Risk with incomplete required remediation. EV-1101 is a dashboard summary that its own annotation says may lag behind the latest assessment and must not override the primary report."
+      },
+      "actual": {
+        "case_id": "AC-011",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "Acme Logistics had a documented Q1 2026 risk assessment, but it was rated High Risk and the required remediation was not completed as of the report date. The control says continued access in that situation is an exception, so the requirement was not satisfied.",
+        "evidence": [
+          {
+            "document_id": "vendor_risk_assessment_report_2026q1",
+            "reference": "Q1 2026 formal risk assessment completed 2026-02-10; risk_rating=High; remediation_completed=False"
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-012",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-1202",
+          "EV-1203"
+        ],
+        "should_abstain": false,
+        "rationale": "The rotation cycle for svc-ledger-db began 2025-05-20, before Policy v2.0 took effect (2025-07-01). Applying v1.0 alone (EV-1201), legacy systems designated before 2023 were held to a 60-day rotation cadence -- the observed 87-day cycle would exceed that cadence, so v1.0 alone does not justify this cycle. Policy v2.0's own transition clause (EV-1202), however, explicitly grants any key-rotation cycle already in progress under the superseded policy a flat 180-day window to complete, regardless of v1.0's own category-specific cadence. EV-1203 confirms the cycle completed in 87 days, well within that 180-day transition allowance, so the cycle is compliant under v2.0's explicit transition clause -- not under v1.0's own (shorter) cadence."
+      },
+      "actual": {
+        "case_id": "AC-012",
+        "finding": "PASS",
+        "confidence": 0.95,
+        "reasoning_summary": "The cycle for svc-ledger-db began on 2025-05-20, when Policy v1.0 was still in effect. That policy allowed legacy systems to rotate every 60 days, and the record shows the key was rotated on 2025-08-15, which is 87 days after the cycle began. However, the record also states the cycle was started under a 180-day cadence, which conflicts with the policy document, so the evidence does not clearly show compliance with the applicable policy.",
+        "evidence": [
+          {
+            "document_id": "key_rotation_policy_v1",
+            "reference": "Effective 2022-01-01 through 2025-06-30; legacy systems designated before 2023 may rotate encryption keys every 60 days."
+          },
+          {
+            "document_id": "key_rotation_record_svc_ledger_db",
+            "reference": "svc-ledger-db began its current key-rotation cycle on 2025-05-20 and rotated on 2025-08-15, 87 days later."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 0.5,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-013",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-1302"
+        ],
+        "should_abstain": true,
+        "rationale": "EV-1301 is a Q1 2026 summary and does not speak to Q2 2026, the period under review, and must not be substituted. EV-1302, the only Q2 2026 change record provided, shows an approver was recorded but the approval timestamp is missing, so it cannot be confirmed the approval was obtained before deployment as the control requires."
+      },
+      "actual": {
+        "case_id": "AC-013",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.86,
+        "reasoning_summary": "The ticket shows an approver was recorded, but the evidence does not include a documented pre-deployment approval timestamp or the Change Management Policy authority definition needed to confirm the approval was valid and recorded before deployment. The Q1 summary is not relevant to this specific Q2 change ticket.",
+        "evidence": [
+          {
+            "document_id": "change_ticket_CHG-88213_2026q2",
+            "reference": "Approval recorded by J. Alvarez; approval timestamp not recorded; deployment completed on 2026-05-12."
+          }
+        ],
+        "missing_information": [
+          "Documented pre-deployment approval timestamp for CHG-88213",
+          "Change Management Policy authority definition for approver J. Alvarez",
+          "Evidence that the approval was recorded before deployment"
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-014",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-1401"
+        ],
+        "should_abstain": true,
+        "rationale": "EV-1401 confirms the vulnerability was marked Resolved and gives a discovery date, but the resolution date was never recorded. Without both dates, the 15-day SLA cannot be computed, so timeliness cannot be confirmed or refuted."
+      },
+      "actual": {
+        "case_id": "AC-014",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.98,
+        "reasoning_summary": "The ticket shows CVE-2026-0091 was critical and discovered on 2026-01-14, but no remediation completion date is recorded. Because the control requires both discovery and remediation dates to verify the 15-day SLA, compliance cannot be determined from the evidence provided.",
+        "evidence": [
+          {
+            "document_id": "vuln_ticket_CVE-2026-0091",
+            "reference": "Critical vulnerability ticket with discovery date 2026-01-14 and blank resolution date."
+          }
+        ],
+        "missing_information": [
+          "A recorded remediation completion/resolution date for CVE-2026-0091."
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-015",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-1501",
+          "EV-1502"
+        ],
+        "should_abstain": false,
+        "rationale": "The primary governance tool (EV-1501) failed to produce a Q1 2026 extract, which is the precondition CTRL-DB-PRIV-CERT-ALT-SOURCE requires before an alternate source may be used. EV-1502, an independently-sourced, reviewer-signed IAM export covering the same period and the same scope of privileged database roles, satisfies the control's explicit alternate-source provision. Together, EV-1501 (establishing the primary tool's unavailability) and EV-1502 (the qualifying substitute) are sufficient to confirm all privileged database roles were reviewed and confirmed appropriate; a partial tool failure does not require abstention when the control's own alternate-source allowance is satisfied."
+      },
+      "actual": {
+        "case_id": "AC-015",
+        "finding": "PASS",
+        "confidence": 0.96,
+        "reasoning_summary": "The primary governance tool was unavailable for Q1 2026, and an equivalent independent IAM export was provided for the same period and scope. The export was signed off by the DBA lead, and it states that all 15 privileged accounts were reviewed and confirmed appropriate.",
+        "evidence": [
+          {
+            "document_id": "db_governance_tool_error_2026q1",
+            "reference": "Tool error log showing no Q1 2026 extract was produced."
+          },
+          {
+            "document_id": "iam_privileged_group_export_2026q1",
+            "reference": "Independent Q1 2026 privileged group export signed off by DBA lead, with all 15 accounts reviewed and confirmed appropriate."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-016",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-1602",
+          "EV-1603"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-1602 establishes the Low Risk rating but its own worksheet page doesn't print a completion date. EV-1603, the tracking-system export, confirms the same assessment ID (VRA-2244, same vendor) was completed 2026-04-22, within Q2 2026. Together they establish a timely, dated, Low Risk assessment; neither alone does."
+      },
+      "actual": {
+        "case_id": "AC-016",
+        "finding": "PASS",
+        "confidence": 0.98,
+        "reasoning_summary": "Rangeline Analytics had a documented Q2 2026 risk assessment initiated and completed within the quarter. The assessment was signed off with a final Low Risk rating, satisfying the quarterly assessment requirement for a vendor with production data access.",
+        "evidence": [
+          {
+            "document_id": "vendor_assessment_kickoff_email_2026q2",
+            "reference": "Confirms Q2 2026 assessment initiation for Rangeline Analytics, assessment ID VRA-2244, on 2026-04-03."
+          },
+          {
+            "document_id": "vendor_risk_scoring_worksheet_VRA-2244",
+            "reference": "Shows final risk rating of Low Risk and sign-off by K. Nwosu for assessment VRA-2244."
+          },
+          {
+            "document_id": "vendor_assessment_tracking_export_2026q2",
+            "reference": "Shows assessment VRA-2244 for Rangeline Analytics marked Completed on 2026-04-22 within the quarterly window."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-017",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-1702"
+        ],
+        "should_abstain": false,
+        "rationale": "The executive summary (EV-1701) states zero exceptions, but the underlying rule-by-rule worksheet (EV-1702) — the primary record — shows rule FW-3107 was explicitly NOT recertified. The primary worksheet governs over the higher-level summary, which is evidently inaccurate or stale."
+      },
+      "actual": {
+        "case_id": "AC-017",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q1 2026 worksheet shows 22 inbound external-access firewall rules were reviewed, but one rule (FW-3107) was explicitly marked not recertified. Because the control requires all such rules to be recertified each quarter, the requirement was not fully met.",
+        "evidence": [
+          {
+            "document_id": "firewall_recert_worksheet_2026q1",
+            "reference": "Q1 2026 firewall rule-by-rule recertification worksheet: 22 inbound external-access rules reviewed; Rule FW-3107 marked 'NOT recertified — pending review, no current business owner.'"
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-018",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-1801",
+          "EV-1802"
+        ],
+        "should_abstain": false,
+        "rationale": "Access was removed 23 hours 59 minutes after termination — one minute under the 24-hour SLA — satisfying the control."
+      },
+      "actual": {
+        "case_id": "AC-018",
+        "finding": "PASS",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-20112 was terminated effective 2026-02-10T09:00:00Z, and the IAM ticket shows all system access was revoked on 2026-02-11T08:59:00Z. That is within 24 hours of the termination timestamp, so the control requirement was met.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_20112",
+            "reference": "Termination effective 2026-02-10T09:00:00Z for employee E-20112."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_20112",
+            "reference": "All system access revoked on 2026-02-11T08:59:00Z for employee E-20112."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-019",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-1901",
+          "EV-1902"
+        ],
+        "should_abstain": false,
+        "rationale": "Access was removed 24 hours 1 minute after termination — one minute over the 24-hour SLA — constituting a violation despite the minimal margin."
+      },
+      "actual": {
+        "case_id": "AC-019",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-20255 was terminated effective 2026-02-18T14:00:00Z, and all system access was revoked on 2026-02-19T14:01:00Z. That is 24 hours and 1 minute after termination, which exceeds the 24-hour SLA.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_20255",
+            "reference": "Termination effective timestamp 2026-02-18T14:00:00Z for employee E-20255."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_20255",
+            "reference": "All system access revoked on 2026-02-19T14:01:00Z for employee E-20255."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-020",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-2001",
+          "EV-2002"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-2001 and EV-2002 show access for the employee under review, E-30044, was removed 8 hours after termination, within the 24-hour SLA. EV-2003/EV-2004 concern a different employee, E-30051, and their later removal is not relevant to this case."
+      },
+      "actual": {
+        "case_id": "AC-020",
+        "finding": "PASS",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-30044’s termination was effective 2026-04-06T10:00:00Z, and the IAM deprovisioning ticket shows all system access was revoked at 2026-04-06T18:00:00Z. That is 8 hours after termination, which is within the 24-hour SLA.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_30044",
+            "reference": "Termination effective timestamp for E-30044: 2026-04-06T10:00:00Z."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_30044",
+            "reference": "All system access revoked on 2026-04-06T18:00:00Z; access_fully_removed=True."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-021",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-2101",
+          "EV-2102"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-2101 and EV-2102 show access for the employee under review, E-40077, was removed 72 hours after termination, exceeding the 24-hour SLA. EV-2103/EV-2104 concern a different, compliant employee, E-40080, and must not be substituted."
+      },
+      "actual": {
+        "case_id": "AC-021",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-40077 was terminated effective 2026-05-11T08:00:00Z, and the IAM ticket shows all system access was revoked on 2026-05-14T08:00:00Z. That is 72 hours after termination, which exceeds the 24-hour requirement.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_40077",
+            "reference": "termination effective 2026-05-11T08:00:00Z for employee E-40077"
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_40077",
+            "reference": "all system access revoked on 2026-05-14T08:00:00Z, 72 hours after termination"
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-022",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-2201"
+        ],
+        "should_abstain": true,
+        "rationale": "EV-2201 confirms a deletion job ran and 'some' records were removed, but it never identifies which retention category or policy threshold was applied, nor confirms that all eligible expired records for the period were included. Without knowing the scope, timely and complete deletion cannot be confirmed."
+      },
+      "actual": {
+        "case_id": "AC-022",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.93,
+        "reasoning_summary": "The deletion log shows a completed deletion job in Q1 2026, but it does not identify the retention policy category, does not confirm that all eligible customer records were covered, and does not show that the records were past their retention period or deleted within 30 days of expiry. The evidence is therefore not sufficient to conclude the control was met or violated.",
+        "evidence": [
+          {
+            "document_id": "data_deletion_log_2026q1",
+            "reference": "Routine data deletion cycle completed for Q1 2026; deletion job ran successfully; some customer records were removed from the primary database."
+          }
+        ],
+        "missing_information": [
+          "Retention policy category applied to the deleted records",
+          "Confirmation that all eligible customer records for the period were included",
+          "Evidence that the deleted records had passed their retention period",
+          "Evidence that deletion occurred within 30 days of retention expiry"
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-023",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-2301"
+        ],
+        "should_abstain": false,
+        "rationale": "Although recorded as an informal email thread rather than a formal ticket, EV-2301 unambiguously establishes both the discovery timestamp (14:03) and the notification timestamp (16:45) — 2 hours 42 minutes apart, within the 4-hour SLA — and explicitly confirms the required stakeholder list was notified. The informal format does not make the underlying facts any less clear or complete."
+      },
+      "actual": {
+        "case_id": "AC-023",
+        "finding": "PASS",
+        "confidence": 0.99,
+        "reasoning_summary": "The evidence shows a confirmed incident was discovered at 2026-01-20 14:03 UTC and required stakeholders were notified at 2026-01-20 16:45 UTC. That notification occurred within 4 hours of discovery, satisfying the control requirement.",
+        "evidence": [
+          {
+            "document_id": "incident_email_thread_INC-5521",
+            "reference": "Structured fields and email thread timestamps showing discovery at 2026-01-20T14:03:00Z and stakeholder notification at 2026-01-20T16:45:00Z."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-024",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-2401"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-2401 shows the one Critical-severity vulnerability, CVE-2026-1102, took 24 days to resolve, exceeding the 15-day critical SLA — a genuine exception. EV-2402 and EV-2403 concern Low- and Medium-severity vulnerabilities governed by different, longer SLAs not evaluated by this control, and are not themselves violations despite their longer resolution times."
+      },
+      "actual": {
+        "case_id": "AC-024",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "The evidence shows one critical vulnerability discovered in Q2 2026 was resolved 24 days after discovery, which exceeds the required 15-day remediation SLA. The other tickets are low or medium severity and are not evaluated by this control.",
+        "evidence": [
+          {
+            "document_id": "vuln_ticket_CVE-2026-1102",
+            "reference": "Critical vulnerability with discovery date 2026-04-01 and resolution date 2026-04-25 (24 days)."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-025",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-2501"
+        ],
+        "should_abstain": true,
+        "rationale": "The reviewer handoff and role rename are cosmetic details that do not themselves indicate noncompliance, but the notes explicitly state completion was never re-confirmed by the new reviewer after the handoff — meaning there is no confirmation the review was actually completed for the period. This is not a confirmed violation, but it is also not confirmed compliance."
+      },
+      "actual": {
+        "case_id": "AC-025",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.91,
+        "reasoning_summary": "The Q2 2026 review notes show a mid-cycle reviewer handoff and explicitly state that completion was not re-confirmed by the new reviewer after the handoff. Because the evidence does not show a completed certification by the database administration team for the quarter, I cannot conclude the control was satisfied.",
+        "evidence": [
+          {
+            "document_id": "db_priv_review_notes_2026q2",
+            "reference": "States the Q2 2026 review was reassigned mid-cycle and that completion was not re-confirmed by the new reviewer after the handoff."
+          }
+        ],
+        "missing_information": [
+          "A completed certification or sign-off by the database administration team for Q2 2026 after the reviewer handoff.",
+          "Evidence that the review was finalized and approved based on the database access governance tool extract."
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-026",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-2601",
+          "EV-2602",
+          "EV-2603"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-2601 establishes that only CAB approval satisfies the control. EV-2602 shows only an informal team-lead chat approval was obtained for CHG-77120, and EV-2603, the CAB's own approval log for the period, confirms CHG-77120 was never CAB-approved. The change therefore lacked the required authoritative approval."
+      },
+      "actual": {
+        "case_id": "AC-026",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "The policy says only the CAB can approve production changes. The only approval evidence for CHG-77120 is a team lead chat approval, and CHG-77120 does not appear in the CAB approval log for Q1 2026. Therefore the change did not have the required documented pre-deployment approval.",
+        "evidence": [
+          {
+            "document_id": "change_mgmt_policy_authority",
+            "reference": "Only the Change Advisory Board (CAB) is authorized to approve production changes."
+          },
+          {
+            "document_id": "team_lead_chat_approval_CHG-77120",
+            "reference": "Team lead B. Suarez wrote 'Approved, go ahead and deploy CHG-77120.'"
+          },
+          {
+            "document_id": "cab_approval_log_2026q1",
+            "reference": "CHG-77120 does not appear in the CAB approval log for Q1 2026."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-027",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-2701",
+          "EV-2702",
+          "EV-2703"
+        ],
+        "should_abstain": true,
+        "rationale": "EV-2701 and EV-2702 together establish that batch FTB-2019-Q2's retention period ended 2026-04-30, with a 30-day deletion window (deadline 2026-05-30). EV-2703 shows the batch was queued for deletion by 2026-05-10, within the window, but never confirms the deletion actually executed — only that it was queued. Without an execution timestamp, timely completion cannot be confirmed."
+      },
+      "actual": {
+        "case_id": "AC-027",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.93,
+        "reasoning_summary": "The evidence shows the applicable financial-record retention policy and the batch’s retention expiry date, but it does not confirm that deletion actually executed. The only deletion log provided shows the batch in a queue and explicitly lacks the execution timestamp, so compliance with the 30-day deletion requirement cannot be verified.",
+        "evidence": [
+          {
+            "document_id": "retention_policy_category_financial",
+            "reference": "Financial transaction records must be deleted no later than 30 days after the end of their 7-year retention period."
+          },
+          {
+            "document_id": "retention_expiry_export_2026q2",
+            "reference": "Batch FTB-2019-Q2 reached the end of its 7-year retention period on 2026-04-30."
+          },
+          {
+            "document_id": "deletion_confirmation_log_partial",
+            "reference": "Batch FTB-2019-Q2 appears in the deletion queue as of 2026-05-10; actual deletion-execution timestamp not present."
+          }
+        ],
+        "missing_information": [
+          "A deletion record showing the actual execution timestamp for batch FTB-2019-Q2.",
+          "Evidence that the deletion covered all eligible records for the batch within the required 30-day window."
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-028",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "EXCEPTION",
+        "required_evidence_ids": [
+          "EV-2803"
+        ],
+        "should_abstain": false,
+        "rationale": "EV-2801 is a Q4 2025 report and does not speak to the current period. EV-2802 is an informal email claim, contradicted by EV-2803, the formal Q2 2026 assessment report — the authoritative primary record — which shows the vendor was upgraded to Medium Risk with an unexecuted required remediation. The primary current-period report governs over both the stale report and the informal email."
+      },
+      "actual": {
+        "case_id": "AC-028",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "Solstice Cloud Services had a documented Q2 2026 risk assessment, but it was upgraded to Medium Risk and required remediation before continued access. The report says the required action was not yet executed, so the control was not satisfied for the quarter.",
+        "evidence": [
+          {
+            "document_id": "vendor_assessment_report_2026q2",
+            "reference": "Q2 2026 formal risk assessment report completed 2026-05-03; risk_rating=Medium; remediation_required=True; remediation_completed=False; status: Not yet executed."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-029",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "INSUFFICIENT_EVIDENCE",
+        "required_evidence_ids": [
+          "EV-2901"
+        ],
+        "should_abstain": true,
+        "rationale": "The vulnerability-scanning tool failed to produce Q3 2026 data, and no alternate source exists for this period. EV-2902 is a Q2 2026 record and does not speak to Q3 2026. Unlike a case where an independent secondary source can substitute, here there is nothing to evaluate remediation timeliness against for the period under review, so abstention is the correct response."
+      },
+      "actual": {
+        "case_id": "AC-029",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q3 2026 vulnerability-scanning report failed, and the evidence states no vulnerability discovery or remediation data is available for that period from the tool or any alternate source. The only ticket provided is for Q2 2026, so it does not support a conclusion about Q3 2026 critical vulnerabilities.",
+        "evidence": [
+          {
+            "document_id": "vuln_scan_tool_error_2026q3",
+            "reference": "Q3 2026 report failure; no vulnerability discovery or remediation data available; no alternate source available"
+          },
+          {
+            "document_id": "vuln_ticket_CVE-2026-1104-q2",
+            "reference": "Q2 2026 critical vulnerability record, not the reporting period under review"
+          }
+        ],
+        "missing_information": [
+          "Q3 2026 critical vulnerability discovery dates",
+          "Q3 2026 remediation completion dates for critical vulnerabilities"
+        ],
+        "abstain": true
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "case_id": "AC-030",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "expected": {
+        "expected_finding": "PASS",
+        "required_evidence_ids": [
+          "EV-3002",
+          "EV-3004"
+        ],
+        "should_abstain": false,
+        "rationale": "The account was provisioned 2025-11-20, which falls within Policy v2.0's effective window (2024-07-01 through 2025-12-31), not v1.0 (superseded before this date) or v3.0 (not yet effective until 2026-01-01). v2.0 permits a 7-day grace period for break-glass accounts, and MFA was enabled 5 days after provisioning, within that allowance."
+      },
+      "actual": {
+        "case_id": "AC-030",
+        "finding": "PASS",
+        "confidence": 0.95,
+        "reasoning_summary": "The account was provisioned on 2025-11-20, when MFA Policy v2.0 was in effect. That policy allowed break-glass privileged accounts to be provisioned without MFA as long as MFA was enabled within 7 days, and the record shows MFA was enabled 5 days later on 2025-11-25. This satisfies the control requirement for the provisioning date.",
+        "evidence": [
+          {
+            "document_id": "mfa_policy_v2_2026",
+            "reference": "Effective 2024-07-01 through 2025-12-31; break-glass privileged accounts must have MFA enabled within 7 days of provisioning."
+          },
+          {
+            "document_id": "iam_provisioning_record_svc_batch_09",
+            "reference": "Provisioned on 2025-11-20 without MFA; MFA enabled on 2025-11-25, 5 days later."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "correct_finding": true,
+      "schema_valid": true,
+      "citation_validity": 1.0,
+      "required_evidence_recall": 1.0,
+      "abstention_correct": true
+    }
+  ],
+  "traces": [
+    {
+      "trace_id": "01b17f23-d005-4237-b40a-e3ff332bf67d",
+      "case_id": "AC-001",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "priv_access_review_attestation_2025q1",
+        "new_hire_provisioning_log_2025q1"
+      ],
+      "evidence_referenced": [
+        "priv_access_review_attestation_2025q1"
+      ],
+      "started_at": "2026-09-23T18:54:05.018351Z",
+      "ended_at": "2026-09-23T18:54:08.480733Z",
+      "latency_ms": 3462.382,
+      "output": {
+        "case_id": "AC-001",
+        "finding": "PASS",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q1 2025 privileged access review was completed and certified in writing by the control owner. The attestation shows completion on 2025-04-10, which is within 15 calendar days of the quarter end on 2025-03-31, and it states all 42 privileged accounts were reviewed and confirmed appropriate.",
+        "evidence": [
+          {
+            "document_id": "priv_access_review_attestation_2025q1",
+            "reference": "Attestation states the Q1 2025 privileged access review was completed on 2025-04-10 by J. Alvarez and all 42 privileged accounts were reviewed and confirmed appropriate; structured fields show completion_timestamp=2025-04-10T15:00:00Z and trigger_timestamp=2025-03-31T23:59:59Z."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1157,
+      "output_tokens": 199,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "26eff3d5-5898-4951-9826-d3edb9f0beaf",
+      "case_id": "AC-002",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "priv_access_review_attestation_2025q2",
+        "vendor_access_request_form_v3"
+      ],
+      "evidence_referenced": [
+        "priv_access_review_attestation_2025q2"
+      ],
+      "started_at": "2026-09-23T18:54:08.480960Z",
+      "ended_at": "2026-09-23T18:54:10.200316Z",
+      "latency_ms": 1719.356,
+      "output": {
+        "case_id": "AC-002",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "The Q2 2025 privileged access review was completed on 2025-07-29, which is more than 15 calendar days after the quarter ended on 2025-06-30. The control requires the review to be completed and evidenced within 360 hours of quarter end, so the timeliness requirement was not met.",
+        "evidence": [
+          {
+            "document_id": "priv_access_review_attestation_2025q2",
+            "reference": "States the review was completed on 2025-07-29 with completion_timestamp 2025-07-29T09:00:00Z and quarter end trigger_timestamp 2025-06-30T23:59:59Z."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1151,
+      "output_tokens": 175,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "9572fdb0-6563-4006-a586-7f2028f324af",
+      "case_id": "AC-003",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "access_governance_review_calendar_2025",
+        "priv_access_review_attestation_2025q2"
+      ],
+      "evidence_referenced": [
+        "access_governance_review_calendar_2025"
+      ],
+      "started_at": "2026-09-23T18:54:10.200452Z",
+      "ended_at": "2026-09-23T18:54:12.257836Z",
+      "latency_ms": 2057.384,
+      "output": {
+        "case_id": "AC-003",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.93,
+        "reasoning_summary": "The only Q3 2025 evidence shows the review was scheduled to begin on 2025-10-06 and that no attestation had been recorded yet. There is no evidence that the Q3 review was completed and certified within 15 calendar days of quarter-end, so the control cannot be confirmed as satisfied.",
+        "evidence": [
+          {
+            "document_id": "access_governance_review_calendar_2025",
+            "reference": "Q3 2025 privileged access review scheduled to begin week of 2025-10-06; attestation_available=False"
+          }
+        ],
+        "missing_information": [
+          "A completed written certification for the full Q3 2025 privileged access review",
+          "Evidence that the review was completed within 360 hours (15 calendar days) of 2025-09-30 quarter-end"
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1188,
+      "output_tokens": 192,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "015d3dc9-16ee-465d-bdc3-ed03a6742dab",
+      "case_id": "AC-004",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "hr_termination_notice_10457",
+        "iam_deprovisioning_ticket_10457",
+        "hr_termination_notice_10091"
+      ],
+      "evidence_referenced": [
+        "hr_termination_notice_10457",
+        "iam_deprovisioning_ticket_10457"
+      ],
+      "started_at": "2026-09-23T18:54:12.258048Z",
+      "ended_at": "2026-09-23T18:54:14.073547Z",
+      "latency_ms": 1815.499,
+      "output": {
+        "case_id": "AC-004",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-10457 was terminated effective 2025-06-11T17:00:00Z, and all system access was revoked on 2025-06-13T09:30:00Z. That is more than 24 hours after the termination timestamp, so the control was not met.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_10457",
+            "reference": "Termination effective 2025-06-11T17:00:00Z for employee E-10457."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_10457",
+            "reference": "All system access, including privileged database role, revoked on 2025-06-13T09:30:00Z."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1227,
+      "output_tokens": 189,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "26b798b7-41ba-482c-b4dd-5acda6a0b088",
+      "case_id": "AC-005",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "hr_termination_notice_10832",
+        "iam_deprovisioning_ticket_10832",
+        "hr_termination_notice_10091"
+      ],
+      "evidence_referenced": [
+        "hr_termination_notice_10832",
+        "iam_deprovisioning_ticket_10832"
+      ],
+      "started_at": "2026-09-23T18:54:14.073716Z",
+      "ended_at": "2026-09-23T18:54:15.744353Z",
+      "latency_ms": 1670.637,
+      "output": {
+        "case_id": "AC-005",
+        "finding": "PASS",
+        "confidence": 0.98,
+        "reasoning_summary": "Employee E-10832’s termination was effective at 2025-06-20T14:00:00Z, and the IAM ticket shows all system access was revoked at 2025-06-21T08:00:00Z. That is within 24 hours of the termination timestamp, so the control was satisfied.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_10832",
+            "reference": "Termination effective timestamp for E-10832: 2025-06-20T14:00:00Z."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_10832",
+            "reference": "All system access revoked on 2025-06-21T08:00:00Z; access_fully_removed=True."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1221,
+      "output_tokens": 193,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "d2ce3d36-57e2-4fbe-97fc-fb6bc5fa829b",
+      "case_id": "AC-006",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "priv_access_review_attestation_2025q4_draft",
+        "org_chart_update_2025q4"
+      ],
+      "evidence_referenced": [
+        "priv_access_review_attestation_2025q4_draft"
+      ],
+      "started_at": "2026-09-23T18:54:15.744546Z",
+      "ended_at": "2026-09-23T18:54:17.499385Z",
+      "latency_ms": 1754.839,
+      "output": {
+        "case_id": "AC-006",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.96,
+        "reasoning_summary": "The only privileged access review evidence is a draft attestation for Q4 2025, and it does not show reviewer sign-off, completion, or the list of accounts reviewed. The other document is unrelated to the control. There is not enough evidence to confirm the review was completed and certified within 15 days of quarter-end.",
+        "evidence": [
+          {
+            "document_id": "priv_access_review_attestation_2025q4_draft",
+            "reference": "Draft attestation shows completion_timestamp=None, reviewer=None, and accounts_reviewed=None."
+          }
+        ],
+        "missing_information": [
+          "Final signed attestation or other evidence showing the privileged access review was completed and certified in writing.",
+          "Evidence that the full list of privileged access holders was reviewed.",
+          "Evidence that completion occurred within 360 hours (15 calendar days) after 2025-12-31."
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1108,
+      "output_tokens": 200,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "091ab592-8bf2-4aa9-8750-a94fdac83b44",
+      "case_id": "AC-007",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "mfa_enforcement_policy_v1",
+        "mfa_enforcement_policy_v2",
+        "iam_provisioning_record_svc_payroll_03"
+      ],
+      "evidence_referenced": [
+        "mfa_enforcement_policy_v2",
+        "iam_provisioning_record_svc_payroll_03"
+      ],
+      "started_at": "2026-09-23T18:54:17.499593Z",
+      "ended_at": "2026-09-23T18:54:19.268246Z",
+      "latency_ms": 1768.653,
+      "output": {
+        "case_id": "AC-007",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "The account svc-payroll-03 was provisioned on 2025-05-12 without MFA enabled. The MFA policy in effect at that time required all privileged accounts, including break-glass accounts, to have MFA enabled at provisioning with no grace period. This does not meet the control requirement.",
+        "evidence": [
+          {
+            "document_id": "mfa_enforcement_policy_v2",
+            "reference": "Policy effective 2025-02-01 requires MFA at provisioning for all privileged accounts, including break-glass accounts, with no grace period."
+          },
+          {
+            "document_id": "iam_provisioning_record_svc_payroll_03",
+            "reference": "Record shows svc-payroll-03 was provisioned on 2025-05-12 without MFA enabled, and MFA was enabled later on 2025-06-05."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1297,
+      "output_tokens": 197,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "b19887fe-8bf8-439e-bb56-e2bd7eac401c",
+      "case_id": "AC-008",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "priv_access_review_kickoff_confirmation_2024q4",
+        "priv_access_extract_disposition_2024q4",
+        "facilities_badge_access_log_2024q4"
+      ],
+      "evidence_referenced": [
+        "priv_access_review_kickoff_confirmation_2024q4",
+        "priv_access_extract_disposition_2024q4"
+      ],
+      "started_at": "2026-09-23T18:54:19.268448Z",
+      "ended_at": "2026-09-23T18:54:21.462421Z",
+      "latency_ms": 2193.973,
+      "output": {
+        "case_id": "AC-008",
+        "finding": "PASS",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q4 2024 privileged access review was completed on 2025-01-08, which is within 15 calendar days of quarter end on 2024-12-31. The disposition report shows all 39 in-scope privileged accounts were assessed and marked appropriate, satisfying the review and certification requirement for the period.",
+        "evidence": [
+          {
+            "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+            "reference": "Completion timestamp 2025-01-08 and 39 accounts in scope for the Q4 2024 review."
+          },
+          {
+            "document_id": "priv_access_extract_disposition_2024q4",
+            "reference": "39 of 39 accounts assessed; all marked 'appropriate - retain'."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1258,
+      "output_tokens": 181,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "d8ef22f2-a342-4049-8d76-428d7c7053cd",
+      "case_id": "AC-009",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "firewall_rule_recert_record_2025q1",
+        "firewall_rule_recert_record_2025q2"
+      ],
+      "evidence_referenced": [
+        "firewall_rule_recert_record_2025q2"
+      ],
+      "started_at": "2026-09-23T18:54:21.462594Z",
+      "ended_at": "2026-09-23T18:54:23.511988Z",
+      "latency_ms": 2049.394,
+      "output": {
+        "case_id": "AC-009",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q2 2025 recertification record shows the required quarterly review was performed within the quarter, but it also documents one inbound external-access firewall rule that could not be recertified and remains active without current business justification. That means not all required rules were successfully recertified as required for the quarter.",
+        "evidence": [
+          {
+            "document_id": "firewall_rule_recert_record_2025q2",
+            "reference": "Q2 2025 firewall rule recertification: 19 inbound external-access rules reviewed by Network Security on 2025-05-18... Rule FW-2291... could not be recertified... remains active without current business justification."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1183,
+      "output_tokens": 171,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "e8199d4d-6f14-4886-a390-f9d6d7dcad3b",
+      "case_id": "AC-010",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "db_privileged_role_export_request_2025q2",
+        "db_governance_tool_error_log_2025q2",
+        "db_privileged_role_export_2025q1"
+      ],
+      "evidence_referenced": [
+        "db_privileged_role_export_request_2025q2",
+        "db_governance_tool_error_log_2025q2"
+      ],
+      "started_at": "2026-09-23T18:54:23.512184Z",
+      "ended_at": "2026-09-23T18:54:26.582048Z",
+      "latency_ms": 3069.864,
+      "output": {
+        "case_id": "AC-010",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.97,
+        "reasoning_summary": "The Q2 2025 privileged role extract was requested, but the governance tool returned errors and no extract was produced. Without the Q2 extract or a certification record based on it, there is not enough evidence to confirm the quarterly certification was completed.",
+        "evidence": [
+          {
+            "document_id": "db_privileged_role_export_request_2025q2",
+            "reference": "Shows the Q2 2025 extract was requested on 2025-07-02."
+          },
+          {
+            "document_id": "db_governance_tool_error_log_2025q2",
+            "reference": "Shows the tool returned HTTP 503 for the Q2 2025 extract and no extract or alternate source was available."
+          }
+        ],
+        "missing_information": [
+          "A certification record from the database administration team for Q2 2025.",
+          "The actual Q2 2025 privileged database role extract showing the accounts and roles reviewed."
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1233,
+      "output_tokens": 209,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "39b649a2-ca5f-418e-b444-f7da49e587c4",
+      "case_id": "AC-011",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "vendor_risk_dashboard_snapshot_2026q1",
+        "vendor_risk_assessment_report_2026q1"
+      ],
+      "evidence_referenced": [
+        "vendor_risk_assessment_report_2026q1"
+      ],
+      "started_at": "2026-09-23T18:54:26.582221Z",
+      "ended_at": "2026-09-23T18:54:28.348970Z",
+      "latency_ms": 1766.7489999999998,
+      "output": {
+        "case_id": "AC-011",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "Acme Logistics had a documented Q1 2026 risk assessment, but it was rated High Risk and the required remediation was not completed as of the report date. The control says continued access in that situation is an exception, so the requirement was not satisfied.",
+        "evidence": [
+          {
+            "document_id": "vendor_risk_assessment_report_2026q1",
+            "reference": "Q1 2026 formal risk assessment completed 2026-02-10; risk_rating=High; remediation_completed=False"
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1172,
+      "output_tokens": 135,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "656421a2-db88-4453-9b02-3407034088d5",
+      "case_id": "AC-012",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "key_rotation_policy_v1",
+        "key_rotation_policy_v2",
+        "key_rotation_record_svc_ledger_db"
+      ],
+      "evidence_referenced": [
+        "key_rotation_policy_v1",
+        "key_rotation_record_svc_ledger_db"
+      ],
+      "started_at": "2026-09-23T18:54:28.349162Z",
+      "ended_at": "2026-09-23T18:54:31.768559Z",
+      "latency_ms": 3419.397,
+      "output": {
+        "case_id": "AC-012",
+        "finding": "PASS",
+        "confidence": 0.95,
+        "reasoning_summary": "The cycle for svc-ledger-db began on 2025-05-20, when Policy v1.0 was still in effect. That policy allowed legacy systems to rotate every 60 days, and the record shows the key was rotated on 2025-08-15, which is 87 days after the cycle began. However, the record also states the cycle was started under a 180-day cadence, which conflicts with the policy document, so the evidence does not clearly show compliance with the applicable policy.",
+        "evidence": [
+          {
+            "document_id": "key_rotation_policy_v1",
+            "reference": "Effective 2022-01-01 through 2025-06-30; legacy systems designated before 2023 may rotate encryption keys every 60 days."
+          },
+          {
+            "document_id": "key_rotation_record_svc_ledger_db",
+            "reference": "svc-ledger-db began its current key-rotation cycle on 2025-05-20 and rotated on 2025-08-15, 87 days later."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1341,
+      "output_tokens": 238,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "11d1632e-9304-4ef2-b41c-17e7b887ad2e",
+      "case_id": "AC-013",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "change_mgmt_summary_2026q1",
+        "change_ticket_CHG-88213_2026q2"
+      ],
+      "evidence_referenced": [
+        "change_ticket_CHG-88213_2026q2"
+      ],
+      "started_at": "2026-09-23T18:54:31.768689Z",
+      "ended_at": "2026-09-23T18:54:33.481516Z",
+      "latency_ms": 1712.827,
+      "output": {
+        "case_id": "AC-013",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.86,
+        "reasoning_summary": "The ticket shows an approver was recorded, but the evidence does not include a documented pre-deployment approval timestamp or the Change Management Policy authority definition needed to confirm the approval was valid and recorded before deployment. The Q1 summary is not relevant to this specific Q2 change ticket.",
+        "evidence": [
+          {
+            "document_id": "change_ticket_CHG-88213_2026q2",
+            "reference": "Approval recorded by J. Alvarez; approval timestamp not recorded; deployment completed on 2026-05-12."
+          }
+        ],
+        "missing_information": [
+          "Documented pre-deployment approval timestamp for CHG-88213",
+          "Change Management Policy authority definition for approver J. Alvarez",
+          "Evidence that the approval was recorded before deployment"
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1097,
+      "output_tokens": 178,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "d5169303-7d39-4784-8154-44a02a3a7f37",
+      "case_id": "AC-014",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "vuln_ticket_CVE-2026-0091",
+        "vuln_ticket_CVE-2026-0077"
+      ],
+      "evidence_referenced": [
+        "vuln_ticket_CVE-2026-0091"
+      ],
+      "started_at": "2026-09-23T18:54:33.481600Z",
+      "ended_at": "2026-09-23T18:54:34.980221Z",
+      "latency_ms": 1498.621,
+      "output": {
+        "case_id": "AC-014",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.98,
+        "reasoning_summary": "The ticket shows CVE-2026-0091 was critical and discovered on 2026-01-14, but no remediation completion date is recorded. Because the control requires both discovery and remediation dates to verify the 15-day SLA, compliance cannot be determined from the evidence provided.",
+        "evidence": [
+          {
+            "document_id": "vuln_ticket_CVE-2026-0091",
+            "reference": "Critical vulnerability ticket with discovery date 2026-01-14 and blank resolution date."
+          }
+        ],
+        "missing_information": [
+          "A recorded remediation completion/resolution date for CVE-2026-0091."
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1161,
+      "output_tokens": 158,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "9618eda7-d923-4058-8613-076fec69a3c5",
+      "case_id": "AC-015",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "db_governance_tool_error_2026q1",
+        "iam_privileged_group_export_2026q1"
+      ],
+      "evidence_referenced": [
+        "db_governance_tool_error_2026q1",
+        "iam_privileged_group_export_2026q1"
+      ],
+      "started_at": "2026-09-23T18:54:34.980359Z",
+      "ended_at": "2026-09-23T18:54:36.404317Z",
+      "latency_ms": 1423.958,
+      "output": {
+        "case_id": "AC-015",
+        "finding": "PASS",
+        "confidence": 0.96,
+        "reasoning_summary": "The primary governance tool was unavailable for Q1 2026, and an equivalent independent IAM export was provided for the same period and scope. The export was signed off by the DBA lead, and it states that all 15 privileged accounts were reviewed and confirmed appropriate.",
+        "evidence": [
+          {
+            "document_id": "db_governance_tool_error_2026q1",
+            "reference": "Tool error log showing no Q1 2026 extract was produced."
+          },
+          {
+            "document_id": "iam_privileged_group_export_2026q1",
+            "reference": "Independent Q1 2026 privileged group export signed off by DBA lead, with all 15 accounts reviewed and confirmed appropriate."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1263,
+      "output_tokens": 166,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "2aa0e080-bd57-4ac4-a78d-0048a0642a26",
+      "case_id": "AC-016",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "vendor_assessment_kickoff_email_2026q2",
+        "vendor_risk_scoring_worksheet_VRA-2244",
+        "vendor_assessment_tracking_export_2026q2"
+      ],
+      "evidence_referenced": [
+        "vendor_assessment_kickoff_email_2026q2",
+        "vendor_risk_scoring_worksheet_VRA-2244",
+        "vendor_assessment_tracking_export_2026q2"
+      ],
+      "started_at": "2026-09-23T18:54:36.404520Z",
+      "ended_at": "2026-09-23T18:54:38.278197Z",
+      "latency_ms": 1873.6770000000001,
+      "output": {
+        "case_id": "AC-016",
+        "finding": "PASS",
+        "confidence": 0.98,
+        "reasoning_summary": "Rangeline Analytics had a documented Q2 2026 risk assessment initiated and completed within the quarter. The assessment was signed off with a final Low Risk rating, satisfying the quarterly assessment requirement for a vendor with production data access.",
+        "evidence": [
+          {
+            "document_id": "vendor_assessment_kickoff_email_2026q2",
+            "reference": "Confirms Q2 2026 assessment initiation for Rangeline Analytics, assessment ID VRA-2244, on 2026-04-03."
+          },
+          {
+            "document_id": "vendor_risk_scoring_worksheet_VRA-2244",
+            "reference": "Shows final risk rating of Low Risk and sign-off by K. Nwosu for assessment VRA-2244."
+          },
+          {
+            "document_id": "vendor_assessment_tracking_export_2026q2",
+            "reference": "Shows assessment VRA-2244 for Rangeline Analytics marked Completed on 2026-04-22 within the quarterly window."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1262,
+      "output_tokens": 221,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "ec284523-c7c8-4d2b-8fd2-261c26fe5097",
+      "case_id": "AC-017",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "firewall_recert_exec_summary_2026q1",
+        "firewall_recert_worksheet_2026q1"
+      ],
+      "evidence_referenced": [
+        "firewall_recert_worksheet_2026q1"
+      ],
+      "started_at": "2026-09-23T18:54:38.278368Z",
+      "ended_at": "2026-09-23T18:54:39.993034Z",
+      "latency_ms": 1714.666,
+      "output": {
+        "case_id": "AC-017",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q1 2026 worksheet shows 22 inbound external-access firewall rules were reviewed, but one rule (FW-3107) was explicitly marked not recertified. Because the control requires all such rules to be recertified each quarter, the requirement was not fully met.",
+        "evidence": [
+          {
+            "document_id": "firewall_recert_worksheet_2026q1",
+            "reference": "Q1 2026 firewall rule-by-rule recertification worksheet: 22 inbound external-access rules reviewed; Rule FW-3107 marked 'NOT recertified — pending review, no current business owner.'"
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1116,
+      "output_tokens": 157,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "35f7d19d-c88d-408d-8bc1-d63b61c61f73",
+      "case_id": "AC-018",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "hr_termination_notice_20112",
+        "iam_deprovisioning_ticket_20112"
+      ],
+      "evidence_referenced": [
+        "hr_termination_notice_20112",
+        "iam_deprovisioning_ticket_20112"
+      ],
+      "started_at": "2026-09-23T18:54:39.993186Z",
+      "ended_at": "2026-09-23T18:54:42.089906Z",
+      "latency_ms": 2096.72,
+      "output": {
+        "case_id": "AC-018",
+        "finding": "PASS",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-20112 was terminated effective 2026-02-10T09:00:00Z, and the IAM ticket shows all system access was revoked on 2026-02-11T08:59:00Z. That is within 24 hours of the termination timestamp, so the control requirement was met.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_20112",
+            "reference": "Termination effective 2026-02-10T09:00:00Z for employee E-20112."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_20112",
+            "reference": "All system access revoked on 2026-02-11T08:59:00Z for employee E-20112."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1097,
+      "output_tokens": 185,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "3f5c7231-2b9a-46ac-be27-4a3c8f881783",
+      "case_id": "AC-019",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "hr_termination_notice_20255",
+        "iam_deprovisioning_ticket_20255"
+      ],
+      "evidence_referenced": [
+        "hr_termination_notice_20255",
+        "iam_deprovisioning_ticket_20255"
+      ],
+      "started_at": "2026-09-23T18:54:42.090156Z",
+      "ended_at": "2026-09-23T18:54:44.194179Z",
+      "latency_ms": 2104.023,
+      "output": {
+        "case_id": "AC-019",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-20255 was terminated effective 2026-02-18T14:00:00Z, and all system access was revoked on 2026-02-19T14:01:00Z. That is 24 hours and 1 minute after termination, which exceeds the 24-hour SLA.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_20255",
+            "reference": "Termination effective timestamp 2026-02-18T14:00:00Z for employee E-20255."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_20255",
+            "reference": "All system access revoked on 2026-02-19T14:01:00Z for employee E-20255."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1100,
+      "output_tokens": 185,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "83da0312-3cbb-49df-bea5-9b152b684870",
+      "case_id": "AC-020",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "hr_termination_notice_30044",
+        "iam_deprovisioning_ticket_30044",
+        "hr_termination_notice_30051",
+        "iam_deprovisioning_ticket_30051"
+      ],
+      "evidence_referenced": [
+        "hr_termination_notice_30044",
+        "iam_deprovisioning_ticket_30044"
+      ],
+      "started_at": "2026-09-23T18:54:44.194340Z",
+      "ended_at": "2026-09-23T18:54:45.651803Z",
+      "latency_ms": 1457.463,
+      "output": {
+        "case_id": "AC-020",
+        "finding": "PASS",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-30044’s termination was effective 2026-04-06T10:00:00Z, and the IAM deprovisioning ticket shows all system access was revoked at 2026-04-06T18:00:00Z. That is 8 hours after termination, which is within the 24-hour SLA.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_30044",
+            "reference": "Termination effective timestamp for E-30044: 2026-04-06T10:00:00Z."
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_30044",
+            "reference": "All system access revoked on 2026-04-06T18:00:00Z; access_fully_removed=True."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1319,
+      "output_tokens": 190,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "8e708fa4-0ead-4e3d-a468-48a15f8e802f",
+      "case_id": "AC-021",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "hr_termination_notice_40077",
+        "iam_deprovisioning_ticket_40077",
+        "hr_termination_notice_40080",
+        "iam_deprovisioning_ticket_40080"
+      ],
+      "evidence_referenced": [
+        "hr_termination_notice_40077",
+        "iam_deprovisioning_ticket_40077"
+      ],
+      "started_at": "2026-09-23T18:54:45.651959Z",
+      "ended_at": "2026-09-23T18:54:47.450206Z",
+      "latency_ms": 1798.2469999999998,
+      "output": {
+        "case_id": "AC-021",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "Employee E-40077 was terminated effective 2026-05-11T08:00:00Z, and the IAM ticket shows all system access was revoked on 2026-05-14T08:00:00Z. That is 72 hours after termination, which exceeds the 24-hour requirement.",
+        "evidence": [
+          {
+            "document_id": "hr_termination_notice_40077",
+            "reference": "termination effective 2026-05-11T08:00:00Z for employee E-40077"
+          },
+          {
+            "document_id": "iam_deprovisioning_ticket_40077",
+            "reference": "all system access revoked on 2026-05-14T08:00:00Z, 72 hours after termination"
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1316,
+      "output_tokens": 182,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "17c9857d-2307-4e28-a390-acaba817b64b",
+      "case_id": "AC-022",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "data_deletion_log_2026q1"
+      ],
+      "evidence_referenced": [
+        "data_deletion_log_2026q1"
+      ],
+      "started_at": "2026-09-23T18:54:47.450466Z",
+      "ended_at": "2026-09-23T18:54:49.109163Z",
+      "latency_ms": 1658.6970000000001,
+      "output": {
+        "case_id": "AC-022",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.93,
+        "reasoning_summary": "The deletion log shows a completed deletion job in Q1 2026, but it does not identify the retention policy category, does not confirm that all eligible customer records were covered, and does not show that the records were past their retention period or deleted within 30 days of expiry. The evidence is therefore not sufficient to conclude the control was met or violated.",
+        "evidence": [
+          {
+            "document_id": "data_deletion_log_2026q1",
+            "reference": "Routine data deletion cycle completed for Q1 2026; deletion job ran successfully; some customer records were removed from the primary database."
+          }
+        ],
+        "missing_information": [
+          "Retention policy category applied to the deleted records",
+          "Confirmation that all eligible customer records for the period were included",
+          "Evidence that the deleted records had passed their retention period",
+          "Evidence that deletion occurred within 30 days of retention expiry"
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 994,
+      "output_tokens": 204,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "ff20fd60-1821-4f6a-b7e5-cf06b08e5c8b",
+      "case_id": "AC-023",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "incident_email_thread_INC-5521"
+      ],
+      "evidence_referenced": [
+        "incident_email_thread_INC-5521"
+      ],
+      "started_at": "2026-09-23T18:54:49.109347Z",
+      "ended_at": "2026-09-23T18:54:50.770541Z",
+      "latency_ms": 1661.194,
+      "output": {
+        "case_id": "AC-023",
+        "finding": "PASS",
+        "confidence": 0.99,
+        "reasoning_summary": "The evidence shows a confirmed incident was discovered at 2026-01-20 14:03 UTC and required stakeholders were notified at 2026-01-20 16:45 UTC. That notification occurred within 4 hours of discovery, satisfying the control requirement.",
+        "evidence": [
+          {
+            "document_id": "incident_email_thread_INC-5521",
+            "reference": "Structured fields and email thread timestamps showing discovery at 2026-01-20T14:03:00Z and stakeholder notification at 2026-01-20T16:45:00Z."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1054,
+      "output_tokens": 150,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "917e3671-7afb-4895-8344-f50e99fbdc3e",
+      "case_id": "AC-024",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "vuln_ticket_CVE-2026-1102",
+        "vuln_ticket_CVE-2026-1103",
+        "vuln_ticket_CVE-2026-1104"
+      ],
+      "evidence_referenced": [
+        "vuln_ticket_CVE-2026-1102"
+      ],
+      "started_at": "2026-09-23T18:54:50.770707Z",
+      "ended_at": "2026-09-23T18:54:51.945071Z",
+      "latency_ms": 1174.364,
+      "output": {
+        "case_id": "AC-024",
+        "finding": "EXCEPTION",
+        "confidence": 0.99,
+        "reasoning_summary": "The evidence shows one critical vulnerability discovered in Q2 2026 was resolved 24 days after discovery, which exceeds the required 15-day remediation SLA. The other tickets are low or medium severity and are not evaluated by this control.",
+        "evidence": [
+          {
+            "document_id": "vuln_ticket_CVE-2026-1102",
+            "reference": "Critical vulnerability with discovery date 2026-04-01 and resolution date 2026-04-25 (24 days)."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1282,
+      "output_tokens": 132,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "dba563b4-48f2-4d39-8ee2-a8423c5baeff",
+      "case_id": "AC-025",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "db_priv_review_notes_2026q2"
+      ],
+      "evidence_referenced": [
+        "db_priv_review_notes_2026q2"
+      ],
+      "started_at": "2026-09-23T18:54:51.945276Z",
+      "ended_at": "2026-09-23T18:54:54.018205Z",
+      "latency_ms": 2072.9289999999996,
+      "output": {
+        "case_id": "AC-025",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.91,
+        "reasoning_summary": "The Q2 2026 review notes show a mid-cycle reviewer handoff and explicitly state that completion was not re-confirmed by the new reviewer after the handoff. Because the evidence does not show a completed certification by the database administration team for the quarter, I cannot conclude the control was satisfied.",
+        "evidence": [
+          {
+            "document_id": "db_priv_review_notes_2026q2",
+            "reference": "States the Q2 2026 review was reassigned mid-cycle and that completion was not re-confirmed by the new reviewer after the handoff."
+          }
+        ],
+        "missing_information": [
+          "A completed certification or sign-off by the database administration team for Q2 2026 after the reviewer handoff.",
+          "Evidence that the review was finalized and approved based on the database access governance tool extract."
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1093,
+      "output_tokens": 191,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "9f65b95f-e77a-47e9-a4a0-8c8091cc8559",
+      "case_id": "AC-026",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "change_mgmt_policy_authority",
+        "team_lead_chat_approval_CHG-77120",
+        "cab_approval_log_2026q1"
+      ],
+      "evidence_referenced": [
+        "change_mgmt_policy_authority",
+        "team_lead_chat_approval_CHG-77120",
+        "cab_approval_log_2026q1"
+      ],
+      "started_at": "2026-09-23T18:54:54.018348Z",
+      "ended_at": "2026-09-23T18:54:55.814653Z",
+      "latency_ms": 1796.305,
+      "output": {
+        "case_id": "AC-026",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "The policy says only the CAB can approve production changes. The only approval evidence for CHG-77120 is a team lead chat approval, and CHG-77120 does not appear in the CAB approval log for Q1 2026. Therefore the change did not have the required documented pre-deployment approval.",
+        "evidence": [
+          {
+            "document_id": "change_mgmt_policy_authority",
+            "reference": "Only the Change Advisory Board (CAB) is authorized to approve production changes."
+          },
+          {
+            "document_id": "team_lead_chat_approval_CHG-77120",
+            "reference": "Team lead B. Suarez wrote 'Approved, go ahead and deploy CHG-77120.'"
+          },
+          {
+            "document_id": "cab_approval_log_2026q1",
+            "reference": "CHG-77120 does not appear in the CAB approval log for Q1 2026."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1183,
+      "output_tokens": 204,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "f9718a36-b160-4323-b985-9ddae5a8f9bd",
+      "case_id": "AC-027",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "retention_policy_category_financial",
+        "retention_expiry_export_2026q2",
+        "deletion_confirmation_log_partial"
+      ],
+      "evidence_referenced": [
+        "retention_policy_category_financial",
+        "retention_expiry_export_2026q2",
+        "deletion_confirmation_log_partial"
+      ],
+      "started_at": "2026-09-23T18:54:55.814831Z",
+      "ended_at": "2026-09-23T18:54:57.745301Z",
+      "latency_ms": 1930.4699999999998,
+      "output": {
+        "case_id": "AC-027",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.93,
+        "reasoning_summary": "The evidence shows the applicable financial-record retention policy and the batch’s retention expiry date, but it does not confirm that deletion actually executed. The only deletion log provided shows the batch in a queue and explicitly lacks the execution timestamp, so compliance with the 30-day deletion requirement cannot be verified.",
+        "evidence": [
+          {
+            "document_id": "retention_policy_category_financial",
+            "reference": "Financial transaction records must be deleted no later than 30 days after the end of their 7-year retention period."
+          },
+          {
+            "document_id": "retention_expiry_export_2026q2",
+            "reference": "Batch FTB-2019-Q2 reached the end of its 7-year retention period on 2026-04-30."
+          },
+          {
+            "document_id": "deletion_confirmation_log_partial",
+            "reference": "Batch FTB-2019-Q2 appears in the deletion queue as of 2026-05-10; actual deletion-execution timestamp not present."
+          }
+        ],
+        "missing_information": [
+          "A deletion record showing the actual execution timestamp for batch FTB-2019-Q2.",
+          "Evidence that the deletion covered all eligible records for the batch within the required 30-day window."
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1183,
+      "output_tokens": 263,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "6848bfa3-436f-42b3-bbae-c25dd9fdee56",
+      "case_id": "AC-028",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "vendor_assessment_report_2025q4",
+        "vendor_status_email_2026q2",
+        "vendor_assessment_report_2026q2"
+      ],
+      "evidence_referenced": [
+        "vendor_assessment_report_2026q2"
+      ],
+      "started_at": "2026-09-23T18:54:57.745469Z",
+      "ended_at": "2026-09-23T18:54:59.982749Z",
+      "latency_ms": 2237.28,
+      "output": {
+        "case_id": "AC-028",
+        "finding": "EXCEPTION",
+        "confidence": 0.98,
+        "reasoning_summary": "Solstice Cloud Services had a documented Q2 2026 risk assessment, but it was upgraded to Medium Risk and required remediation before continued access. The report says the required action was not yet executed, so the control was not satisfied for the quarter.",
+        "evidence": [
+          {
+            "document_id": "vendor_assessment_report_2026q2",
+            "reference": "Q2 2026 formal risk assessment report completed 2026-05-03; risk_rating=Medium; remediation_required=True; remediation_completed=False; status: Not yet executed."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1238,
+      "output_tokens": 149,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "368c9ddd-a5f3-42b3-8e85-3b86a2ccd4a3",
+      "case_id": "AC-029",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "vuln_scan_tool_error_2026q3",
+        "vuln_ticket_CVE-2026-1104-q2"
+      ],
+      "evidence_referenced": [
+        "vuln_scan_tool_error_2026q3",
+        "vuln_ticket_CVE-2026-1104-q2"
+      ],
+      "started_at": "2026-09-23T18:54:59.982917Z",
+      "ended_at": "2026-09-23T18:55:02.515258Z",
+      "latency_ms": 2532.3410000000003,
+      "output": {
+        "case_id": "AC-029",
+        "finding": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.98,
+        "reasoning_summary": "The Q3 2026 vulnerability-scanning report failed, and the evidence states no vulnerability discovery or remediation data is available for that period from the tool or any alternate source. The only ticket provided is for Q2 2026, so it does not support a conclusion about Q3 2026 critical vulnerabilities.",
+        "evidence": [
+          {
+            "document_id": "vuln_scan_tool_error_2026q3",
+            "reference": "Q3 2026 report failure; no vulnerability discovery or remediation data available; no alternate source available"
+          },
+          {
+            "document_id": "vuln_ticket_CVE-2026-1104-q2",
+            "reference": "Q2 2026 critical vulnerability record, not the reporting period under review"
+          }
+        ],
+        "missing_information": [
+          "Q3 2026 critical vulnerability discovery dates",
+          "Q3 2026 remediation completion dates for critical vulnerabilities"
+        ],
+        "abstain": true
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1182,
+      "output_tokens": 204,
+      "estimated_cost": null
+    },
+    {
+      "trace_id": "432bf1ab-fa24-4399-92b5-6acef18a0c05",
+      "case_id": "AC-030",
+      "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+      "agent_mode": "llm",
+      "provider": "openai",
+      "model_name": "gpt-5.4-mini-2026-03-17",
+      "served_model_name": "gpt-5.4-mini-2026-03-17",
+      "llm_config": {
+        "prompt_version": "llm-baseline-v1",
+        "temperature": 0.0,
+        "max_output_tokens": 800
+      },
+      "agent_config_id": "llm-baseline-v1",
+      "evidence_presented": [
+        "mfa_policy_v1_2026",
+        "mfa_policy_v2_2026",
+        "mfa_policy_v3_2026",
+        "iam_provisioning_record_svc_batch_09"
+      ],
+      "evidence_referenced": [
+        "mfa_policy_v2_2026",
+        "iam_provisioning_record_svc_batch_09"
+      ],
+      "started_at": "2026-09-23T18:55:02.515427Z",
+      "ended_at": "2026-09-23T18:55:04.739811Z",
+      "latency_ms": 2224.384,
+      "output": {
+        "case_id": "AC-030",
+        "finding": "PASS",
+        "confidence": 0.95,
+        "reasoning_summary": "The account was provisioned on 2025-11-20, when MFA Policy v2.0 was in effect. That policy allowed break-glass privileged accounts to be provisioned without MFA as long as MFA was enabled within 7 days, and the record shows MFA was enabled 5 days later on 2025-11-25. This satisfies the control requirement for the provisioning date.",
+        "evidence": [
+          {
+            "document_id": "mfa_policy_v2_2026",
+            "reference": "Effective 2024-07-01 through 2025-12-31; break-glass privileged accounts must have MFA enabled within 7 days of provisioning."
+          },
+          {
+            "document_id": "iam_provisioning_record_svc_batch_09",
+            "reference": "Provisioned on 2025-11-20 without MFA; MFA enabled on 2025-11-25, 5 days later."
+          }
+        ],
+        "missing_information": [],
+        "abstain": false
+      },
+      "errors": [],
+      "raw_output_excerpt": null,
+      "input_tokens": 1397,
+      "output_tokens": 213,
+      "estimated_cost": null
+    }
+  ],
+  "metrics": {
+    "run_id": "556d6703-35d6-4aed-af63-862def0d5194",
+    "total_cases": 30,
+    "finding_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "exception_precision": 1.0,
+    "exception_recall": 1.0,
+    "citation_validity": 1.0,
+    "required_evidence_recall": 0.9833333333333333,
+    "schema_validity": 1.0,
+    "abstention_precision": 1.0,
+    "abstention_recall": 1.0,
+    "abstention_f1": 1.0,
+    "generated_at": "2026-09-23T18:55:04.740269Z"
+  },
+  "generated_at": "2026-09-23T18:55:04.740317Z"
+}
