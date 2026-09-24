@@ -1,0 +1,33 @@
+name: CI
+
+# Runs the full offline test suite (including the Phase 9 regression
+# gate tests) on every push and pull request. No API secrets are
+# configured or required, and no job here makes a real network call to
+# any LLM/embedding/reranking provider -- every provider-facing test in
+# this repository uses a fake provider double (see tests/support/).
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install project (dev extras only -- no real provider SDKs needed)
+        run: pip install -e ".[dev]"
+
+      - name: Run the full test suite
+        run: pytest -q
+
+      - name: Run the regression gate against the preserved official Phase 8 artifact
+        run: |
+          python scripts/run_regression_gate.py \
+            --manifest regression/regression_manifest_v1.json \
+            --candidate results/reranked_llm_experiments/synthetic-v2__reranked-llm-baseline-v1__12457851-fd75-4f45-8e58-79d95c3e13a1.json

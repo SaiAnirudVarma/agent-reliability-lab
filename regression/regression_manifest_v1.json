@@ -1,0 +1,95 @@
+{
+  "manifest_version": "regression-manifest-v1",
+  "dataset_version": "synthetic-v2",
+
+  "source_run_id": "12457851-fd75-4f45-8e58-79d95c3e13a1",
+  "source_artifact_sha256": "e8ff346c2c2a28078fc143c77bfa472a8875179602e97486984e73af9020bdc1",
+  "source_config_id": "reranked-llm-baseline-v1",
+
+  "cases": [
+    {
+      "case_id": "AC-004",
+      "category": "finding_failure",
+      "observed_expected_finding": "EXCEPTION",
+      "observed_should_abstain": false,
+      "observed_actual_finding": "PASS",
+      "observed_correct_finding": false,
+      "require_correct_finding": false,
+      "require_abstention_correct": null,
+      "min_schema_valid": true,
+      "min_citation_validity": 1.0,
+      "min_required_evidence_recall": 1.0,
+      "notes": "Official reranked-LLM run reached PASS against ground truth EXCEPTION despite full citation validity and required-evidence recall. Not claimed fixed; floors only guard against further degradation (e.g. malformed output or lost grounding)."
+    },
+    {
+      "case_id": "AC-013",
+      "category": "finding_failure",
+      "observed_expected_finding": "INSUFFICIENT_EVIDENCE",
+      "observed_should_abstain": true,
+      "observed_actual_finding": "EXCEPTION",
+      "observed_correct_finding": false,
+      "require_correct_finding": false,
+      "require_abstention_correct": null,
+      "min_schema_valid": true,
+      "min_citation_validity": 1.0,
+      "min_required_evidence_recall": 1.0,
+      "notes": "Ground truth calls for abstention (INSUFFICIENT_EVIDENCE); the model instead reached EXCEPTION with full grounding. Abstention correctness is not currently met and is not demanded here -- only grounding/schema floors are enforced."
+    },
+    {
+      "case_id": "AC-019",
+      "category": "finding_failure",
+      "observed_expected_finding": "EXCEPTION",
+      "observed_should_abstain": false,
+      "observed_actual_finding": "INSUFFICIENT_EVIDENCE",
+      "observed_correct_finding": false,
+      "require_correct_finding": false,
+      "require_abstention_correct": null,
+      "min_schema_valid": true,
+      "min_citation_validity": 1.0,
+      "min_required_evidence_recall": 1.0,
+      "notes": "One of two required evidence items (EV-1901) never entered the candidate set in the frozen retrieval/reranking pipeline (a pre-existing candidate-generation miss, not a Phase 8 regression). The model abstained rather than reaching EXCEPTION on the remaining, fully-cited evidence. Not claimed fixed."
+    },
+    {
+      "case_id": "AC-028",
+      "category": "finding_failure",
+      "observed_expected_finding": "EXCEPTION",
+      "observed_should_abstain": false,
+      "observed_actual_finding": "PASS",
+      "observed_correct_finding": false,
+      "require_correct_finding": false,
+      "require_abstention_correct": null,
+      "min_schema_valid": true,
+      "min_citation_validity": 1.0,
+      "min_required_evidence_recall": 1.0,
+      "notes": "Official reranked-LLM run reached PASS against ground truth EXCEPTION despite full citation validity and required-evidence recall. Not claimed fixed; floors only guard against further degradation."
+    },
+    {
+      "case_id": "AC-030",
+      "category": "finding_failure",
+      "observed_expected_finding": "PASS",
+      "observed_should_abstain": false,
+      "observed_actual_finding": "EXCEPTION",
+      "observed_correct_finding": false,
+      "require_correct_finding": false,
+      "require_abstention_correct": null,
+      "min_schema_valid": true,
+      "min_citation_validity": 1.0,
+      "min_required_evidence_recall": 0.5,
+      "notes": "Wrong finding AND incomplete required-evidence recall (0.5) despite both required items being present in the Top-5 reranked evidence. The recall floor is set to the OBSERVED degraded value (0.5), not a target -- it only catches further degradation below what was already observed."
+    },
+    {
+      "case_id": "AC-016",
+      "category": "grounding_degradation",
+      "observed_expected_finding": "PASS",
+      "observed_should_abstain": false,
+      "observed_actual_finding": "PASS",
+      "observed_correct_finding": true,
+      "require_correct_finding": true,
+      "require_abstention_correct": null,
+      "min_schema_valid": true,
+      "min_citation_validity": 1.0,
+      "min_required_evidence_recall": 0.5,
+      "notes": "Final finding is already correct -- required_correct_finding=true locks that in as a genuine regression guard. required_evidence_recall degraded to 0.5 despite both required items being present in the Top-5 reranked evidence; the recall floor is set to that OBSERVED degraded value, not a target."
+    }
+  ]
+}
