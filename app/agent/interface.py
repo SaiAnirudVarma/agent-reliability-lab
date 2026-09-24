@@ -72,6 +72,50 @@ def build_agent_input(case: EvaluationCase, control: Control, evidence: list[Evi
     )
 
 
+def build_retrieved_agent_input(
+    case: EvaluationCase, control: Control, retrieved_evidence: list[Evidence]
+) -> AgentInput:
+    """The retrieval-context sibling of ``build_agent_input`` (Phase 7B).
+
+    ``build_agent_input`` is NEVER modified or weakened: its
+    ``evidence_ids != set(case.evidence_pool)`` check remains the Phase 6
+    oracle-context invariant exactly as before. This is a genuinely
+    SEPARATE constructor for a genuinely different context, not a relaxed
+    version of that one -- a real retrieval pipeline selecting a different
+    evidence subset than ``case.evidence_pool`` is not a bug to guard
+    against here, it is the entire point of retrieval.
+
+    Reads only ``case.case_id``, ``case.scenario_description``,
+    ``case.period`` -- never ``case.expected_outcome`` or
+    ``case.failure_mode_tag`` -- exactly like ``build_agent_input``.
+    ``retrieved_evidence`` order is preserved exactly as given (callers
+    pass it already in retrieval-rank order -- see
+    ``app.retrieval.integration.select_evidence_for_agent``); it may come
+    from anywhere in the selected dataset version's corpus, not just
+    ``case.evidence_pool``.
+    """
+
+    if control.control_id != case.control_id:
+        raise ValueError(
+            f"control_id mismatch: case {case.case_id} references "
+            f"{case.control_id!r} but was given control {control.control_id!r}"
+        )
+    evidence_ids = [evidence.evidence_id for evidence in retrieved_evidence]
+    if len(set(evidence_ids)) != len(evidence_ids):
+        duplicates = sorted({eid for eid in evidence_ids if evidence_ids.count(eid) > 1})
+        raise ValueError(
+            f"retrieved_evidence for {case.case_id} contains duplicate evidence_id(s): {duplicates}"
+        )
+
+    return AgentInput(
+        case_id=case.case_id,
+        control=control,
+        scenario_description=case.scenario_description,
+        period=case.period,
+        evidence=retrieved_evidence,
+    )
+
+
 class AgentOutputError(Exception):
     """Raised by an AgentRunner that received a response from its underlying
     model/provider but could not turn it into a valid AgentFinding (e.g.
