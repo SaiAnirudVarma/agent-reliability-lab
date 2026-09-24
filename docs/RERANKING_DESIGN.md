@@ -98,8 +98,42 @@ normalizes the artifact.
 
 ## Not yet implemented
 
-- A real reranker (cross-encoder or API-based).
-- A runner/CLI that produces an immutable `RerankExperimentProvenance`
-  and a persisted reranking report.
-- Any choice of candidate depth `N` or final `K` — those are experimental
-  decisions for a future phase, not fixed here.
+## Update: Cohere adapter, frozen baseline, and orchestration skeleton
+
+Since the "Not yet implemented" list above was written, the following
+were added, reviewed, and (for the adapter) compatibility-tested with
+exactly one real request — but **no official reranking experiment has
+been run against synthetic-v2**:
+
+- `app.reranking.cohere_reranker.CohereReranker` — a real `Reranker`
+  implementing provider (isolates Cohere's index-based response shape;
+  constructed via dependency-injected client, never importing `cohere`
+  itself except in the separate `build_cohere_client` factory).
+- `configs/reranker-baseline-v1.json` / `app.reranking.baseline_config` —
+  a frozen, non-secret, `extra="forbid"` configuration (`config_id =
+  cohere-rerank-v4-pro-baseline-v1`) naming the candidate depth (10),
+  output depth (10), K values (`[1, 3, 5, 10]`), and — critically — the
+  exact preserved retrieval artifact (by run ID + SHA-256 + retriever
+  config ID) that must supply its candidates. `served_model` is `null`,
+  matching the compatibility check's own finding that Cohere's rerank API
+  does not authoritatively report one.
+- `app.reranking.candidate_source` — validates that preserved artifact
+  (hash, dataset/corpus fingerprint, retriever config ID, run ID, git
+  provenance, exactly 30 results, sufficient candidate depth per case)
+  and truncates it to `candidate_depth`, all before any provider call.
+- `app.reranking.runner.run_reranking_evaluation` — the before/after
+  orchestration (Recall@K/MRR before vs. after, deltas, required-evidence
+  rank movement), operating only on already-preserved candidates -- no
+  embedding calls, no re-retrieval.
+- `scripts/run_reranking_eval.py` — the CLI skeleton enforcing the full
+  safety order (config → candidate-source validation → reranker
+  construction → git SHA → run ID → immutable output path → collision
+  check → *only then* the real provider call), writing to
+  `results/reranking_experiments/` — tested end-to-end with fake/counting
+  reranker doubles; never invoked with a real credential in this phase.
+
+Still not implemented: any actual run of this script against
+`synthetic-v2` with a real Cohere credential (a separate, later
+authorization), and any choice of candidate depth `N`/final `K` beyond
+what's already frozen in `configs/reranker-baseline-v1.json` — those
+values are fixed as a baseline, not re-derived experimentally here.

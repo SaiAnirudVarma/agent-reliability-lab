@@ -11,6 +11,7 @@ dependencies = [
 [project.optional-dependencies]
 openai = ["openai>=1.50"]
 anthropic = ["anthropic>=0.34"]
+cohere = ["cohere>=7.1.1"]
 dev = ["pytest>=8.0"]
 
 [build-system]
