@@ -1,0 +1,3032 @@
+{
+  "run_id": "5b363b87-f452-4d1b-90e1-1f2cd1c2ef36",
+  "git_commit_sha": "e6c609548e9aa24f8f27862f5852cc55e7eafe68",
+  "dataset_version": "synthetic-v2",
+  "dataset_fingerprint": "35e54a143b90b9d8bf30db7e1cbdb27346eddba0e0c71dd8070e69f22fe63a72",
+  "corpus_fingerprint": "8b9c0462d085addf206667e35aea7e7cc3cfb9473a4961ec902bc3e71e99a109",
+  "retriever_config_id": "retrieval-baseline-v1",
+  "embedding_provider": "openai",
+  "requested_embedding_model": "text-embedding-3-small",
+  "served_embedding_model": "text-embedding-3-small",
+  "embedding_dimension": 1536,
+  "top_k_values": [
+    1,
+    3,
+    5,
+    10
+  ],
+  "case_metrics": [
+    {
+      "case_id": "AC-001",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.5,
+      "latency_ms": 560.5115829966962
+    },
+    {
+      "case_id": "AC-002",
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 208.6112501565367
+    },
+    {
+      "case_id": "AC-003",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.2,
+      "latency_ms": 485.54054205305874
+    },
+    {
+      "case_id": "AC-004",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.5,
+        "10": 1.0
+      },
+      "mrr": 0.2,
+      "latency_ms": 510.7348330784589
+    },
+    {
+      "case_id": "AC-005",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.5,
+        "10": 1.0
+      },
+      "mrr": 0.2,
+      "latency_ms": 537.2078749351203
+    },
+    {
+      "case_id": "AC-006",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.25,
+      "latency_ms": 173.46566705964506
+    },
+    {
+      "case_id": "AC-007",
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 210.53708321414888
+    },
+    {
+      "case_id": "AC-008",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.3333333333333333,
+      "latency_ms": 216.9620420318097
+    },
+    {
+      "case_id": "AC-009",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.5,
+      "latency_ms": 221.01908386684954
+    },
+    {
+      "case_id": "AC-010",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0
+      },
+      "mrr": 0.14285714285714285,
+      "latency_ms": 558.7982919532806
+    },
+    {
+      "case_id": "AC-011",
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 252.28012492880225
+    },
+    {
+      "case_id": "AC-012",
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 183.97570797242224
+    },
+    {
+      "case_id": "AC-013",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.3333333333333333,
+      "latency_ms": 543.3952920138836
+    },
+    {
+      "case_id": "AC-014",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.25,
+      "latency_ms": 214.77920794859529
+    },
+    {
+      "case_id": "AC-015",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.5,
+        "10": 1.0
+      },
+      "mrr": 0.2,
+      "latency_ms": 209.40691698342562
+    },
+    {
+      "case_id": "AC-016",
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 0.5,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 365.73033314198256
+    },
+    {
+      "case_id": "AC-017",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.5,
+      "latency_ms": 187.2712499462068
+    },
+    {
+      "case_id": "AC-018",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.5,
+        "10": 1.0
+      },
+      "mrr": 0.2,
+      "latency_ms": 187.38383310846984
+    },
+    {
+      "case_id": "AC-019",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.5
+      },
+      "mrr": 0.16666666666666666,
+      "latency_ms": 198.33433302119374
+    },
+    {
+      "case_id": "AC-020",
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 196.03420794010162
+    },
+    {
+      "case_id": "AC-021",
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 0.5,
+        "10": 0.5
+      },
+      "mrr": 1.0,
+      "latency_ms": 212.98104082234204
+    },
+    {
+      "case_id": "AC-022",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.5,
+      "latency_ms": 183.66883392445743
+    },
+    {
+      "case_id": "AC-023",
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 298.1131668202579
+    },
+    {
+      "case_id": "AC-024",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0
+      },
+      "mrr": 0.14285714285714285,
+      "latency_ms": 229.51625008136034
+    },
+    {
+      "case_id": "AC-025",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.5,
+      "latency_ms": 215.18100006505847
+    },
+    {
+      "case_id": "AC-026",
+      "recall_at_k": {
+        "1": 0.3333333333333333,
+        "3": 0.3333333333333333,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 209.17104091495275
+    },
+    {
+      "case_id": "AC-027",
+      "recall_at_k": {
+        "1": 0.3333333333333333,
+        "3": 0.6666666666666666,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 186.40087498351932
+    },
+    {
+      "case_id": "AC-028",
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": 238.12229186296463
+    },
+    {
+      "case_id": "AC-029",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.25,
+      "latency_ms": 199.2571670562029
+    },
+    {
+      "case_id": "AC-030",
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.3333333333333333,
+      "latency_ms": 175.81558413803577
+    }
+  ],
+  "results": [
+    {
+      "case_id": "AC-001",
+      "query": {
+        "case_id": "AC-001",
+        "control": {
+          "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+          "name": "Quarterly Privileged Access Review",
+          "description": "Requires periodic manager review and certification of employees holding privileged system access.",
+          "requirement_text": "For each fiscal quarter, the designated control owner must review the full list of privileged access holders and certify, in writing, that access remains appropriate. The review must be completed and evidenced within 360 hours (15 calendar days) of the quarter's end date.",
+          "sla_hours": 360
+        },
+        "scenario_description": "Determine whether the Q1 2025 privileged access review for this control was completed in accordance with the control's timeliness requirement.",
+        "period": "2025-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.7967380618065473,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.7933606917446208,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.7265993051676422,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.7151116880557179,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-301",
+          "document_id": "access_governance_review_calendar_2025",
+          "score": 0.6786850538279896,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.6533390416341214,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1003",
+          "document_id": "db_privileged_role_export_2025q1",
+          "score": 0.6159464320750305,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.605576364941835,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.5698032067141043,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-901",
+          "document_id": "firewall_rule_recert_record_2025q1",
+          "score": 0.5691424075763595,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-002",
+      "query": {
+        "case_id": "AC-002",
+        "control": {
+          "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+          "name": "Quarterly Privileged Access Review",
+          "description": "Requires periodic manager review and certification of employees holding privileged system access.",
+          "requirement_text": "For each fiscal quarter, the designated control owner must review the full list of privileged access holders and certify, in writing, that access remains appropriate. The review must be completed and evidenced within 360 hours (15 calendar days) of the quarter's end date.",
+          "sla_hours": 360
+        },
+        "scenario_description": "Determine whether the Q2 2025 privileged access review for this control was completed in accordance with the control's timeliness requirement.",
+        "period": "2025-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.8150850055152615,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.7912233315166795,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.7293912705606324,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.7168571175881532,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-301",
+          "document_id": "access_governance_review_calendar_2025",
+          "score": 0.6846211322212981,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.6570360986598464,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.6268591458943991,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1003",
+          "document_id": "db_privileged_role_export_2025q1",
+          "score": 0.6194205298702046,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.5839763051908211,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-901",
+          "document_id": "firewall_rule_recert_record_2025q1",
+          "score": 0.5636618164653983,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-003",
+      "query": {
+        "case_id": "AC-003",
+        "control": {
+          "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+          "name": "Quarterly Privileged Access Review",
+          "description": "Requires periodic manager review and certification of employees holding privileged system access.",
+          "requirement_text": "For each fiscal quarter, the designated control owner must review the full list of privileged access holders and certify, in writing, that access remains appropriate. The review must be completed and evidenced within 360 hours (15 calendar days) of the quarter's end date.",
+          "sla_hours": 360
+        },
+        "scenario_description": "Determine whether the Q3 2025 privileged access review for this control has been completed and evidenced in accordance with the control's requirements.",
+        "period": "2025-Q3"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.7940711758394389,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.7833934109817757,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.7203565612115723,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.7141414061522501,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-301",
+          "document_id": "access_governance_review_calendar_2025",
+          "score": 0.6972203680224224,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.6590454817543407,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1003",
+          "document_id": "db_privileged_role_export_2025q1",
+          "score": 0.6176504667091454,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.6112035775497252,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.5745480912744007,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-901",
+          "document_id": "firewall_rule_recert_record_2025q1",
+          "score": 0.5640715430725419,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-004",
+      "query": {
+        "case_id": "AC-004",
+        "control": {
+          "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+          "name": "Termination Access Removal",
+          "description": "Requires prompt removal of system access following employee termination.",
+          "requirement_text": "Upon an employee's termination becoming effective, all privileged and standard system access for that employee must be revoked within 24 hours of the termination timestamp.",
+          "sla_hours": 24
+        },
+        "scenario_description": "Determine whether privileged and standard system access for employee E-10457 was revoked within the required timeframe following termination.",
+        "period": "2025-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2002",
+          "document_id": "iam_deprovisioning_ticket_30044",
+          "score": 0.6951070210557567,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2102",
+          "document_id": "iam_deprovisioning_ticket_40077",
+          "score": 0.6913925345109386,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2004",
+          "document_id": "iam_deprovisioning_ticket_30051",
+          "score": 0.6910356799208635,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2104",
+          "document_id": "iam_deprovisioning_ticket_40080",
+          "score": 0.684183928620867,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-401",
+          "document_id": "hr_termination_notice_10457",
+          "score": 0.6792350614695293,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-402",
+          "document_id": "iam_deprovisioning_ticket_10457",
+          "score": 0.661305195771709,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-501",
+          "document_id": "hr_termination_notice_10832",
+          "score": 0.6538087960998876,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-502",
+          "document_id": "iam_deprovisioning_ticket_10832",
+          "score": 0.652649674512307,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-403",
+          "document_id": "hr_termination_notice_10091",
+          "score": 0.6477361123978655,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2001",
+          "document_id": "hr_termination_notice_30044",
+          "score": 0.6361653164200065,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-005",
+      "query": {
+        "case_id": "AC-005",
+        "control": {
+          "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+          "name": "Termination Access Removal",
+          "description": "Requires prompt removal of system access following employee termination.",
+          "requirement_text": "Upon an employee's termination becoming effective, all privileged and standard system access for that employee must be revoked within 24 hours of the termination timestamp.",
+          "sla_hours": 24
+        },
+        "scenario_description": "Determine whether privileged and standard system access for employee E-10832 was revoked within the required timeframe following termination.",
+        "period": "2025-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2002",
+          "document_id": "iam_deprovisioning_ticket_30044",
+          "score": 0.6931891102262335,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2004",
+          "document_id": "iam_deprovisioning_ticket_30051",
+          "score": 0.6888754193090834,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2102",
+          "document_id": "iam_deprovisioning_ticket_40077",
+          "score": 0.6863068731141526,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2104",
+          "document_id": "iam_deprovisioning_ticket_40080",
+          "score": 0.6809292381820837,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-502",
+          "document_id": "iam_deprovisioning_ticket_10832",
+          "score": 0.6644957491308069,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-501",
+          "document_id": "hr_termination_notice_10832",
+          "score": 0.6611268284582934,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-402",
+          "document_id": "iam_deprovisioning_ticket_10457",
+          "score": 0.6393808875444195,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-403",
+          "document_id": "hr_termination_notice_10091",
+          "score": 0.6313114763074621,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1902",
+          "document_id": "iam_deprovisioning_ticket_20255",
+          "score": 0.6301346563874062,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1802",
+          "document_id": "iam_deprovisioning_ticket_20112",
+          "score": 0.6268686544926865,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-006",
+      "query": {
+        "case_id": "AC-006",
+        "control": {
+          "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+          "name": "Quarterly Privileged Access Review",
+          "description": "Requires periodic manager review and certification of employees holding privileged system access.",
+          "requirement_text": "For each fiscal quarter, the designated control owner must review the full list of privileged access holders and certify, in writing, that access remains appropriate. The review must be completed and evidenced within 360 hours (15 calendar days) of the quarter's end date.",
+          "sla_hours": 360
+        },
+        "scenario_description": "Determine whether the Q4 2025 privileged access review for this control was completed and confirmed in accordance with the control's requirements.",
+        "period": "2025-Q4"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.79754015184342,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.7907838048230604,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.7471930759037702,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.7301585419800817,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-301",
+          "document_id": "access_governance_review_calendar_2025",
+          "score": 0.6827294162360743,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.6775353523350993,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1003",
+          "document_id": "db_privileged_role_export_2025q1",
+          "score": 0.6210799364040525,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.6154523668804215,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.5720307609760131,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-602",
+          "document_id": "org_chart_update_2025q4",
+          "score": 0.5704855479010336,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-007",
+      "query": {
+        "case_id": "AC-007",
+        "control": {
+          "control_id": "CTRL-PRIV-MFA",
+          "name": "Privileged Account MFA Enforcement",
+          "description": "Requires multi-factor authentication on privileged accounts consistent with the MFA policy in effect at provisioning time.",
+          "requirement_text": "Multi-factor authentication must be enabled on a privileged account according to the MFA enforcement policy version in effect on that account's provisioning date.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether multi-factor authentication was enabled on privileged account svc-payroll-03 in accordance with the MFA enforcement policy in effect on its provisioning date.",
+        "period": "2025-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-702",
+          "document_id": "mfa_enforcement_policy_v2",
+          "score": 0.7705915824084316,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3003",
+          "document_id": "mfa_policy_v3_2026",
+          "score": 0.7669388500508436,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3002",
+          "document_id": "mfa_policy_v2_2026",
+          "score": 0.7370175311310437,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-703",
+          "document_id": "iam_provisioning_record_svc_payroll_03",
+          "score": 0.7249684345811974,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3004",
+          "document_id": "iam_provisioning_record_svc_batch_09",
+          "score": 0.7059091102436782,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3001",
+          "document_id": "mfa_policy_v1_2026",
+          "score": 0.7036324567747838,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-701",
+          "document_id": "mfa_enforcement_policy_v1",
+          "score": 0.6823056061459781,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.5041760454982169,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-9002",
+          "document_id": "new_hire_provisioning_log_2025q1",
+          "score": 0.47159369523605704,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.47119492071587404,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-008",
+      "query": {
+        "case_id": "AC-008",
+        "control": {
+          "control_id": "CTRL-PRIV-ACCESS-REVIEW",
+          "name": "Quarterly Privileged Access Review",
+          "description": "Requires periodic manager review and certification of employees holding privileged system access.",
+          "requirement_text": "For each fiscal quarter, the designated control owner must review the full list of privileged access holders and certify, in writing, that access remains appropriate. The review must be completed and evidenced within 360 hours (15 calendar days) of the quarter's end date.",
+          "sla_hours": 360
+        },
+        "scenario_description": "Determine whether the Q4 2024 privileged access review for this control was completed and all in-scope accounts were confirmed appropriate.",
+        "period": "2024-Q4"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.7838521663964924,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.7811560986783913,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.7696068024784181,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.7202138813295832,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.6987664462430325,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-301",
+          "document_id": "access_governance_review_calendar_2025",
+          "score": 0.6664607018179523,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1003",
+          "document_id": "db_privileged_role_export_2025q1",
+          "score": 0.6237242814489029,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.6083839853917601,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-602",
+          "document_id": "org_chart_update_2025q4",
+          "score": 0.5718447699329383,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-803",
+          "document_id": "facilities_badge_access_log_2024q4",
+          "score": 0.5646984735752152,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-009",
+      "query": {
+        "case_id": "AC-009",
+        "control": {
+          "control_id": "CTRL-FIREWALL-RECERT",
+          "name": "Quarterly Firewall Rule Recertification",
+          "description": "Requires quarterly recertification that firewall rules permitting external access remain necessary and approved.",
+          "requirement_text": "For each fiscal quarter, the network security owner must recertify all firewall rules permitting inbound external access, evidenced by a signed recertification record dated within that quarter.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether all inbound external-access firewall rules were recertified as required for Q2 2025, and whether any exceptions exist.",
+        "period": "2025-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-901",
+          "document_id": "firewall_rule_recert_record_2025q1",
+          "score": 0.8510072304091673,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.8311930335558478,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1702",
+          "document_id": "firewall_recert_worksheet_2026q1",
+          "score": 0.8173297275251022,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1701",
+          "document_id": "firewall_recert_exec_summary_2026q1",
+          "score": 0.8031472368881348,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.5547213609689333,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.5364492020819619,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-301",
+          "document_id": "access_governance_review_calendar_2025",
+          "score": 0.4991432428494255,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.49763381889233255,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-602",
+          "document_id": "org_chart_update_2025q4",
+          "score": 0.4805804289815544,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.4631635784437153,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-010",
+      "query": {
+        "case_id": "AC-010",
+        "control": {
+          "control_id": "CTRL-DB-PRIV-CERT",
+          "name": "Quarterly Database Privileged Role Certification",
+          "description": "Requires certification that privileged database roles assigned to individual accounts remain appropriate.",
+          "requirement_text": "Each quarter, the database administration team must certify that privileged database roles (e.g., DBA, sysadmin) assigned to individual accounts remain appropriate, based on an extract from the database access governance tool.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether privileged database role assignments were certified as required for Q2 2025.",
+        "period": "2025-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-1003",
+          "document_id": "db_privileged_role_export_2025q1",
+          "score": 0.7891349652357676,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.7034139225651332,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.6864532094368441,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1001",
+          "document_id": "db_privileged_role_export_request_2025q2",
+          "score": 0.6721688561667388,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.6694857538060559,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1502",
+          "document_id": "iam_privileged_group_export_2026q1",
+          "score": 0.6281049077912203,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1002",
+          "document_id": "db_governance_tool_error_log_2025q2",
+          "score": 0.6059966810089609,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.6055644672730284,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.6007332893653756,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.5858729218877857,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-011",
+      "query": {
+        "case_id": "AC-011",
+        "control": {
+          "control_id": "CTRL-VENDOR-RISK-ASSESSMENT",
+          "name": "Third-Party Vendor Risk Assessment",
+          "description": "Requires periodic risk assessment of third-party vendors with access to production data.",
+          "requirement_text": "Each third-party vendor with access to production data must undergo a documented risk assessment at least once per fiscal quarter. If a vendor is rated High Risk (or upgraded to a higher risk tier), any required remediation action must be completed, or the vendor's continued access constitutes an exception.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether vendor Acme Logistics satisfied the third-party vendor risk assessment control for Q1 2026.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-1102",
+          "document_id": "vendor_risk_assessment_report_2026q1",
+          "score": 0.7716195629861203,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2803",
+          "document_id": "vendor_assessment_report_2026q2",
+          "score": 0.6976327410522528,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1101",
+          "document_id": "vendor_risk_dashboard_snapshot_2026q1",
+          "score": 0.6708841051169081,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1603",
+          "document_id": "vendor_assessment_tracking_export_2026q2",
+          "score": 0.642281111563388,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2801",
+          "document_id": "vendor_assessment_report_2025q4",
+          "score": 0.6153044959130597,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1601",
+          "document_id": "vendor_assessment_kickoff_email_2026q2",
+          "score": 0.5903302352480363,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2802",
+          "document_id": "vendor_status_email_2026q2",
+          "score": 0.5229156401342171,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1602",
+          "document_id": "vendor_risk_scoring_worksheet_VRA-2244",
+          "score": 0.5189256406647947,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.47971951416159253,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.4766898819793372,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-012",
+      "query": {
+        "case_id": "AC-012",
+        "control": {
+          "control_id": "CTRL-ENCRYPTION-KEY-ROTATION",
+          "name": "Encryption Key Rotation",
+          "description": "Requires periodic rotation of encryption keys for production systems.",
+          "requirement_text": "Encryption keys for production systems must be rotated according to the key-rotation policy version in effect on the date each rotation cycle began.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether the encryption key rotation for svc-ledger-db's cycle beginning 2025-05-20 satisfied the key-rotation control.",
+        "period": "2025-Q3"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-1202",
+          "document_id": "key_rotation_policy_v2",
+          "score": 0.773259050992571,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1203",
+          "document_id": "key_rotation_record_svc_ledger_db",
+          "score": 0.7620351629382683,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1201",
+          "document_id": "key_rotation_policy_v1",
+          "score": 0.730563583130524,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2702",
+          "document_id": "retention_expiry_export_2026q2",
+          "score": 0.4027661185384849,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.38906306317211403,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2701",
+          "document_id": "retention_policy_category_financial",
+          "score": 0.3829827281575827,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1102",
+          "document_id": "vendor_risk_assessment_report_2026q1",
+          "score": 0.377360617261302,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3003",
+          "document_id": "mfa_policy_v3_2026",
+          "score": 0.3677645745369782,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3002",
+          "document_id": "mfa_policy_v2_2026",
+          "score": 0.3661821328824613,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1302",
+          "document_id": "change_ticket_CHG-88213_2026q2",
+          "score": 0.3657871475144362,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-013",
+      "query": {
+        "case_id": "AC-013",
+        "control": {
+          "control_id": "CTRL-CHANGE-MGMT-APPROVAL",
+          "name": "Production Change Management Approval",
+          "description": "Requires documented pre-deployment approval for production changes.",
+          "requirement_text": "Every production change must have documented pre-deployment approval, recorded in the change management system by an approver with the authority defined in the Change Management Policy, before the change is deployed.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether change ticket CHG-88213 satisfied the change management pre-deployment approval control for Q2 2026.",
+        "period": "2026-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2601",
+          "document_id": "change_mgmt_policy_authority",
+          "score": 0.7438170887875686,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1301",
+          "document_id": "change_mgmt_summary_2026q1",
+          "score": 0.7042649982121624,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1302",
+          "document_id": "change_ticket_CHG-88213_2026q2",
+          "score": 0.6557655733709357,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2602",
+          "document_id": "team_lead_chat_approval_CHG-77120",
+          "score": 0.5775020733357623,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2603",
+          "document_id": "cab_approval_log_2026q1",
+          "score": 0.5377023737258825,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.4494328048690593,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.40974819198296575,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1202",
+          "document_id": "key_rotation_policy_v2",
+          "score": 0.40724600146132206,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1902",
+          "document_id": "iam_deprovisioning_ticket_20255",
+          "score": 0.3934130957362685,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.38890072640131396,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-014",
+      "query": {
+        "case_id": "AC-014",
+        "control": {
+          "control_id": "CTRL-VULN-REMEDIATION-SLA",
+          "name": "Critical Vulnerability Remediation SLA",
+          "description": "Requires timely remediation of critical-severity vulnerabilities.",
+          "requirement_text": "Critical-severity vulnerabilities must be remediated within 15 days of discovery. Lower-severity vulnerabilities are governed by separate, longer SLAs not evaluated by this control. Remediation SLA compliance requires both a discovery date and a remediation completion date.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether CVE-2026-0091 was remediated within the required 15-day SLA for critical vulnerabilities.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2402",
+          "document_id": "vuln_ticket_CVE-2026-1103",
+          "score": 0.657554344435001,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2902",
+          "document_id": "vuln_ticket_CVE-2026-1104-q2",
+          "score": 0.6496522304677871,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2403",
+          "document_id": "vuln_ticket_CVE-2026-1104",
+          "score": 0.6403872569493485,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1401",
+          "document_id": "vuln_ticket_CVE-2026-0091",
+          "score": 0.5871341031532011,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1402",
+          "document_id": "vuln_ticket_CVE-2026-0077",
+          "score": 0.5763863768618233,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2401",
+          "document_id": "vuln_ticket_CVE-2026-1102",
+          "score": 0.5721669806982332,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2803",
+          "document_id": "vendor_assessment_report_2026q2",
+          "score": 0.5309636926757234,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1102",
+          "document_id": "vendor_risk_assessment_report_2026q1",
+          "score": 0.5264770090091258,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2801",
+          "document_id": "vendor_assessment_report_2025q4",
+          "score": 0.5172683433940681,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2901",
+          "document_id": "vuln_scan_tool_error_2026q3",
+          "score": 0.5031619481804418,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-015",
+      "query": {
+        "case_id": "AC-015",
+        "control": {
+          "control_id": "CTRL-DB-PRIV-CERT-ALT-SOURCE",
+          "name": "Quarterly Database Privileged Role Certification (Alternate-Source Provision)",
+          "description": "Requires certification that privileged database roles assigned to individual accounts remain appropriate, with an explicit allowance for a sufficient alternate source when the primary governance tool is unavailable.",
+          "requirement_text": "Each quarter, the database administration team must certify that privileged database roles (e.g., DBA, sysadmin) assigned to individual accounts remain appropriate, based on an extract from the database access governance tool. If the database access governance tool is unavailable for the period, an equivalent extract of privileged database role assignments, covering the same scope of accounts and roles, may substitute for it, provided the substitute extract is (a) sourced independently of the unavailable tool and (b) signed off by a reviewer attesting to its accuracy and completeness. No substitute source narrows, waives, or otherwise reduces the certification requirement itself.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether privileged database role assignments were certified as required for Q1 2026, given that the primary extraction tool returned an error.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-1003",
+          "document_id": "db_privileged_role_export_2025q1",
+          "score": 0.7388118434529294,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1002",
+          "document_id": "db_governance_tool_error_log_2025q2",
+          "score": 0.6813091642111222,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1001",
+          "document_id": "db_privileged_role_export_request_2025q2",
+          "score": 0.6642226693422242,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.6407967846678541,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1502",
+          "document_id": "iam_privileged_group_export_2026q1",
+          "score": 0.6403563328616416,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1501",
+          "document_id": "db_governance_tool_error_2026q1",
+          "score": 0.6393918431875161,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.6297231295265788,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.6259027789345617,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.5888717959789779,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.5870386832488007,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-016",
+      "query": {
+        "case_id": "AC-016",
+        "control": {
+          "control_id": "CTRL-VENDOR-RISK-ASSESSMENT",
+          "name": "Third-Party Vendor Risk Assessment",
+          "description": "Requires periodic risk assessment of third-party vendors with access to production data.",
+          "requirement_text": "Each third-party vendor with access to production data must undergo a documented risk assessment at least once per fiscal quarter. If a vendor is rated High Risk (or upgraded to a higher risk tier), any required remediation action must be completed, or the vendor's continued access constitutes an exception.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether vendor Rangeline Analytics' Q2 2026 risk assessment satisfies the vendor risk assessment control.",
+        "period": "2026-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-1603",
+          "document_id": "vendor_assessment_tracking_export_2026q2",
+          "score": 0.7258262615254633,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2803",
+          "document_id": "vendor_assessment_report_2026q2",
+          "score": 0.7237795954041518,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1102",
+          "document_id": "vendor_risk_assessment_report_2026q1",
+          "score": 0.6974996957996664,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1601",
+          "document_id": "vendor_assessment_kickoff_email_2026q2",
+          "score": 0.6896642949250094,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2801",
+          "document_id": "vendor_assessment_report_2025q4",
+          "score": 0.6338231805317617,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1101",
+          "document_id": "vendor_risk_dashboard_snapshot_2026q1",
+          "score": 0.6108707676503974,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1602",
+          "document_id": "vendor_risk_scoring_worksheet_VRA-2244",
+          "score": 0.5930177761583746,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2802",
+          "document_id": "vendor_status_email_2026q2",
+          "score": 0.5420129384863679,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.49781007661270693,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.4793029097587212,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-017",
+      "query": {
+        "case_id": "AC-017",
+        "control": {
+          "control_id": "CTRL-FIREWALL-RECERT",
+          "name": "Quarterly Firewall Rule Recertification",
+          "description": "Requires quarterly recertification that firewall rules permitting external access remain necessary and approved.",
+          "requirement_text": "For each fiscal quarter, the network security owner must recertify all firewall rules permitting inbound external access, evidenced by a signed recertification record dated within that quarter.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether all inbound external-access firewall rules were recertified as required for Q1 2026.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-901",
+          "document_id": "firewall_rule_recert_record_2025q1",
+          "score": 0.836281808311378,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1702",
+          "document_id": "firewall_recert_worksheet_2026q1",
+          "score": 0.8208807950335357,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.807952937373403,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1701",
+          "document_id": "firewall_recert_exec_summary_2026q1",
+          "score": 0.8020225729808443,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.5246030661017073,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.5164875536952505,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-301",
+          "document_id": "access_governance_review_calendar_2025",
+          "score": 0.4810660106854804,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.47647022595530036,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-602",
+          "document_id": "org_chart_update_2025q4",
+          "score": 0.46655641078306176,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-803",
+          "document_id": "facilities_badge_access_log_2024q4",
+          "score": 0.4555881979734454,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-018",
+      "query": {
+        "case_id": "AC-018",
+        "control": {
+          "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+          "name": "Termination Access Removal",
+          "description": "Requires prompt removal of system access following employee termination.",
+          "requirement_text": "Upon an employee's termination becoming effective, all privileged and standard system access for that employee must be revoked within 24 hours of the termination timestamp.",
+          "sla_hours": 24
+        },
+        "scenario_description": "Determine whether privileged and standard system access for employee E-20112 was revoked within the required timeframe following termination.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2002",
+          "document_id": "iam_deprovisioning_ticket_30044",
+          "score": 0.7048620528767723,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2004",
+          "document_id": "iam_deprovisioning_ticket_30051",
+          "score": 0.70283554261832,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2102",
+          "document_id": "iam_deprovisioning_ticket_40077",
+          "score": 0.6989771206403722,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2104",
+          "document_id": "iam_deprovisioning_ticket_40080",
+          "score": 0.6935350706524386,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1802",
+          "document_id": "iam_deprovisioning_ticket_20112",
+          "score": 0.6578717479327666,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-502",
+          "document_id": "iam_deprovisioning_ticket_10832",
+          "score": 0.6551620642015158,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1801",
+          "document_id": "hr_termination_notice_20112",
+          "score": 0.654846577850805,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1902",
+          "document_id": "iam_deprovisioning_ticket_20255",
+          "score": 0.6522195575135145,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-403",
+          "document_id": "hr_termination_notice_10091",
+          "score": 0.6498588565994246,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2003",
+          "document_id": "hr_termination_notice_30051",
+          "score": 0.6475904487553208,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-019",
+      "query": {
+        "case_id": "AC-019",
+        "control": {
+          "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+          "name": "Termination Access Removal",
+          "description": "Requires prompt removal of system access following employee termination.",
+          "requirement_text": "Upon an employee's termination becoming effective, all privileged and standard system access for that employee must be revoked within 24 hours of the termination timestamp.",
+          "sla_hours": 24
+        },
+        "scenario_description": "Determine whether privileged and standard system access for employee E-20255 was revoked within the required timeframe following termination.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2002",
+          "document_id": "iam_deprovisioning_ticket_30044",
+          "score": 0.703069851955445,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2004",
+          "document_id": "iam_deprovisioning_ticket_30051",
+          "score": 0.699672034816294,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2102",
+          "document_id": "iam_deprovisioning_ticket_40077",
+          "score": 0.6967958596072661,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2104",
+          "document_id": "iam_deprovisioning_ticket_40080",
+          "score": 0.6907682371900806,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-502",
+          "document_id": "iam_deprovisioning_ticket_10832",
+          "score": 0.6551981249510819,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1902",
+          "document_id": "iam_deprovisioning_ticket_20255",
+          "score": 0.6530725985586597,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-501",
+          "document_id": "hr_termination_notice_10832",
+          "score": 0.6469276857584602,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1802",
+          "document_id": "iam_deprovisioning_ticket_20112",
+          "score": 0.6445897440379823,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2003",
+          "document_id": "hr_termination_notice_30051",
+          "score": 0.6434453475840154,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-403",
+          "document_id": "hr_termination_notice_10091",
+          "score": 0.6430287380306872,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-020",
+      "query": {
+        "case_id": "AC-020",
+        "control": {
+          "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+          "name": "Termination Access Removal",
+          "description": "Requires prompt removal of system access following employee termination.",
+          "requirement_text": "Upon an employee's termination becoming effective, all privileged and standard system access for that employee must be revoked within 24 hours of the termination timestamp.",
+          "sla_hours": 24
+        },
+        "scenario_description": "Determine whether privileged and standard system access for employee E-30044 was revoked within the required timeframe following termination.",
+        "period": "2026-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2002",
+          "document_id": "iam_deprovisioning_ticket_30044",
+          "score": 0.7215759992257288,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2004",
+          "document_id": "iam_deprovisioning_ticket_30051",
+          "score": 0.7169314250844668,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2102",
+          "document_id": "iam_deprovisioning_ticket_40077",
+          "score": 0.7061532357148579,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2104",
+          "document_id": "iam_deprovisioning_ticket_40080",
+          "score": 0.700362999680766,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2001",
+          "document_id": "hr_termination_notice_30044",
+          "score": 0.6576481601224092,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-502",
+          "document_id": "iam_deprovisioning_ticket_10832",
+          "score": 0.6561936302557446,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2003",
+          "document_id": "hr_termination_notice_30051",
+          "score": 0.6555138502384774,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1902",
+          "document_id": "iam_deprovisioning_ticket_20255",
+          "score": 0.6434298875351749,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-402",
+          "document_id": "iam_deprovisioning_ticket_10457",
+          "score": 0.6430274075333168,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-501",
+          "document_id": "hr_termination_notice_10832",
+          "score": 0.6394213650735516,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-021",
+      "query": {
+        "case_id": "AC-021",
+        "control": {
+          "control_id": "CTRL-TERM-ACCESS-REMOVAL",
+          "name": "Termination Access Removal",
+          "description": "Requires prompt removal of system access following employee termination.",
+          "requirement_text": "Upon an employee's termination becoming effective, all privileged and standard system access for that employee must be revoked within 24 hours of the termination timestamp.",
+          "sla_hours": 24
+        },
+        "scenario_description": "Determine whether privileged and standard system access for employee E-40077 was revoked within the required timeframe following termination.",
+        "period": "2026-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2102",
+          "document_id": "iam_deprovisioning_ticket_40077",
+          "score": 0.7196667796939652,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2002",
+          "document_id": "iam_deprovisioning_ticket_30044",
+          "score": 0.713817788250789,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2104",
+          "document_id": "iam_deprovisioning_ticket_40080",
+          "score": 0.7127857680254618,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2004",
+          "document_id": "iam_deprovisioning_ticket_30051",
+          "score": 0.710481456746982,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-502",
+          "document_id": "iam_deprovisioning_ticket_10832",
+          "score": 0.6569992987674883,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2001",
+          "document_id": "hr_termination_notice_30044",
+          "score": 0.6527677015584386,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2103",
+          "document_id": "hr_termination_notice_40080",
+          "score": 0.6522062683739742,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2003",
+          "document_id": "hr_termination_notice_30051",
+          "score": 0.6513582187753518,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-501",
+          "document_id": "hr_termination_notice_10832",
+          "score": 0.6468690685192866,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-403",
+          "document_id": "hr_termination_notice_10091",
+          "score": 0.6463676632394236,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-022",
+      "query": {
+        "case_id": "AC-022",
+        "control": {
+          "control_id": "CTRL-DATA-RETENTION",
+          "name": "Customer Data Retention and Deletion",
+          "description": "Requires timely deletion of customer records after their retention period expires.",
+          "requirement_text": "Customer records that have passed their applicable retention period must be deleted within 30 days of retention expiry. Deletion evidence must identify the retention policy category applied, confirm the deletion covered all eligible records for the period, and confirm the deletion actually executed.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether customer records past their retention period were deleted within the required window for Q1 2026.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2701",
+          "document_id": "retention_policy_category_financial",
+          "score": 0.7023452673281245,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2201",
+          "document_id": "data_deletion_log_2026q1",
+          "score": 0.6362943279375294,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2702",
+          "document_id": "retention_expiry_export_2026q2",
+          "score": 0.5486209865598838,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2703",
+          "document_id": "deletion_confirmation_log_partial",
+          "score": 0.47885740009054983,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1202",
+          "document_id": "key_rotation_policy_v2",
+          "score": 0.42605944980970134,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.42228555426935427,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1201",
+          "document_id": "key_rotation_policy_v1",
+          "score": 0.41215775780172575,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2001",
+          "document_id": "hr_termination_notice_30044",
+          "score": 0.4117080590080997,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.4020398377046541,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.39292804274885296,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-023",
+      "query": {
+        "case_id": "AC-023",
+        "control": {
+          "control_id": "CTRL-INCIDENT-RESPONSE-NOTIFICATION",
+          "name": "Security Incident Stakeholder Notification",
+          "description": "Requires timely notification of required stakeholders following a confirmed security incident.",
+          "requirement_text": "Following discovery of a confirmed security incident, required stakeholders must be notified within 4 hours of discovery.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether required stakeholders were notified within the required timeframe following discovery of incident INC-5521.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2301",
+          "document_id": "incident_email_thread_INC-5521",
+          "score": 0.6283261963935138,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2902",
+          "document_id": "vuln_ticket_CVE-2026-1104-q2",
+          "score": 0.4322280231679352,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2403",
+          "document_id": "vuln_ticket_CVE-2026-1104",
+          "score": 0.41814329681006657,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2402",
+          "document_id": "vuln_ticket_CVE-2026-1103",
+          "score": 0.4128689311140632,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2401",
+          "document_id": "vuln_ticket_CVE-2026-1102",
+          "score": 0.4011954166536304,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-902",
+          "document_id": "firewall_rule_recert_record_2025q2",
+          "score": 0.39179254739090763,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1402",
+          "document_id": "vuln_ticket_CVE-2026-0077",
+          "score": 0.3888424588233603,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1401",
+          "document_id": "vuln_ticket_CVE-2026-0091",
+          "score": 0.38724627446207277,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.3861284706999503,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1702",
+          "document_id": "firewall_recert_worksheet_2026q1",
+          "score": 0.37998133010875446,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-024",
+      "query": {
+        "case_id": "AC-024",
+        "control": {
+          "control_id": "CTRL-VULN-REMEDIATION-SLA",
+          "name": "Critical Vulnerability Remediation SLA",
+          "description": "Requires timely remediation of critical-severity vulnerabilities.",
+          "requirement_text": "Critical-severity vulnerabilities must be remediated within 15 days of discovery. Lower-severity vulnerabilities are governed by separate, longer SLAs not evaluated by this control. Remediation SLA compliance requires both a discovery date and a remediation completion date.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether critical-severity vulnerabilities discovered in Q2 2026 were remediated within the required SLA.",
+        "period": "2026-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2902",
+          "document_id": "vuln_ticket_CVE-2026-1104-q2",
+          "score": 0.6399848194337544,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2402",
+          "document_id": "vuln_ticket_CVE-2026-1103",
+          "score": 0.6252480721718006,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2403",
+          "document_id": "vuln_ticket_CVE-2026-1104",
+          "score": 0.606376925919921,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2803",
+          "document_id": "vendor_assessment_report_2026q2",
+          "score": 0.5661855103566644,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2801",
+          "document_id": "vendor_assessment_report_2025q4",
+          "score": 0.5550818396836423,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1102",
+          "document_id": "vendor_risk_assessment_report_2026q1",
+          "score": 0.5516578891981325,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2401",
+          "document_id": "vuln_ticket_CVE-2026-1102",
+          "score": 0.53267516542909,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2901",
+          "document_id": "vuln_scan_tool_error_2026q3",
+          "score": 0.5317937912088199,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1603",
+          "document_id": "vendor_assessment_tracking_export_2026q2",
+          "score": 0.5158166760141301,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1401",
+          "document_id": "vuln_ticket_CVE-2026-0091",
+          "score": 0.5140151438942333,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-025",
+      "query": {
+        "case_id": "AC-025",
+        "control": {
+          "control_id": "CTRL-DB-PRIV-CERT",
+          "name": "Quarterly Database Privileged Role Certification",
+          "description": "Requires certification that privileged database roles assigned to individual accounts remain appropriate.",
+          "requirement_text": "Each quarter, the database administration team must certify that privileged database roles (e.g., DBA, sysadmin) assigned to individual accounts remain appropriate, based on an extract from the database access governance tool.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether the Q2 2026 privileged database role review was completed as required, given a mid-cycle reviewer handoff.",
+        "period": "2026-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-1003",
+          "document_id": "db_privileged_role_export_2025q1",
+          "score": 0.7726335317815256,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2501",
+          "document_id": "db_priv_review_notes_2026q2",
+          "score": 0.7252001907602418,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.7216019683641608,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.6981535181590792,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1001",
+          "document_id": "db_privileged_role_export_request_2025q2",
+          "score": 0.6716433330169583,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-801",
+          "document_id": "priv_access_review_kickoff_confirmation_2024q4",
+          "score": 0.6428897809275659,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1502",
+          "document_id": "iam_privileged_group_export_2026q1",
+          "score": 0.6422086807912194,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-601",
+          "document_id": "priv_access_review_attestation_2025q4_draft",
+          "score": 0.6360295789559562,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.6019335539260725,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-301",
+          "document_id": "access_governance_review_calendar_2025",
+          "score": 0.6018989292385473,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-026",
+      "query": {
+        "case_id": "AC-026",
+        "control": {
+          "control_id": "CTRL-CHANGE-MGMT-APPROVAL",
+          "name": "Production Change Management Approval",
+          "description": "Requires documented pre-deployment approval for production changes.",
+          "requirement_text": "Every production change must have documented pre-deployment approval, recorded in the change management system by an approver with the authority defined in the Change Management Policy, before the change is deployed.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether change CHG-77120 received the required approval before deployment.",
+        "period": "2026-Q1"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2601",
+          "document_id": "change_mgmt_policy_authority",
+          "score": 0.7274132151110506,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1301",
+          "document_id": "change_mgmt_summary_2026q1",
+          "score": 0.6675254102963907,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1302",
+          "document_id": "change_ticket_CHG-88213_2026q2",
+          "score": 0.6058212505450041,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2602",
+          "document_id": "team_lead_chat_approval_CHG-77120",
+          "score": 0.5873495786449013,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2603",
+          "document_id": "cab_approval_log_2026q1",
+          "score": 0.508350206799882,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.39896057920765693,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1202",
+          "document_id": "key_rotation_policy_v2",
+          "score": 0.3746702591481851,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.3723314607487676,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3003",
+          "document_id": "mfa_policy_v3_2026",
+          "score": 0.36077083863576087,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-702",
+          "document_id": "mfa_enforcement_policy_v2",
+          "score": 0.3546011213014548,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-027",
+      "query": {
+        "case_id": "AC-027",
+        "control": {
+          "control_id": "CTRL-DATA-RETENTION",
+          "name": "Customer Data Retention and Deletion",
+          "description": "Requires timely deletion of customer records after their retention period expires.",
+          "requirement_text": "Customer records that have passed their applicable retention period must be deleted within 30 days of retention expiry. Deletion evidence must identify the retention policy category applied, confirm the deletion covered all eligible records for the period, and confirm the deletion actually executed.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether financial transaction record batch FTB-2019-Q2 was deleted within the required window after its retention period expired.",
+        "period": "2026-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2701",
+          "document_id": "retention_policy_category_financial",
+          "score": 0.7493840508464109,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2702",
+          "document_id": "retention_expiry_export_2026q2",
+          "score": 0.6443295959830003,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2201",
+          "document_id": "data_deletion_log_2026q1",
+          "score": 0.5926252470335192,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2703",
+          "document_id": "deletion_confirmation_log_partial",
+          "score": 0.5727374362152994,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2001",
+          "document_id": "hr_termination_notice_30044",
+          "score": 0.4363478108439848,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1801",
+          "document_id": "hr_termination_notice_20112",
+          "score": 0.4135764659699698,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-403",
+          "document_id": "hr_termination_notice_10091",
+          "score": 0.41135333206811725,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2004",
+          "document_id": "iam_deprovisioning_ticket_30051",
+          "score": 0.40996713492308795,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-802",
+          "document_id": "priv_access_extract_disposition_2024q4",
+          "score": 0.408668659001261,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1202",
+          "document_id": "key_rotation_policy_v2",
+          "score": 0.40856171029834154,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-028",
+      "query": {
+        "case_id": "AC-028",
+        "control": {
+          "control_id": "CTRL-VENDOR-RISK-ASSESSMENT",
+          "name": "Third-Party Vendor Risk Assessment",
+          "description": "Requires periodic risk assessment of third-party vendors with access to production data.",
+          "requirement_text": "Each third-party vendor with access to production data must undergo a documented risk assessment at least once per fiscal quarter. If a vendor is rated High Risk (or upgraded to a higher risk tier), any required remediation action must be completed, or the vendor's continued access constitutes an exception.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether vendor Solstice Cloud Services satisfied the vendor risk assessment control for Q2 2026.",
+        "period": "2026-Q2"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2803",
+          "document_id": "vendor_assessment_report_2026q2",
+          "score": 0.8241416461641993,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2801",
+          "document_id": "vendor_assessment_report_2025q4",
+          "score": 0.7467065789496908,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1102",
+          "document_id": "vendor_risk_assessment_report_2026q1",
+          "score": 0.6693344023967591,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2802",
+          "document_id": "vendor_status_email_2026q2",
+          "score": 0.6590834242105184,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1603",
+          "document_id": "vendor_assessment_tracking_export_2026q2",
+          "score": 0.6389878653699489,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1101",
+          "document_id": "vendor_risk_dashboard_snapshot_2026q1",
+          "score": 0.589018789105339,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1601",
+          "document_id": "vendor_assessment_kickoff_email_2026q2",
+          "score": 0.5705872303170942,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1602",
+          "document_id": "vendor_risk_scoring_worksheet_VRA-2244",
+          "score": 0.5079519936526725,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.4704859731408275,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2902",
+          "document_id": "vuln_ticket_CVE-2026-1104-q2",
+          "score": 0.46601974313094663,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-029",
+      "query": {
+        "case_id": "AC-029",
+        "control": {
+          "control_id": "CTRL-VULN-REMEDIATION-SLA",
+          "name": "Critical Vulnerability Remediation SLA",
+          "description": "Requires timely remediation of critical-severity vulnerabilities.",
+          "requirement_text": "Critical-severity vulnerabilities must be remediated within 15 days of discovery. Lower-severity vulnerabilities are governed by separate, longer SLAs not evaluated by this control. Remediation SLA compliance requires both a discovery date and a remediation completion date.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether critical-severity vulnerabilities discovered in Q3 2026 were remediated within the required SLA, given a vulnerability-scanning tool failure.",
+        "period": "2026-Q3"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-2902",
+          "document_id": "vuln_ticket_CVE-2026-1104-q2",
+          "score": 0.6237005502456964,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2402",
+          "document_id": "vuln_ticket_CVE-2026-1103",
+          "score": 0.6178176681348241,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2403",
+          "document_id": "vuln_ticket_CVE-2026-1104",
+          "score": 0.5960074809769451,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2901",
+          "document_id": "vuln_scan_tool_error_2026q3",
+          "score": 0.5685059331471782,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2803",
+          "document_id": "vendor_assessment_report_2026q2",
+          "score": 0.551881583376136,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1102",
+          "document_id": "vendor_risk_assessment_report_2026q1",
+          "score": 0.5474329251896043,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2801",
+          "document_id": "vendor_assessment_report_2025q4",
+          "score": 0.5472946015382635,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-2401",
+          "document_id": "vuln_ticket_CVE-2026-1102",
+          "score": 0.5211902382543097,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1401",
+          "document_id": "vuln_ticket_CVE-2026-0091",
+          "score": 0.5125402745115855,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-1402",
+          "document_id": "vuln_ticket_CVE-2026-0077",
+          "score": 0.5092102303465929,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    },
+    {
+      "case_id": "AC-030",
+      "query": {
+        "case_id": "AC-030",
+        "control": {
+          "control_id": "CTRL-PRIV-MFA",
+          "name": "Privileged Account MFA Enforcement",
+          "description": "Requires multi-factor authentication on privileged accounts consistent with the MFA policy in effect at provisioning time.",
+          "requirement_text": "Multi-factor authentication must be enabled on a privileged account according to the MFA enforcement policy version in effect on that account's provisioning date.",
+          "sla_hours": null
+        },
+        "scenario_description": "Determine whether multi-factor authentication was enabled on privileged account svc-batch-09 in accordance with the MFA enforcement policy in effect on its provisioning date.",
+        "period": "2025-Q4"
+      },
+      "candidates": [
+        {
+          "evidence_id": "EV-702",
+          "document_id": "mfa_enforcement_policy_v2",
+          "score": 0.7768689485855328,
+          "rank": 1,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3003",
+          "document_id": "mfa_policy_v3_2026",
+          "score": 0.7752166399787912,
+          "rank": 2,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3002",
+          "document_id": "mfa_policy_v2_2026",
+          "score": 0.7464501228401031,
+          "rank": 3,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3004",
+          "document_id": "iam_provisioning_record_svc_batch_09",
+          "score": 0.7378108919792252,
+          "rank": 4,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-3001",
+          "document_id": "mfa_policy_v1_2026",
+          "score": 0.7144075054174616,
+          "rank": 5,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-703",
+          "document_id": "iam_provisioning_record_svc_payroll_03",
+          "score": 0.699371875310508,
+          "rank": 6,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-701",
+          "document_id": "mfa_enforcement_policy_v1",
+          "score": 0.6963817414135712,
+          "rank": 7,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-201",
+          "document_id": "priv_access_review_attestation_2025q2",
+          "score": 0.49679854643830634,
+          "rank": 8,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-101",
+          "document_id": "priv_access_review_attestation_2025q1",
+          "score": 0.4658519852481418,
+          "rank": 9,
+          "retrieval_method": "retrieval-baseline-v1"
+        },
+        {
+          "evidence_id": "EV-9002",
+          "document_id": "new_hire_provisioning_log_2025q1",
+          "score": 0.44583556000657526,
+          "rank": 10,
+          "retrieval_method": "retrieval-baseline-v1"
+        }
+      ],
+      "top_k": 10,
+      "retriever_config_id": "retrieval-baseline-v1"
+    }
+  ],
+  "aggregate_recall_at_k": {
+    "1": 0.2388888888888889,
+    "3": 0.5,
+    "5": 0.8,
+    "10": 0.9666666666666667
+  },
+  "aggregate_mrr": 0.5567460317460318,
+  "corpus_embedding_latency_ms": 1805.0476659554988,
+  "total_retrieval_latency_ms": 8371.866957983002,
+  "generated_at": "2026-09-24T04:17:35.344429Z"
+}
