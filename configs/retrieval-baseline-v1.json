@@ -1,0 +1,25 @@
+{
+  "config_id": "retrieval-baseline-v1",
+
+  "embedding_provider": "openai",
+  "embedding_model": "text-embedding-3-small",
+  "embedding_dimension": 1536,
+
+  "retrieval_method": "vector",
+  "similarity": "cosine",
+  "tie_breaking": "score descending, then evidence_id ascending",
+
+  "query_serialization": "app.retrieval.serialization.retrieval_query_embedding_text (Phase 7B)",
+  "evidence_serialization": "app.retrieval.serialization.evidence_embedding_text (Phase 7B)",
+
+  "corpus": "full synthetic-v2 version corpus (app.retrieval.corpus.build_full_version_corpus)",
+  "corpus_size": 72,
+  "corpus_fingerprint": "8b9c0462d085addf206667e35aea7e7cc3cfb9473a4961ec902bc3e71e99a109",
+
+  "dataset_version": "synthetic-v2",
+  "dataset_fingerprint": "35e54a143b90b9d8bf30db7e1cbdb27346eddba0e0c71dd8070e69f22fe63a72",
+
+  "k_values": [1, 3, 5, 10],
+  "mrr_convention": "reciprocal rank of first required evidence item",
+  "zero_required_evidence_convention": "N/A and excluded from aggregate denominator"
+}

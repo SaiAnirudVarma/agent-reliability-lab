@@ -4,28 +4,46 @@
 Usage:
     python scripts/run_retrieval_eval.py                          # LexicalBaselineRetriever, synthetic-v1
     python scripts/run_retrieval_eval.py --retriever vector --dataset-version synthetic-v2
+    python scripts/run_retrieval_eval.py --config configs/retrieval-baseline-v1.json   # official, frozen run
 
 No AgentRunner, no LLM, is ever invoked from this script -- this measures
 retrieval quality in isolation (see docs/RETRIEVAL_DESIGN.md).
 
-Safety ordering for ``--retriever vector`` (a real-embedding-provider run):
+``--config`` (a frozen ``RetrievalBaselineConfig`` JSON file, see
+``app.retrieval.baseline_config``) is how an official experiment run uses a
+reviewed, tracked, non-secret parameter set instead of reconstructing
+dataset version / retriever kind / embedding model / k values independently
+from ``--dataset-version``/``--retriever``/environment each time. It NEVER
+carries credentials -- those still come only from the environment.
+
+Safety ordering for a real-embedding-provider run (``--retriever vector``
+or, equivalently, a ``--config`` whose ``retrieval_method`` is ``"vector"``):
 this script ALWAYS, in this order, before making its first real provider
 call (``build_corpus_embedding_index``'s ``embed_documents``):
 
-    1. loads the dataset/version/fingerprint and builds the corpus
-    2. constructs the embedding provider object (no network -- this is
+    1. loads the frozen config, if ``--config`` was given (a local file
+       read only -- no network, no dataset access yet)
+    2. loads the dataset/version/fingerprint and builds the corpus
+    3. if a config was given: verifies the ACTUAL current
+       ``dataset.fingerprint``/``corpus.fingerprint`` against the config's
+       recorded values -- a mismatch means the frozen config has drifted
+       from the current code/data and the run refuses to proceed
+    4. constructs the embedding provider object (no network -- this is
        just __init__, mirroring OpenAIProvider's own lazy-no-network
-       construction)
-    3. resolves git_commit_sha (app.observability.git_provenance --
+       construction) and, if a config was given, verifies its
+       ``model_name``/``embedding_dimension`` against the config's
+       recorded values
+    5. resolves git_commit_sha (app.observability.git_provenance --
        the SAME utility scripts/run_eval.py uses)
-    4. resolves run_id (a fresh UUID4, or ARL_RUN_ID for tests)
-    5. computes the immutable, run-ID-qualified destination artifact path
-    6. checks that path for a collision
+    6. resolves run_id (a fresh UUID4, or ARL_RUN_ID for tests)
+    7. computes the immutable, run-ID-qualified destination artifact path
+    8. checks that path for a collision
 
-Any failure at 3-6 aborts (exit 1) BEFORE step 7 (the real embedding call)
-is ever reached -- see docs/incidents/2026-09-23-llm-baseline-artifact-deletion.md
-for why this project treats "provenance/collision checks before any real
-provider call" as non-negotiable.
+Any failure at 1, 3-8 aborts (exit 1) BEFORE step 9 (the real embedding
+call) is ever reached -- see
+docs/incidents/2026-09-23-llm-baseline-artifact-deletion.md for why this
+project treats "provenance/collision checks before any real provider
+call" as non-negotiable.
 
 Exit codes:
     0  the run completed (even a poor retrieval score is a result, not an
@@ -44,6 +62,8 @@ import time
 from pathlib import Path
 from typing import Optional
 
+from pydantic import ValidationError
+
 from app.datasets.loader import DatasetError, load_dataset
 from app.observability.git_provenance import get_git_commit_sha
 from app.retrieval.artifact_io import (
@@ -51,6 +71,7 @@ from app.retrieval.artifact_io import (
     retrieval_experiment_path,
     write_retrieval_report_atomically,
 )
+from app.retrieval.baseline_config import RetrievalBaselineConfig, load_retrieval_baseline_config
 from app.retrieval.corpus import build_full_version_corpus
 from app.retrieval.corpus_index import build_corpus_embedding_index
 from app.retrieval.interface import Retriever
@@ -123,7 +144,16 @@ def _parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--dataset-version", choices=["synthetic-v1", "synthetic-v2"], default="synthetic-v1",
-        help="Which named dataset version to run. Default: synthetic-v1.",
+        help="Which named dataset version to run. Default: synthetic-v1. Ignored if --config is given "
+        "(the config's own dataset_version is authoritative).",
+    )
+    parser.add_argument(
+        "--config", type=Path, default=None,
+        help="Path to a frozen RetrievalBaselineConfig JSON file (see app.retrieval.baseline_config, "
+        "e.g. configs/retrieval-baseline-v1.json). When given, --dataset-version and --retriever are "
+        "ignored -- dataset version, retriever kind, and k_values all come from the config instead, "
+        "and the config's recorded dataset_fingerprint/corpus_fingerprint are verified against the "
+        "actual current dataset/corpus before any provider call. Never carries credentials.",
     )
     # Deliberately NO --force-overwrite: an immutable retrieval experiment
     # artifact can never be overwritten by any flag -- see
@@ -139,25 +169,75 @@ def main(argv: Optional[list[str]] = None) -> int:
     print("==============================================")
     print()
 
+    config: Optional[RetrievalBaselineConfig] = None
+    if args.config is not None:
+        try:
+            config = load_retrieval_baseline_config(args.config)
+        except OSError as exc:
+            print(f"ERROR: could not read config file {args.config}: {exc}", file=sys.stderr)
+            return 1
+        except ValidationError as exc:
+            print(f"ERROR: {args.config} is not a valid RetrievalBaselineConfig: {exc}", file=sys.stderr)
+            return 1
+
+    dataset_version = config.dataset_version if config is not None else args.dataset_version
+    retriever_kind = config.retrieval_method if config is not None else args.retriever
+    k_values = tuple(config.k_values) if config is not None else DEFAULT_K_VALUES
+
     try:
-        dataset = load_dataset(DATASET_DIR, version=args.dataset_version)
+        dataset = load_dataset(DATASET_DIR, version=dataset_version)
     except DatasetError as exc:
         print(f"ERROR: failed to load dataset: {exc}", file=sys.stderr)
         return 1
     corpus = build_full_version_corpus(dataset)
 
+    if config is not None:
+        if dataset.fingerprint != config.dataset_fingerprint:
+            print(
+                f"ERROR: current dataset_fingerprint {dataset.fingerprint!r} does not match "
+                f"{args.config}'s frozen dataset_fingerprint {config.dataset_fingerprint!r}. The "
+                "frozen config has drifted from the current dataset -- refusing to run rather than "
+                "record a result against the wrong benchmark content.",
+                file=sys.stderr,
+            )
+            return 1
+        if corpus.fingerprint != config.corpus_fingerprint:
+            print(
+                f"ERROR: current corpus_fingerprint {corpus.fingerprint!r} does not match "
+                f"{args.config}'s frozen corpus_fingerprint {config.corpus_fingerprint!r}. The frozen "
+                "config has drifted from the current corpus -- refusing to run rather than record a "
+                "result against the wrong evidence content.",
+                file=sys.stderr,
+            )
+            return 1
+
     embedding_provider = None
-    if args.retriever == "vector":
+    if retriever_kind == "vector":
         try:
             embedding_provider = _build_vector_embedding_provider()
         except ConfigError as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
             return 1
+        if config is not None:
+            if embedding_provider.model_name != config.embedding_model:
+                print(
+                    f"ERROR: configured EMBEDDING_MODEL_NAME {embedding_provider.model_name!r} does not "
+                    f"match {args.config}'s frozen embedding_model {config.embedding_model!r}.",
+                    file=sys.stderr,
+                )
+                return 1
+            if embedding_provider.embedding_dimension != config.embedding_dimension:
+                print(
+                    f"ERROR: configured EMBEDDING_DIMENSION {embedding_provider.embedding_dimension} does "
+                    f"not match {args.config}'s frozen embedding_dimension {config.embedding_dimension}.",
+                    file=sys.stderr,
+                )
+                return 1
 
     # Captured once, before any provider call -- reuses the exact same
     # utility scripts/run_eval.py uses, never a competing implementation.
     git_commit_sha = get_git_commit_sha(REPO_ROOT)
-    if args.retriever == "vector" and git_commit_sha is None:
+    if retriever_kind == "vector" and git_commit_sha is None:
         print(
             "ERROR: could not determine the current git commit SHA. A real retrieval experiment "
             "must always be traceable back to the exact commit that produced it -- refusing to run "
@@ -167,9 +247,12 @@ def main(argv: Optional[list[str]] = None) -> int:
         return 1
 
     run_id = resolve_run_id()
-    retriever_config_id = (
-        LEXICAL_RETRIEVER_CONFIG_ID if args.retriever == "lexical" else f"vector-{embedding_provider.model_name}"
-    )
+    if config is not None:
+        retriever_config_id = config.config_id
+    else:
+        retriever_config_id = (
+            LEXICAL_RETRIEVER_CONFIG_ID if retriever_kind == "lexical" else f"vector-{embedding_provider.model_name}"
+        )
     results_path = retrieval_experiment_path(RESULTS_DIR, dataset.version, retriever_config_id, run_id)
 
     if results_path.exists():
@@ -185,7 +268,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     #     Only NOW may a real provider be invoked. ---
     embedding_index = None
     corpus_embedding_latency_ms = None
-    if args.retriever == "vector":
+    if retriever_kind == "vector":
         started = time.perf_counter()
         embedding_index = build_corpus_embedding_index(corpus, embedding_provider)
         corpus_embedding_latency_ms = (time.perf_counter() - started) * 1000.0
@@ -194,6 +277,8 @@ def main(argv: Optional[list[str]] = None) -> int:
         retriever = LexicalBaselineRetriever()
 
     print("Configuration:")
+    if config is not None:
+        print(f"  Config:     {config.config_id} ({args.config})")
     print(f"  Retriever:  {retriever_config_id}")
     print(f"  Dataset:    {dataset.version} ({len(dataset.cases)} cases)")
     print(f"  Corpus:     {len(corpus)} evidence records")
@@ -202,7 +287,7 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     try:
         report = run_retrieval_evaluation(
-            dataset, retriever, corpus, k_values=DEFAULT_K_VALUES, embedding_index=embedding_index,
+            dataset, retriever, corpus, k_values=k_values, embedding_index=embedding_index,
             git_commit_sha=git_commit_sha, run_id=run_id, corpus_embedding_latency_ms=corpus_embedding_latency_ms,
         )
     except Exception as exc:  # an infrastructure crash, not a poor retrieval score
