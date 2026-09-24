@@ -1,0 +1,21 @@
+{
+  "config_id": "reranked-llm-baseline-v1",
+
+  "dataset_version": "synthetic-v2",
+  "dataset_fingerprint": "35e54a143b90b9d8bf30db7e1cbdb27346eddba0e0c71dd8070e69f22fe63a72",
+  "corpus_fingerprint": "8b9c0462d085addf206667e35aea7e7cc3cfb9473a4961ec902bc3e71e99a109",
+
+  "source_reranking_run_id": "81ac369a-9041-4d1c-af83-1c6d8ed22dec",
+  "source_reranking_artifact_sha256": "b96422866e8cdbc8cdb7eb88323d2c9cdb24bd47b57e750c98b3256e2cf47a31",
+  "source_reranking_config_id": "cohere-rerank-v4-pro-baseline-v1",
+
+  "evidence_top_k": 5,
+
+  "llm_provider": "openai",
+  "requested_model": "gpt-5.4-mini-2026-03-17",
+  "served_model": null,
+
+  "prompt_version": "llm-baseline-v1",
+  "temperature": 0.0,
+  "max_output_tokens": 800
+}
