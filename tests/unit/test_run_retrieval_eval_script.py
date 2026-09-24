@@ -110,6 +110,12 @@ class TestPrecallSafetyOrderingForVectorRetriever:
         monkeypatch.setenv("ARL_RUN_ID", "colliding-run-id")
         placeholder = _placeholder_fake_provider()
         monkeypatch.setattr(module, "_build_vector_embedding_provider", lambda: placeholder)
+        # The collision path is now computed BEFORE the (here, mocked-away)
+        # embedding provider is constructed -- see run_retrieval_eval.py's
+        # provider-initialization-safety ordering -- so this must be set
+        # explicitly to match `placeholder.model_name` for the no-config
+        # vector path's collision-path computation to agree with it.
+        monkeypatch.setenv("EMBEDDING_MODEL_NAME", placeholder.model_name)
 
         existing = tmp_path / "retrieval_experiments" / f"synthetic-v1__vector-{placeholder.model_name}__colliding-run-id.json"
         existing.parent.mkdir(parents=True)
@@ -140,6 +146,10 @@ class TestPrecallSafetyOrderingForVectorRetriever:
         provider = _full_coverage_fake_provider(dataset, corpus)
         monkeypatch.setattr(module, "_build_vector_embedding_provider", lambda: provider)
         monkeypatch.setenv("ARL_GIT_COMMIT_SHA", "fake-sha-for-this-test")
+        # See test_collision_blocks_before_any_embedding_call's comment:
+        # the collision/output path is computed before the (here,
+        # mocked-away) provider is constructed.
+        monkeypatch.setenv("EMBEDDING_MODEL_NAME", provider.model_name)
 
         exit_code = module.main(["--retriever", "vector"])
 

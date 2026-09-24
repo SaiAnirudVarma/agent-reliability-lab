@@ -28,18 +28,24 @@ call (``build_corpus_embedding_index``'s ``embed_documents``):
        ``dataset.fingerprint``/``corpus.fingerprint`` against the config's
        recorded values -- a mismatch means the frozen config has drifted
        from the current code/data and the run refuses to proceed
-    4. constructs the embedding provider object (no network -- this is
+    4. checks explicit real-API-call authorization
+       (ARL_ALLOW_REAL_API_CALLS must be exactly "1" -- see
+       app.observability.real_api_gate) BEFORE constructing the embedding
+       provider. A real OPENAI_API_KEY being present -- however it was
+       set, exported directly or loaded from .env -- never authorizes a
+       real call by itself.
+    5. constructs the embedding provider object (no network -- this is
        just __init__, mirroring OpenAIProvider's own lazy-no-network
        construction) and, if a config was given, verifies its
        ``model_name``/``embedding_dimension`` against the config's
        recorded values
-    5. resolves git_commit_sha (app.observability.git_provenance --
+    6. resolves git_commit_sha (app.observability.git_provenance --
        the SAME utility scripts/run_eval.py uses)
-    6. resolves run_id (a fresh UUID4, or ARL_RUN_ID for tests)
-    7. computes the immutable, run-ID-qualified destination artifact path
-    8. checks that path for a collision
+    7. resolves run_id (a fresh UUID4, or ARL_RUN_ID for tests)
+    8. computes the immutable, run-ID-qualified destination artifact path
+    9. checks that path for a collision
 
-Any failure at 1, 3-8 aborts (exit 1) BEFORE step 9 (the real embedding
+Any failure at 1, 3-9 aborts (exit 1) BEFORE step 10 (the real embedding
 call) is ever reached -- see
 docs/incidents/2026-09-23-llm-baseline-artifact-deletion.md for why this
 project treats "provenance/collision checks before any real provider
@@ -66,6 +72,7 @@ from pydantic import ValidationError
 
 from app.datasets.loader import DatasetError, load_dataset
 from app.observability.git_provenance import get_git_commit_sha
+from app.observability.real_api_gate import RealApiCallsNotAuthorizedError, require_real_api_authorization
 from app.retrieval.artifact_io import (
     resolve_run_id,
     retrieval_experiment_path,
@@ -128,6 +135,12 @@ def _build_vector_embedding_provider():
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         raise ConfigError("EMBEDDING_PROVIDER=openai requires OPENAI_API_KEY to be set.")
+
+    # Every configuration/credential-presence check above this line can
+    # run freely -- none of them construct a real provider client. This
+    # is the LAST check before that construction, independent of
+    # everything above.
+    require_real_api_authorization("OpenAI embedding provider construction (scripts/run_retrieval_eval.py)")
 
     from app.retrieval.openai_embedding_provider import OpenAIEmbeddingProvider
 
@@ -211,11 +224,53 @@ def main(argv: Optional[list[str]] = None) -> int:
             )
             return 1
 
+    # Captured once, before any provider call -- reuses the exact same
+    # utility scripts/run_eval.py uses, never a competing implementation.
+    git_commit_sha = get_git_commit_sha(REPO_ROOT)
+    if retriever_kind == "vector" and git_commit_sha is None:
+        print(
+            "ERROR: could not determine the current git commit SHA. A real retrieval experiment "
+            "must always be traceable back to the exact commit that produced it -- refusing to run "
+            "rather than record a real result with no code provenance.",
+            file=sys.stderr,
+        )
+        return 1
+
+    run_id = resolve_run_id()
+    if config is not None:
+        retriever_config_id = config.config_id
+    elif retriever_kind == "lexical":
+        retriever_config_id = LEXICAL_RETRIEVER_CONFIG_ID
+    else:
+        # No embedding provider has been constructed yet (construction is
+        # deliberately deferred past this collision check -- see below), so
+        # this reads EMBEDDING_MODEL_NAME directly, exactly the same env
+        # var _build_vector_embedding_provider() itself will read moments
+        # from now. If it's unset, _build_vector_embedding_provider() will
+        # raise a clear ConfigError right after this point, before any
+        # provider is ever constructed.
+        retriever_config_id = f"vector-{os.environ.get('EMBEDDING_MODEL_NAME', '')}"
+    results_path = retrieval_experiment_path(RESULTS_DIR, dataset.version, retriever_config_id, run_id)
+
+    if results_path.exists():
+        print(
+            f"ERROR: {results_path} already exists. A real retrieval experiment artifact is immutable "
+            "and can never be overwritten. This should only happen if ARL_RUN_ID was reused "
+            "deliberately; choose a different run ID, or remove/rename the existing file yourself first.",
+            file=sys.stderr,
+        )
+        return 1
+
+    # --- Everything above this line is config/provenance/collision
+    #     safety. Only NOW may a real provider be constructed (and,
+    #     moments later, invoked) -- provider construction never precedes
+    #     any check above, including the explicit real-API authorization
+    #     gate inside _build_vector_embedding_provider itself. ---
     embedding_provider = None
     if retriever_kind == "vector":
         try:
             embedding_provider = _build_vector_embedding_provider()
-        except ConfigError as exc:
+        except (ConfigError, RealApiCallsNotAuthorizedError) as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
             return 1
         if config is not None:
@@ -234,38 +289,6 @@ def main(argv: Optional[list[str]] = None) -> int:
                 )
                 return 1
 
-    # Captured once, before any provider call -- reuses the exact same
-    # utility scripts/run_eval.py uses, never a competing implementation.
-    git_commit_sha = get_git_commit_sha(REPO_ROOT)
-    if retriever_kind == "vector" and git_commit_sha is None:
-        print(
-            "ERROR: could not determine the current git commit SHA. A real retrieval experiment "
-            "must always be traceable back to the exact commit that produced it -- refusing to run "
-            "rather than record a real result with no code provenance.",
-            file=sys.stderr,
-        )
-        return 1
-
-    run_id = resolve_run_id()
-    if config is not None:
-        retriever_config_id = config.config_id
-    else:
-        retriever_config_id = (
-            LEXICAL_RETRIEVER_CONFIG_ID if retriever_kind == "lexical" else f"vector-{embedding_provider.model_name}"
-        )
-    results_path = retrieval_experiment_path(RESULTS_DIR, dataset.version, retriever_config_id, run_id)
-
-    if results_path.exists():
-        print(
-            f"ERROR: {results_path} already exists. A real retrieval experiment artifact is immutable "
-            "and can never be overwritten. This should only happen if ARL_RUN_ID was reused "
-            "deliberately; choose a different run ID, or remove/rename the existing file yourself first.",
-            file=sys.stderr,
-        )
-        return 1
-
-    # --- Everything above this line is provenance/collision safety.
-    #     Only NOW may a real provider be invoked. ---
     embedding_index = None
     corpus_embedding_latency_ms = None
     if retriever_kind == "vector":

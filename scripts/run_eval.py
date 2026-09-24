@@ -10,16 +10,23 @@ The default (no arguments) always runs DeterministicBaselineAgent -- LLM
 mode is never entered implicitly, regardless of which API keys happen to be
 set in the environment.
 
+``--agent llm`` additionally requires explicit real-API-call authorization
+via ARL_ALLOW_REAL_API_CALLS=1 (see app.observability.real_api_gate),
+checked in _build_llm_agent BEFORE OPENAI_API_KEY is even read or
+OpenAIProvider is constructed. A real credential being present -- however
+it was set, exported directly or loaded from .env -- never authorizes a
+real call by itself.
+
 Exit codes:
     0  the run completed. This is returned even if the agent got every case
        wrong, or every case came back schema-invalid -- an incorrect or
        malformed prediction is an experiment result, not an infrastructure
        failure.
     1  the run could not complete: bad configuration (missing/invalid
-       AGENT_MODE, MODEL_PROVIDER, MODEL_NAME, or API key), the dataset
-       failed to load/validate, an infrastructure-level exception during
-       execution (auth/network/etc.), or the results file could not be
-       written.
+       AGENT_MODE, MODEL_PROVIDER, MODEL_NAME, or API key), real-API-call
+       authorization not granted, the dataset failed to load/validate, an
+       infrastructure-level exception during execution (auth/network/etc.),
+       or the results file could not be written.
 """
 
 from __future__ import annotations
@@ -33,13 +40,14 @@ from uuid import uuid4
 
 from app.agent.deterministic_baseline import DeterministicBaselineAgent
 from app.agent.interface import AgentRunner
-from app.agent.llm_agent import MAX_OUTPUT_TOKENS, TEMPERATURE, build_llm_config
+from app.agent.llm_agent import MAX_OUTPUT_TOKENS, PROMPT_VERSION, TEMPERATURE, build_llm_config
 from app.agent.pricing import load_pricing_config
 from app.datasets.loader import DatasetError, load_dataset
 from app.evaluation.metrics import percentile
 from app.evaluation.runner import run_evaluation
 from app.models.contracts import AgentMode, LLMConfig, ModelProvider, RunReport
 from app.observability.git_provenance import get_git_commit_sha
+from app.observability.real_api_gate import RealApiCallsNotAuthorizedError, require_real_api_authorization
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATASET_DIR = REPO_ROOT / "datasets"
@@ -157,6 +165,13 @@ def _build_llm_agent() -> tuple[AgentRunner, ModelProvider, str, LLMConfig]:
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         raise ConfigError("MODEL_PROVIDER=openai requires OPENAI_API_KEY to be set.")
+
+    # Every configuration/credential-presence check above this line can
+    # run freely -- none of them construct a real provider client. This
+    # is the LAST check before that construction, and it is independent
+    # of everything above: a valid, fully-configured request is still
+    # refused unless real API calls have been explicitly authorized.
+    require_real_api_authorization("OpenAI LLM agent construction (scripts/run_eval.py)")
 
     from app.agent.llm_agent import LLMAgent
     from app.providers.openai_provider import OpenAIProvider
@@ -298,20 +313,13 @@ def main(argv: Optional[list[str]] = None) -> int:
         print(f"ERROR: failed to load dataset: {exc}", file=sys.stderr)
         return 1
 
-    try:
-        if args.agent == "deterministic":
-            agent: AgentRunner = DeterministicBaselineAgent()
-            agent_mode, provider_enum, model_name, llm_config = AgentMode.MOCK, None, None, None
-        else:
-            agent, provider_enum, model_name, llm_config = _build_llm_agent()
-            agent_mode = AgentMode.LLM
-    except ConfigError as exc:
-        print(f"ERROR: {exc}", file=sys.stderr)
-        return 1
+    agent_mode = AgentMode.MOCK if args.agent == "deterministic" else AgentMode.LLM
 
     # Captured exactly once per run, regardless of agent mode -- never
     # shelled out to per case. ARL_GIT_COMMIT_SHA lets tests inject a fixed
-    # value without depending on this machine's real git state.
+    # value without depending on this machine's real git state. Resolved
+    # BEFORE the real LLM agent is ever constructed (see below) -- provider
+    # construction must never precede git-provenance/collision safety.
     git_commit_sha = get_git_commit_sha(REPO_ROOT)
 
     if agent_mode == AgentMode.LLM:
@@ -334,9 +342,11 @@ def main(argv: Optional[list[str]] = None) -> int:
         # run-ID-qualified path is unique by construction, and if it somehow
         # already exists anyway, that is exactly the "immutable experiment
         # artifact" case ARTIFACT_POLICY.md Category A says must never be
-        # overwritten, by any flag, under any circumstance.
+        # overwritten, by any flag, under any circumstance. PROMPT_VERSION
+        # (not agent.agent_config_id) is used here because the real LLM
+        # agent has not been constructed yet -- see below.
         run_id = os.environ.get("ARL_RUN_ID") or str(uuid4())
-        results_path = _experiment_results_path(dataset.version, agent.agent_config_id, run_id)
+        results_path = _experiment_results_path(dataset.version, PROMPT_VERSION, run_id)
         if results_path.exists():
             print(
                 f"ERROR: {results_path} already exists. A real LLM experiment artifact is "
@@ -349,6 +359,20 @@ def main(argv: Optional[list[str]] = None) -> int:
     else:
         run_id = None
         results_path = _results_path(args.agent, args.dataset_version)
+
+    # --- Everything above this line is config/dataset/git-provenance/
+    #     collision safety. Only NOW may the real LLM provider be
+    #     constructed -- provider construction never precedes any of the
+    #     checks above. ---
+    try:
+        if args.agent == "deterministic":
+            agent: AgentRunner = DeterministicBaselineAgent()
+            provider_enum, model_name, llm_config = None, None, None
+        else:
+            agent, provider_enum, model_name, llm_config = _build_llm_agent()
+    except (ConfigError, RealApiCallsNotAuthorizedError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
 
     print("Configuration:")
     print(f"  Agent:    {agent.agent_config_id}")

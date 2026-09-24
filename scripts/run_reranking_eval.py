@@ -20,16 +20,22 @@ reranker provider call (``reranker.rerank(...)``):
        config ID, run ID, git provenance, exactly 30 results, every case
        has at least candidate_depth candidates) -- see
        app.reranking.candidate_source.load_and_validate_candidate_source
-    4. constructs the reranker provider object (no network -- just
+    4. checks explicit real-API-call authorization
+       (ARL_ALLOW_REAL_API_CALLS must be exactly "1" -- see
+       app.observability.real_api_gate) BEFORE constructing the reranker
+       provider. A real COHERE_API_KEY being present -- however it was
+       set, exported directly or loaded from .env -- never authorizes a
+       real call by itself.
+    5. constructs the reranker provider object (no network -- just
        __init__, mirroring every other provider adapter's lazy-no-network
        construction)
-    5. resolves git_commit_sha (the SAME utility every other experiment
+    6. resolves git_commit_sha (the SAME utility every other experiment
        script in this project uses)
-    6. resolves run_id (a fresh UUID4, or ARL_RUN_ID for tests)
-    7. computes the immutable, run-ID-qualified destination artifact path
+    7. resolves run_id (a fresh UUID4, or ARL_RUN_ID for tests)
+    8. computes the immutable, run-ID-qualified destination artifact path
        and checks it for a collision
 
-Any failure at 1-7 aborts (exit 1) BEFORE step 8 (the real reranker calls)
+Any failure at 1-8 aborts (exit 1) BEFORE step 9 (the real reranker calls)
 is ever reached.
 
 Exit codes:
@@ -52,6 +58,7 @@ from pydantic import ValidationError
 
 from app.datasets.loader import DatasetError, load_dataset
 from app.observability.git_provenance import get_git_commit_sha
+from app.observability.real_api_gate import RealApiCallsNotAuthorizedError, require_real_api_authorization
 from app.reranking.artifact_io import (
     reranking_experiment_path,
     resolve_run_id,
@@ -109,6 +116,12 @@ def _build_reranker(model_name: str, evidence_by_id: dict, reranker_config_id: s
     api_key = os.environ.get("COHERE_API_KEY")
     if not api_key:
         raise ConfigError("RERANKER_PROVIDER=cohere requires COHERE_API_KEY to be set.")
+
+    # Every configuration/credential-presence check above this line can
+    # run freely -- none of them construct a real provider client. This
+    # is the LAST check before that construction, independent of
+    # everything above.
+    require_real_api_authorization("Cohere reranker construction (scripts/run_reranking_eval.py)")
 
     from app.reranking.cohere_reranker import CohereReranker, build_cohere_client
 
@@ -187,12 +200,6 @@ def main(argv: Optional[list[str]] = None) -> int:
         case.case_id: case.expected_outcome.required_evidence_ids for case in dataset.cases
     }
 
-    try:
-        reranker = _build_reranker(config.requested_model, evidence_by_id, config.config_id)
-    except ConfigError as exc:
-        print(f"ERROR: {exc}", file=sys.stderr)
-        return 1
-
     # Captured once, before any provider call -- reuses the exact same
     # utility every other experiment script in this project uses.
     git_commit_sha = get_git_commit_sha(REPO_ROOT)
@@ -216,8 +223,18 @@ def main(argv: Optional[list[str]] = None) -> int:
         )
         return 1
 
-    # --- Everything above this line is provenance/collision safety.
-    #     Only NOW may the real reranker provider be invoked. ---
+    # --- Everything above this line is config/candidate-source/
+    #     provenance/collision safety. Only NOW may the real reranker
+    #     provider be constructed (and, inside run_reranking_evaluation,
+    #     invoked) -- provider construction never precedes any check
+    #     above, including the explicit real-API authorization gate
+    #     inside _build_reranker itself. ---
+    try:
+        reranker = _build_reranker(config.requested_model, evidence_by_id, config.config_id)
+    except (ConfigError, RealApiCallsNotAuthorizedError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+
     print("Configuration:")
     print(f"  Reranker config:   {config.config_id}")
     print(f"  Candidate source:  {config.candidate_source_run_id} ({config.candidate_source_artifact_sha256[:16]}...)")
