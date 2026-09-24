@@ -57,9 +57,11 @@ from app.reranking.artifact_io import (
     resolve_run_id,
     write_reranking_report_atomically,
 )
-from app.reranking.baseline_config import RerankerBaselineConfig, load_reranker_baseline_config
 from app.reranking.artifact_loader import ArtifactVerificationError
+from app.reranking.baseline_config import RerankerBaselineConfig, load_reranker_baseline_config
 from app.reranking.candidate_source import CandidateSourceValidationError, load_and_validate_candidate_source
+from app.reranking.execution_policy import RerankerExecutionPolicy, load_reranker_execution_policy
+from app.reranking.pacing import CallPacer
 from app.reranking.runner import RerankingReport, run_reranking_evaluation
 from app.retrieval.artifact_io import retrieval_experiment_path
 from app.retrieval.corpus import build_full_version_corpus
@@ -120,6 +122,13 @@ def _parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         "--config", type=Path, required=True,
         help="Path to a frozen RerankerBaselineConfig JSON file (e.g. configs/reranker-baseline-v1.json).",
     )
+    parser.add_argument(
+        "--execution-config", type=Path, default=None,
+        help="Path to a RerankerExecutionPolicy JSON file (e.g. "
+        "configs/reranker-execution-cohere-trial-v1.json) providing provider-call pacing. Transport/pacing "
+        "policy only -- never changes the semantic experiment identity in --config. Omit for no pacing "
+        "(e.g. against a fake/local reranker in tests).",
+    )
     return parser.parse_args(argv)
 
 
@@ -138,6 +147,17 @@ def main(argv: Optional[list[str]] = None) -> int:
     except ValidationError as exc:
         print(f"ERROR: {args.config} is not a valid RerankerBaselineConfig: {exc}", file=sys.stderr)
         return 1
+
+    execution_policy: Optional[RerankerExecutionPolicy] = None
+    if args.execution_config is not None:
+        try:
+            execution_policy = load_reranker_execution_policy(args.execution_config)
+        except OSError as exc:
+            print(f"ERROR: could not read execution config file {args.execution_config}: {exc}", file=sys.stderr)
+            return 1
+        except ValidationError as exc:
+            print(f"ERROR: {args.execution_config} is not a valid RerankerExecutionPolicy: {exc}", file=sys.stderr)
+            return 1
 
     # The source artifact's path is fully reconstructed from the config's
     # own fields, via the SAME naming convention the retrieval script
@@ -199,12 +219,43 @@ def main(argv: Optional[list[str]] = None) -> int:
     # --- Everything above this line is provenance/collision safety.
     #     Only NOW may the real reranker provider be invoked. ---
     print("Configuration:")
-    print(f"  Reranker config:  {config.config_id}")
-    print(f"  Candidate source: {config.candidate_source_run_id} ({config.candidate_source_artifact_sha256[:16]}...)")
-    print(f"  Dataset:          {config.dataset_version}")
-    print(f"  Candidate depth:  {config.candidate_depth}  Output depth: {config.reranker_output_depth}")
-    print(f"  Git commit:       {git_commit_sha}")
+    print(f"  Reranker config:   {config.config_id}")
+    print(f"  Candidate source:  {config.candidate_source_run_id} ({config.candidate_source_artifact_sha256[:16]}...)")
+    print(f"  Dataset:           {config.dataset_version}")
+    print(f"  Candidate depth:   {config.candidate_depth}  Output depth: {config.reranker_output_depth}")
+    print(f"  Git commit:        {git_commit_sha}")
+    if execution_policy is not None:
+        print(f"  Execution policy:  {execution_policy.execution_policy_id} "
+              f"(min interval {execution_policy.minimum_call_start_interval_seconds}s, "
+              f"retry={execution_policy.retry_policy})")
+    # Printed BEFORE the first provider call is ever made -- see
+    # docs/incidents/2026-09-24-cohere-reranking-rate-limit.md: the
+    # previous run's run_id was unrecoverable after a mid-run failure
+    # precisely because this was not yet true.
+    print(f"  RUN_ID={run_id}")
+    try:
+        displayed_output_path = output_path.relative_to(REPO_ROOT)
+    except ValueError:
+        displayed_output_path = output_path
+    print(f"  ARTIFACT_PATH={displayed_output_path}")
     print()
+
+    pacer = None
+    if execution_policy is not None:
+        pacer = CallPacer(
+            execution_policy.minimum_call_start_interval_seconds, monotonic=time.monotonic, sleep=time.sleep,
+        )
+
+    progress = {"attempted": 0, "completed": 0, "current_case_id": None}
+
+    def _on_case_start(index: int, total: int, case_id: str) -> None:
+        progress["attempted"] = index
+        progress["current_case_id"] = case_id
+        print(f"case {index}/{total}: starting")
+
+    def _on_case_complete(index: int, total: int, case_id: str) -> None:
+        progress["completed"] = index
+        print(f"case {index}/{total}: completed")
 
     try:
         report: RerankingReport = run_reranking_evaluation(
@@ -219,11 +270,23 @@ def main(argv: Optional[list[str]] = None) -> int:
             reranker_provider=config.provider,
             requested_reranker_model=config.requested_model,
             served_reranker_model=getattr(reranker, "last_served_model_name", None),
+            execution_policy_id=execution_policy.execution_policy_id if execution_policy is not None else None,
+            pacer=pacer,
+            on_case_start=_on_case_start,
+            on_case_complete=_on_case_complete,
             git_commit_sha=git_commit_sha,
             run_id=run_id,
         )
     except Exception as exc:  # an infrastructure crash, not a poor reranking score
         print(f"ERROR: reranking evaluation run failed: {exc}", file=sys.stderr)
+        print("FAILURE SUMMARY:", file=sys.stderr)
+        print(f"  run_id: {run_id}", file=sys.stderr)
+        print(f"  future_artifact_path: {displayed_output_path}", file=sys.stderr)
+        print(f"  attempted_case_count: {progress['attempted']}", file=sys.stderr)
+        print(f"  completed_case_count: {progress['completed']}", file=sys.stderr)
+        print(f"  failed_case_id: {progress['current_case_id']}", file=sys.stderr)
+        print(f"  exception_category: {type(exc).__name__}", file=sys.stderr)
+        print("  artifact_written: false", file=sys.stderr)
         return 1
 
     print("Aggregate Recall@K (before -> after)")

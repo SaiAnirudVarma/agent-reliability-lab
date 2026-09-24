@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import time
 from datetime import datetime, timezone
-from typing import Optional
+from typing import Callable, Optional
 from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -22,7 +22,14 @@ from app.reranking.interface import Reranker
 from app.reranking.metrics import RequiredEvidenceRankMovement, compute_delta, compute_required_evidence_rank_movement
 from app.reranking.metrics import mrr as reranked_mrr
 from app.reranking.metrics import recall_at_k as reranked_recall_at_k
+from app.reranking.pacing import CallPacer
 from app.retrieval.runner import RetrievalReport
+
+# (index, total, case_id) -> None. Operational telemetry only -- never
+# passed evidence content, provider payloads, or ground truth (see
+# scripts/run_reranking_eval.py's own callbacks, which print only these
+# three values).
+ProgressCallback = Callable[[int, int, str], None]
 
 
 class RerankingCaseReport(BaseModel):
@@ -80,6 +87,8 @@ class RerankingReport(BaseModel):
     requested_reranker_model: Optional[str] = None
     served_reranker_model: Optional[str] = None
 
+    execution_policy_id: Optional[str] = None
+
     evaluation_k_values: list[int]
 
     case_reports: list[RerankingCaseReport]
@@ -107,6 +116,10 @@ def run_reranking_evaluation(
     reranker_provider: Optional[str] = None,
     requested_reranker_model: Optional[str] = None,
     served_reranker_model: Optional[str] = None,
+    execution_policy_id: Optional[str] = None,
+    pacer: Optional[CallPacer] = None,
+    on_case_start: Optional[ProgressCallback] = None,
+    on_case_complete: Optional[ProgressCallback] = None,
     git_commit_sha: Optional[str] = None,
     run_id: Optional[str] = None,
 ) -> RerankingReport:
@@ -125,6 +138,20 @@ def run_reranking_evaluation(
     experiment caller supplies one resolved BEFORE this function runs (see
     ``scripts/run_reranking_eval.py``), so a precomputed output path can be
     collision-checked before any provider call.
+
+    ``pacer``, when supplied, has ``wait_for_next_call()`` invoked
+    immediately before each case's ``reranker.rerank()`` call -- never
+    after the loop's final case, never before the very first (the pacer's
+    own logic already skips sleeping on its first call). Pacing changes
+    only WHEN a call happens, never its semantic content.
+
+    ``on_case_start``/``on_case_complete`` are operational telemetry only
+    (see ``scripts/run_reranking_eval.py``, which uses them to print
+    ``case N/30: starting``/``completed`` and nothing else) -- if this
+    function raises partway through, whatever the caller's own callbacks
+    have already recorded (e.g. attempted/completed counts, the in-flight
+    case ID) is the caller's only record of progress; this function itself
+    persists nothing partial.
     """
 
     if run_id is None:
@@ -132,6 +159,7 @@ def run_reranking_evaluation(
 
     query_by_case = {result.case_id: result.query for result in report.results}
     candidate_sets = build_candidate_sets(report, candidate_depth)
+    total_cases = len(candidate_sets)
 
     case_reports: list[RerankingCaseReport] = []
     rerank_results: list[RerankResult] = []
@@ -141,12 +169,18 @@ def run_reranking_evaluation(
     mrr_after_values: list[Optional[float]] = []
 
     total_started = time.perf_counter()
-    for case_id, candidates in candidate_sets.items():
+    for index, (case_id, candidates) in enumerate(candidate_sets.items(), start=1):
+        if on_case_start is not None:
+            on_case_start(index, total_cases, case_id)
+
         query = query_by_case[case_id]
         rerank_input = RerankInput(
             case_id=case_id, query=query, candidates=candidates, candidate_depth=len(candidates)
         )
         required_ids = required_evidence_ids_by_case.get(case_id, [])
+
+        if pacer is not None:
+            pacer.wait_for_next_call()
 
         case_started = time.perf_counter()
         rerank_result = reranker.rerank(rerank_input, final_k=output_depth)
@@ -182,6 +216,8 @@ def run_reranking_evaluation(
                 reranking_latency_ms=latency_ms,
             )
         )
+        if on_case_complete is not None:
+            on_case_complete(index, total_cases, case_id)
     total_latency_ms = (time.perf_counter() - total_started) * 1000.0
 
     aggregate_recall_before = {
@@ -209,6 +245,7 @@ def run_reranking_evaluation(
         reranker_provider=reranker_provider,
         requested_reranker_model=requested_reranker_model,
         served_reranker_model=served_reranker_model,
+        execution_policy_id=execution_policy_id,
         evaluation_k_values=list(k_values),
         case_reports=case_reports,
         rerank_results=rerank_results,

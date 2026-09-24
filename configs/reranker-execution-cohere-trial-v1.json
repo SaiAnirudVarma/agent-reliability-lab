@@ -1,0 +1,6 @@
+{
+  "execution_policy_id": "cohere-trial-pacing-v1",
+  "minimum_call_start_interval_seconds": 7.0,
+  "retry_policy": "none",
+  "max_attempts_per_case": 1
+}

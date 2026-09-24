@@ -26,6 +26,7 @@ from app.retrieval.runner import RetrievalReport
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SCRIPT_PATH = REPO_ROOT / "scripts" / "run_reranking_eval.py"
 FROZEN_CONFIG_PATH = REPO_ROOT / "configs" / "reranker-baseline-v1.json"
+FROZEN_EXECUTION_CONFIG_PATH = REPO_ROOT / "configs" / "reranker-execution-cohere-trial-v1.json"
 NONEXISTENT_DOTENV_PATH = str(REPO_ROOT / ".pytest-isolation-nonexistent-dir" / ".env")
 
 DATASET_FINGERPRINT = "35e54a143b90b9d8bf30db7e1cbdb27346eddba0e0c71dd8070e69f22fe63a72"
@@ -279,3 +280,147 @@ class TestResultsRootOverride:
 
         assert (results_dir / "reranking_experiments").exists()
         assert not (tmp_path / "results" / "reranking_experiments").exists()
+
+
+class _FailFirstCaseReranker:
+    reranker_config_id = "fail-first-v1"
+
+    def __init__(self):
+        self.call_count = 0
+
+    def rerank(self, rerank_input, *, final_k=None):
+        self.call_count += 1
+        raise RuntimeError(f"simulated provider failure on {rerank_input.case_id}")
+
+
+class _SucceedingCountingReranker:
+    """Delegates to PassThroughReranker for every case -- used to exercise
+    a full successful run's pacing/observability without any real
+    provider or evidence lookup."""
+
+    reranker_config_id = "succeeding-counting-v1"
+
+    def __init__(self):
+        self.call_count = 0
+
+    def rerank(self, rerank_input, *, final_k=None):
+        from app.reranking.pass_through import PassThroughReranker
+
+        self.call_count += 1
+        return PassThroughReranker().rerank(rerank_input, final_k=final_k)
+
+
+class TestRunIdObservabilityAndFailureSummary:
+    def test_run_id_and_artifact_path_printed_before_any_case_output(self, monkeypatch, tmp_path, capsys):
+        results_dir = tmp_path / "results"
+        source_dir = tmp_path / "source"
+        module = _load_module(monkeypatch, results_dir, source_dir)
+        report = _valid_fabricated_report()
+        real_sha256 = _write_source_artifact(source_dir, report)
+
+        failing_reranker = _FailFirstCaseReranker()
+        monkeypatch.setattr(module, "_build_reranker", lambda *a, **k: failing_reranker)
+        monkeypatch.setenv("ARL_GIT_COMMIT_SHA", "e" * 40)
+        monkeypatch.setenv("ARL_RUN_ID", "observable-run-id")
+
+        config_path = _write_config(
+            tmp_path, candidate_source_run_id=SOURCE_RUN_ID, candidate_source_artifact_sha256=real_sha256,
+            dataset_fingerprint=DATASET_FINGERPRINT, corpus_fingerprint=CORPUS_FINGERPRINT,
+        )
+
+        exit_code = module.main(["--config", str(config_path)])
+
+        stdout = capsys.readouterr().out
+        assert exit_code == 1
+        assert "RUN_ID=observable-run-id" in stdout
+        run_id_pos = stdout.index("RUN_ID=observable-run-id")
+        case_pos = stdout.find("case 1/30")
+        assert case_pos == -1 or run_id_pos < case_pos  # RUN_ID printed before any case activity
+
+    def test_failure_summary_reports_attempted_and_completed_counts(self, monkeypatch, tmp_path, capsys):
+        results_dir = tmp_path / "results"
+        source_dir = tmp_path / "source"
+        module = _load_module(monkeypatch, results_dir, source_dir)
+        report = _valid_fabricated_report()
+        real_sha256 = _write_source_artifact(source_dir, report)
+
+        failing_reranker = _FailFirstCaseReranker()
+        monkeypatch.setattr(module, "_build_reranker", lambda *a, **k: failing_reranker)
+        monkeypatch.setenv("ARL_GIT_COMMIT_SHA", "e" * 40)
+        monkeypatch.setenv("ARL_RUN_ID", "failure-summary-run-id")
+
+        config_path = _write_config(
+            tmp_path, candidate_source_run_id=SOURCE_RUN_ID, candidate_source_artifact_sha256=real_sha256,
+            dataset_fingerprint=DATASET_FINGERPRINT, corpus_fingerprint=CORPUS_FINGERPRINT,
+        )
+
+        exit_code = module.main(["--config", str(config_path)])
+
+        stderr = capsys.readouterr().err
+        assert exit_code == 1
+        assert "run_id: failure-summary-run-id" in stderr
+        assert "attempted_case_count: 1" in stderr
+        assert "completed_case_count: 0" in stderr
+        assert "failed_case_id: AC-001" in stderr
+        assert "exception_category: RuntimeError" in stderr
+        assert "artifact_written: false" in stderr
+        assert failing_reranker.call_count == 1  # never retried
+        assert not (results_dir / "reranking_experiments").exists()
+
+
+class TestExecutionConfigPacing:
+    def test_pacing_applied_across_a_full_successful_run(self, monkeypatch, tmp_path, capsys):
+        import time as time_module
+
+        from tests.support.fake_clock import FakeClock
+
+        results_dir = tmp_path / "results"
+        source_dir = tmp_path / "source"
+        module = _load_module(monkeypatch, results_dir, source_dir)
+        report = _valid_fabricated_report()
+        real_sha256 = _write_source_artifact(source_dir, report)
+
+        succeeding_reranker = _SucceedingCountingReranker()
+        monkeypatch.setattr(module, "_build_reranker", lambda *a, **k: succeeding_reranker)
+        monkeypatch.setenv("ARL_GIT_COMMIT_SHA", "e" * 40)
+
+        clock = FakeClock(start=0.0)
+        monkeypatch.setattr(module.time, "monotonic", clock.monotonic)
+        monkeypatch.setattr(module.time, "sleep", clock.sleep)
+
+        config_path = _write_config(
+            tmp_path, candidate_source_run_id=SOURCE_RUN_ID, candidate_source_artifact_sha256=real_sha256,
+            dataset_fingerprint=DATASET_FINGERPRINT, corpus_fingerprint=CORPUS_FINGERPRINT,
+        )
+
+        exit_code = module.main([
+            "--config", str(config_path),
+            "--execution-config", str(FROZEN_EXECUTION_CONFIG_PATH),
+        ])
+
+        assert exit_code == 0
+        assert succeeding_reranker.call_count == 30
+        assert clock.sleep_calls == [7.0] * 29  # first call: no sleep; 29 subsequent: paced
+        report_files = list((results_dir / "reranking_experiments").glob("*.json"))
+        assert len(report_files) == 1
+
+    def test_no_execution_config_means_no_pacing(self, monkeypatch, tmp_path):
+        results_dir = tmp_path / "results"
+        source_dir = tmp_path / "source"
+        module = _load_module(monkeypatch, results_dir, source_dir)
+        report = _valid_fabricated_report()
+        real_sha256 = _write_source_artifact(source_dir, report)
+
+        succeeding_reranker = _SucceedingCountingReranker()
+        monkeypatch.setattr(module, "_build_reranker", lambda *a, **k: succeeding_reranker)
+        monkeypatch.setenv("ARL_GIT_COMMIT_SHA", "e" * 40)
+
+        config_path = _write_config(
+            tmp_path, candidate_source_run_id=SOURCE_RUN_ID, candidate_source_artifact_sha256=real_sha256,
+            dataset_fingerprint=DATASET_FINGERPRINT, corpus_fingerprint=CORPUS_FINGERPRINT,
+        )
+
+        exit_code = module.main(["--config", str(config_path)])  # no --execution-config
+
+        assert exit_code == 0
+        assert succeeding_reranker.call_count == 30
