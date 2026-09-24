@@ -181,3 +181,8 @@ real wiring lands.
 - The separate, retrieval-aware `AgentInput` constructor described above.
 - A real Phase 7 experiment run against `synthetic-v2`, once the above
   exists and is reviewed.
+
+**Update:** every item above was later implemented (Phases 7B–8) and
+run for real, once, against `synthetic-v2` — see `docs/RESULTS.md`
+(Sections 3–5) for the preserved run IDs, artifact hashes, and metrics.
+This section is left as written at the time for historical accuracy.

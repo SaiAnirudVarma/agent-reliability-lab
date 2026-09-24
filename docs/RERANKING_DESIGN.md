@@ -126,14 +126,15 @@ been run against synthetic-v2**:
   rank movement), operating only on already-preserved candidates -- no
   embedding calls, no re-retrieval.
 - `scripts/run_reranking_eval.py` — the CLI skeleton enforcing the full
-  safety order (config → candidate-source validation → reranker
-  construction → git SHA → run ID → immutable output path → collision
-  check → *only then* the real provider call), writing to
-  `results/reranking_experiments/` — tested end-to-end with fake/counting
-  reranker doubles; never invoked with a real credential in this phase.
+  safety order (config → candidate-source validation → git SHA → run ID
+  → immutable output path → collision check → explicit real-API
+  authorization → *only then* reranker construction and the real
+  provider call), writing to `results/reranking_experiments/`.
 
-Still not implemented: any actual run of this script against
-`synthetic-v2` with a real Cohere credential (a separate, later
-authorization), and any choice of candidate depth `N`/final `K` beyond
-what's already frozen in `configs/reranker-baseline-v1.json` — those
-values are fixed as a baseline, not re-derived experimentally here.
+**Update (Phase 7D, after this design doc was written):** this script
+was later run for real, once, with a real Cohere credential, against
+the frozen `synthetic-v2` candidate set. That result is preserved —
+see `docs/RESULTS.md` (Section 4) for the run ID, artifact hash, and
+Recall@K/MRR before vs. after reranking. The candidate depth `N`/final
+`K` frozen in `configs/reranker-baseline-v1.json` were never re-derived
+or tuned after seeing that result.
